@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #2E2118;
+  --color-umber: #6F4E37;
+  --color-ochre: #C8A27A;
+  --color-platinum: #E7E8EA;
+  --color-ivory: #F8F4EE;
+  --color-sage: #7B9B7A;
+  --color-pure-black: #000000;
+  --color-pure-white: #ffffff;
+}
+
+:root {
+  --color-void: #2E2118;
+  --color-umber: #6F4E37;
+  --color-ochre: #C8A27A;
+  --color-platinum: #E7E8EA;
+  --color-ivory: #F8F4EE;
+  --color-sage: #7B9B7A;
+  --color-pure-black: #000000;
+  --color-pure-white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #2E2118;
+  color: #F8F4EE;
+}
+
+body {
+  background-color: #2E2118;
+  color: #F8F4EE;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Kintsugi Crack Line Effect */
+.kintsugi-gold {
+  filter: drop-shadow(0 0 10px rgba(200, 162, 122, 0.6));
+}
+
+/* Cinemascope Letterbox */
+.cinemascope-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: #000000;
+  z-index: 100;
+  border-bottom: 1px solid rgba(111, 78, 55, 0.4);
+}
+
+.cinemascope-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: #000000;
+  z-index: 100;
+  border-top: 1px solid rgba(111, 78, 55, 0.4);
+}
