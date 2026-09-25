@@ -1,6 +1,7 @@
 "use client";
 
 import { ShieldCheck, ArrowUp, Lock, Terminal } from "lucide-react";
+import Image from "next/image";
 import { sound } from "../../utils/audio";
 
 export function AnimeFooter() {
@@ -23,14 +24,27 @@ export function AnimeFooter() {
         {/* Top Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-16 border-b border-umber/40">
           <div>
-            <div className="flex items-center gap-2 text-[10px] font-mono text-ochre uppercase tracking-[0.3em] mb-3">
-              <Terminal className="w-3.5 h-3.5" />
-              <span>THE SOVEREIGN RECORD</span>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-umber/50 border border-ochre/40 flex items-center justify-center p-2 shadow-[0_0_25px_rgba(200,162,122,0.18)] shrink-0">
+                <Image
+                  src="/brand/icon-main.png"
+                  alt="Kikoba Icon"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 text-[10px] font-mono text-ochre uppercase tracking-[0.3em]">
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>THE SOVEREIGN RECORD</span>
+                </div>
+                <h3 className="text-[34px] sm:text-[48px] font-black text-ivory tracking-[-0.03em] uppercase leading-none font-mono mt-1">
+                  KIKOBA
+                </h3>
+              </div>
             </div>
-            <h3 className="text-[38px] sm:text-[54px] font-black text-ivory tracking-[-0.03em] uppercase leading-none font-mono">
-              KIKOBA
-            </h3>
-            <p className="text-[14px] font-mono text-platinum/60 tracking-wider mt-2">
+            <p className="text-[14px] font-mono text-platinum/60 tracking-wider">
               AUTONOMOUS CHAMA PROTOCOL FOR COLLECTIVE WEALTH
             </p>
           </div>
@@ -71,13 +85,13 @@ export function AnimeFooter() {
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// PLATFORM SECTIONS"}
             </span>
-            <ul className="space-y-2.5 text-[12px] text-platinum/70">
+            <ul className="space-y-2 text-[12px] text-platinum/70">
               <li>
                 <button
                   onClick={() => jumpTo("heritage")}
                   className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
                 >
-                  The Heritage & Covenant
+                  01. The Heritage & Covenant
                 </button>
               </li>
               <li>
@@ -85,7 +99,7 @@ export function AnimeFooter() {
                   onClick={() => jumpTo("the-shift")}
                   className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
                 >
-                  The Manual Friction
+                  02. The Manual Friction
                 </button>
               </li>
               <li>
@@ -93,7 +107,15 @@ export function AnimeFooter() {
                   onClick={() => jumpTo("the-engine")}
                   className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
                 >
-                  Autonomous Architecture
+                  03. Autonomous Architecture
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => jumpTo("how-it-works")}
+                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
+                >
+                  04. 4-Step How It Works
                 </button>
               </li>
               <li>
@@ -101,7 +123,23 @@ export function AnimeFooter() {
                   onClick={() => jumpTo("yield")}
                   className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
                 >
-                  Audited Cycle Yield
+                  05. Audited Cycle Yield
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => jumpTo("pricing")}
+                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
+                >
+                  06. Protocol Pricing Tiers
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => jumpTo("faq")}
+                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
+                >
+                  07. Frequently Asked Questions
                 </button>
               </li>
               <li>
@@ -109,7 +147,15 @@ export function AnimeFooter() {
                   onClick={() => jumpTo("vault")}
                   className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
                 >
-                  Onboard Your Circle
+                  08. Onboard Your Circle
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => jumpTo("mobile-app")}
+                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
+                >
+                  09. Mobile App Waitlist
                 </button>
               </li>
             </ul>

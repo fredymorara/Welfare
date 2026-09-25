@@ -160,15 +160,15 @@ export function Scene03TheBlueprint() {
       {/* Section Footer Flow Trigger */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          WHAT HAPPENS WHEN CAPITAL FLOWS WITHOUT FRICTION
+          SEE HOW GROUPS RUN THE PROTOCOL DAILY
         </span>
 
         <a
-          href="#yield"
+          href="#how-it-works"
           onClick={() => sound.playClick(500)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
-          <span>SIMULATE GROUP YIELD</span>
+          <span>HOW IT WORKS (4 STEPS)</span>
           <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
         </a>
       </div>

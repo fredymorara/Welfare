@@ -2,7 +2,8 @@
 
 import { useState, useRef, type FormEvent } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ArrowDown } from "lucide-react";
+import Image from "next/image";
 import confetti from "canvas-confetti";
 import { sound } from "../../utils/audio";
 
@@ -75,6 +76,19 @@ export function Scene05TheHorizon() {
 
       {/* Center Monolithic Drama & High-Contrast Gateway */}
       <div className="relative z-10 my-auto w-full max-w-4xl mx-auto text-center">
+        {/* Official Brand Emblem */}
+        <div className="inline-flex items-center justify-center mb-6">
+          <div className="w-16 h-16 rounded-2xl bg-umber/50 border border-ochre/50 flex items-center justify-center p-3 shadow-[0_0_35px_rgba(200,162,122,0.25)]">
+            <Image
+              src="/brand/icon-main.png"
+              alt="Kikoba Emblem"
+              width={50}
+              height={50}
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+
         <span className="text-ochre font-mono text-[13px] tracking-[0.35em] uppercase block mb-4">
           [ THE TIME TO STEP FORWARD ]
         </span>
@@ -159,8 +173,18 @@ export function Scene05TheHorizon() {
 
       {/* Bottom Scene Anchor Flow */}
       <div className="relative z-10 pt-6 border-t border-umber/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/60 uppercase tracking-widest">
-        <span className="text-ochre">● THE HORIZON ARCHIVE</span>
-        <span className="text-sage">PROTOCOL VERSION 3.2 · PRODUCTION READY</span>
+        <div className="flex items-center gap-3">
+          <span className="text-ochre">● THE SOVEREIGN VAULT</span>
+          <span className="text-sage hidden sm:inline">PROTOCOL VERSION 3.2 · PRODUCTION READY</span>
+        </div>
+        <a
+          href="#mobile-app"
+          onClick={() => sound.playClick(420)}
+          className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
+        >
+          <span>THE MOBILE APP IS COMING</span>
+          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform" />
+        </a>
       </div>
     </section>
   );

@@ -159,15 +159,15 @@ export function Scene04TheHarvest() {
       {/* Section Footer Flow Trigger */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          READY TO ELEVATE YOUR CHAMA?
+          TRANSPARENT VALUE FOR EVERY SIZE CIRCLE
         </span>
 
         <a
-          href="#vault"
+          href="#pricing"
           onClick={() => sound.playChime()}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
-          <span>ONBOARD YOUR CIRCLE</span>
+          <span>VIEW PROTOCOL TIERS</span>
           <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
         </a>
       </div>
