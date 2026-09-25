@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { sound } from "../../utils/audio";
 
 const SCENES = [
   { id: "heritage", code: "01", name: "HERITAGE" },
@@ -45,7 +44,6 @@ export function SceneProgressHUD() {
   }, []);
 
   const jumpTo = (id: string) => {
-    sound.playClick(440);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });

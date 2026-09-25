@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, CheckCircle2, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
-import { sound } from "../../utils/audio";
+import { SIGN_IN_URL } from "../../config/api";
 
 export function Scene05TheHorizon() {
   const containerRef = useRef<HTMLElement>(null);
@@ -26,8 +26,6 @@ export function Scene05TheHorizon() {
     e.preventDefault();
     if (!chamaName || !phone) return;
     setConfirmed(true);
-    sound.playUnlockBass();
-    sound.playChime();
 
     try {
       confetti({
@@ -107,36 +105,44 @@ export function Scene05TheHorizon() {
 
         {/* Onboarding Form Gateway */}
         {!confirmed ? (
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto"
-          >
-            <input
-              type="text"
-              required
-              value={chamaName}
-              onChange={(e) => setChamaName(e.target.value)}
-              placeholder="Chama or Circle Name"
-              className="w-full sm:flex-1 px-6 py-5 rounded-full bg-umber/40 border-2 border-umber text-ivory placeholder-platinum/60 text-[15px] font-mono focus:outline-none focus:border-ochre transition-colors"
-            />
-
-            <input
-              type="tel"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Leader Phone (+254...)"
-              className="w-full sm:flex-1 px-6 py-5 rounded-full bg-umber/40 border-2 border-umber text-ivory placeholder-platinum/60 text-[15px] font-mono focus:outline-none focus:border-ochre transition-colors"
-            />
-
-            <button
-              type="submit"
-              className="w-full sm:w-auto px-10 py-5 rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[13px] tracking-[0.2em] uppercase transition-all duration-300 hover:shadow-[0_0_40px_rgba(200,162,122,0.6)] active:scale-95 cursor-pointer shrink-0 flex items-center justify-center gap-2"
+          <>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto"
             >
-              <span>ENTER VAULT</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
+              <input
+                type="text"
+                required
+                value={chamaName}
+                onChange={(e) => setChamaName(e.target.value)}
+                placeholder="Chama or Circle Name"
+                className="w-full sm:flex-1 px-6 py-5 rounded-full bg-umber/40 border-2 border-umber text-ivory placeholder-platinum/60 text-[15px] font-mono focus:outline-none focus:border-ochre transition-colors"
+              />
+
+              <input
+                type="tel"
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Leader Phone (+254...)"
+                className="w-full sm:flex-1 px-6 py-5 rounded-full bg-umber/40 border-2 border-umber text-ivory placeholder-platinum/60 text-[15px] font-mono focus:outline-none focus:border-ochre transition-colors"
+              />
+
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-10 py-5 rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[13px] tracking-[0.2em] uppercase transition-all duration-300 hover:shadow-[0_0_40px_rgba(200,162,122,0.6)] active:scale-95 cursor-pointer shrink-0 flex items-center justify-center gap-2"
+              >
+                <span>Sign Up</span>
+                <ArrowRight className="w-4 h-4 stroke-3" />
+              </button>
+            </form>
+            <div className="mt-4 text-center font-mono text-[12px] text-platinum/70">
+              Already have an account?{" "}
+              <a href={SIGN_IN_URL} className="text-ochre hover:text-ivory underline font-bold uppercase tracking-wider ml-1">
+                Sign In
+              </a>
+            </div>
+          </>
         ) : (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -179,7 +185,6 @@ export function Scene05TheHorizon() {
         </div>
         <a
           href="#mobile-app"
-          onClick={() => sound.playClick(420)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>THE MOBILE APP IS COMING</span>

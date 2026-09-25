@@ -3,7 +3,6 @@
 import { useState, useRef, type FormEvent } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Smartphone, ArrowRight, CheckCircle2 } from "lucide-react";
-import { sound } from "../../utils/audio";
 
 const PLATFORMS = [
   { label: "iOS", sub: "App Store", icon: "◆" },
@@ -29,8 +28,6 @@ export function Scene09MobileApp() {
     e.preventDefault();
     if (!email) return;
     setSubmitted(true);
-    sound.playUnlockBass();
-    sound.playChime();
   };
 
   return (
@@ -195,7 +192,7 @@ export function Scene09MobileApp() {
 
               {/* Bottom CTA button */}
               <rect x="24" y="466" width="232" height="40" rx="20" fill="#C8A27A" />
-              <text x="140" y="491" fill="#2E2118" fontSize="9" fontFamily="monospace" letterSpacing="2" textAnchor="middle" fontWeight="bold">SIGN INTO VAULT</text>
+              <text x="140" y="491" fill="#2E2118" fontSize="9" fontFamily="monospace" letterSpacing="2" textAnchor="middle" fontWeight="bold">SIGN IN</text>
             </svg>
 
             {/* Glow pulse ring under phone */}

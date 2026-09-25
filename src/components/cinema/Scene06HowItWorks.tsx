@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
-import { sound } from "../../utils/audio";
 
 const STEPS = [
   {
@@ -124,7 +123,6 @@ export function Scene06HowItWorks() {
                 key={step.number}
                 onClick={() => {
                   setActiveStep(idx);
-                  sound.playClick(320 + idx * 60);
                 }}
                 className={`flex-1 py-3 px-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[11px] uppercase tracking-widest ${
                   isActive
@@ -188,7 +186,6 @@ export function Scene06HowItWorks() {
         </span>
         <a
           href="#yield"
-          onClick={() => sound.playClick(440)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>SIMULATE GROUP YIELD</span>

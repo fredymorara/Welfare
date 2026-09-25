@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Check, X, ArrowDown, ArrowUpRight } from "lucide-react";
 import { useSubscriptionPackages } from "../../hooks/useSubscriptionPackages";
 import { SIGN_UP_URL } from "../../config/api";
-import { sound } from "../../utils/audio";
 
 type Period = "monthly" | "annual";
 
@@ -110,13 +109,13 @@ export function Scene07Pricing() {
           {/* Period Toggle */}
           <div className="flex items-center gap-0 border border-umber/60 font-mono text-[11px] uppercase tracking-widest shrink-0">
             <button
-              onClick={() => { setPeriod("monthly"); sound.playClick(320); }}
+              onClick={() => setPeriod("monthly")}
               className={`px-5 py-2.5 transition-colors cursor-pointer ${period === "monthly" ? "bg-umber/60 text-ivory" : "text-platinum/50 hover:text-ivory"}`}
             >
               Monthly
             </button>
             <button
-              onClick={() => { setPeriod("annual"); sound.playClick(360); }}
+              onClick={() => setPeriod("annual")}
               className={`px-5 py-2.5 transition-colors cursor-pointer relative ${period === "annual" ? "bg-umber/60 text-ivory" : "text-platinum/50 hover:text-ivory"}`}
             >
               Annual
@@ -210,11 +209,10 @@ export function Scene07Pricing() {
                   <div className="p-8 pt-0">
                     <a
                       href={SIGN_UP_URL}
-                      onClick={() => sound.playClick(440)}
-                      className={`flex items-center justify-center gap-2 w-full py-3.5 font-black text-[11px] font-mono tracking-[0.2em] uppercase transition-all duration-200 cursor-pointer ${style.cta}`}
+                      className={`flex items-center justify-center gap-2 w-full py-3.5 font-black text-[12px] font-mono tracking-widest uppercase transition-all duration-200 cursor-pointer ${style.cta}`}
                     >
-                      <span>{isFree ? "START FREE" : "GET STARTED"}</span>
-                      <ArrowUpRight className="w-3 h-3" />
+                      <span>Sign Up</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                     {pkg.isTrial && (
                       <div className="text-center text-[10px] font-mono text-platinum/40 mt-3 uppercase tracking-widest">
@@ -236,7 +234,6 @@ export function Scene07Pricing() {
         </span>
         <a
           href="#faq"
-          onClick={() => sound.playClick(500)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>READ THE FAQ</span>

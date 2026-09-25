@@ -2,8 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowDown } from "lucide-react";
-import { sound } from "../../utils/audio";
+import { ArrowDown, ArrowRight } from "lucide-react";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 export function Scene01TheCircle() {
   const containerRef = useRef<HTMLElement>(null);
@@ -88,6 +88,32 @@ export function Scene01TheCircle() {
             <div className="text-sage">✓ KES 480B+ POOLED ANNUALLY</div>
           </div>
         </div>
+
+        {/* Uniform Hero Actions: Sign Up & Sign In */}
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href={SIGN_UP_URL}
+            className="flex items-center gap-2 px-8 py-4 rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[12px] font-mono tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(200,162,122,0.35)] active:scale-95 cursor-pointer"
+          >
+            <span>Sign Up</span>
+            <ArrowRight className="w-4 h-4 stroke-3" />
+          </a>
+
+          <a
+            href={SIGN_IN_URL}
+            className="px-7 py-4 rounded-full border border-umber hover:border-ochre text-ivory hover:text-ochre font-mono text-[12px] tracking-widest uppercase transition-colors cursor-pointer"
+          >
+            Sign In
+          </a>
+
+          <a
+            href="#how-it-works"
+            className="text-[12px] font-mono tracking-wider text-platinum/60 hover:text-ochre transition-colors pl-2 flex items-center gap-1.5"
+          >
+            <span>Explore The Protocol</span>
+            <span>↓</span>
+          </a>
+        </div>
       </motion.div>
 
       {/* Bottom Scene Flow Trigger */}
@@ -101,7 +127,6 @@ export function Scene01TheCircle() {
 
         <a
           href="#the-shift"
-          onClick={() => sound.playClick(320)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>SEE THE CHALLENGE</span>

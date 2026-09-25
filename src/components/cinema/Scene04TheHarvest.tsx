@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
-import { sound } from "../../utils/audio";
 
 export function Scene04TheHarvest() {
   const containerRef = useRef<HTMLElement>(null);
@@ -100,7 +99,6 @@ export function Scene04TheHarvest() {
                 value={members}
                 onChange={(e) => {
                   setMembers(Number(e.target.value));
-                  sound.playClick(240 + Number(e.target.value) * 5);
                 }}
                 className="w-full h-2 bg-umber rounded-lg appearance-none cursor-pointer accent-ochre"
               />
@@ -164,7 +162,6 @@ export function Scene04TheHarvest() {
 
         <a
           href="#pricing"
-          onClick={() => sound.playChime()}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>VIEW PROTOCOL TIERS</span>

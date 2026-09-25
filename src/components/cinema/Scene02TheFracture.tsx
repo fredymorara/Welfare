@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
-import { sound } from "../../utils/audio";
 
 export function Scene02TheFracture() {
   const containerRef = useRef<HTMLElement>(null);
@@ -139,7 +138,6 @@ export function Scene02TheFracture() {
 
         <a
           href="#the-engine"
-          onClick={() => sound.playClick(440)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>HOW KIKOBA SOLVES THIS</span>

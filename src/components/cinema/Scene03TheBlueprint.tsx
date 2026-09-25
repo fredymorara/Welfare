@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, Key, ShieldCheck, Zap } from "lucide-react";
-import { sound } from "../../utils/audio";
 
 export function Scene03TheBlueprint() {
   const containerRef = useRef<HTMLElement>(null);
@@ -19,7 +18,6 @@ export function Scene03TheBlueprint() {
 
   const triggerNode = (id: number) => {
     setPulseNode(id);
-    sound.playClick(320 + id * 110);
   };
 
   return (
@@ -165,7 +163,6 @@ export function Scene03TheBlueprint() {
 
         <a
           href="#how-it-works"
-          onClick={() => sound.playClick(500)}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>HOW IT WORKS (4 STEPS)</span>

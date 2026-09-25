@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-// Scene 07 (FAQ: query brackets) → Scene 08 (Vault: concentric glowing gateway rings)
+// Scene 07 (FAQ) → Scene 08 (Vault / Onboarding CTA)
+// Sleek architectural connecting lines expanding symmetrically from center outward
 export function FaqToVaultMorph() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -11,72 +12,83 @@ export function FaqToVaultMorph() {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.7, 0.95], [0.2, 1, 1, 0.2]);
-  const ringScale = useTransform(scrollYProgress, [0.2, 0.8], [0.5, 1.15]);
-  const ringRotate = useTransform(scrollYProgress, [0.2, 0.8], [0, 45]);
-  const bracketSpread = useTransform(scrollYProgress, [0.1, 0.6], [80, 0]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.35, 0.7, 0.95], [0.2, 1, 1, 0.2]);
+
+  // Symmetrical horizontal spread from center (720) outward
+  const xLeft1 = useTransform(scrollYProgress, [0.2, 0.7], [720, 160]);
+  const xRight1 = useTransform(scrollYProgress, [0.2, 0.7], [720, 1280]);
+
+  const xLeft2 = useTransform(scrollYProgress, [0.25, 0.75], [720, 260]);
+  const xRight2 = useTransform(scrollYProgress, [0.25, 0.75], [720, 1180]);
+
+  const xLeft3 = useTransform(scrollYProgress, [0.3, 0.8], [720, 360]);
+  const xRight3 = useTransform(scrollYProgress, [0.3, 0.8], [720, 1080]);
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-32 sm:h-44 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center bg-void"
+      className="relative w-full h-28 sm:h-36 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center bg-void"
     >
       <motion.svg
         style={{ opacity }}
         className="absolute inset-0 w-full h-full overflow-visible"
-        viewBox="0 0 1440 180"
+        viewBox="0 0 1440 160"
         preserveAspectRatio="none"
       >
-        {/* Converging query brackets */}
-        <motion.path
-          d="M 520,30 L 620,90 L 520,150"
+        {/* Center Origin Node */}
+        <circle cx="720" cy="80" r="3.5" fill="#C8A27A" />
+
+        {/* Main Central Line: expands symmetrically from center (720) left & right */}
+        <motion.line
+          x1={xLeft1}
+          y1="80"
+          x2={xRight1}
+          y2="80"
           stroke="#C8A27A"
           strokeWidth="1.5"
-          fill="none"
-          strokeOpacity="0.4"
-          style={{ x: bracketSpread }}
-        />
-        <motion.path
-          d="M 920,30 L 820,90 L 920,150"
-          stroke="#C8A27A"
-          strokeWidth="1.5"
-          fill="none"
-          strokeOpacity="0.4"
-          style={{ x: useTransform(bracketSpread, (v) => -v) }}
+          strokeOpacity="0.85"
         />
 
-        {/* Outer Concentric Gateway Ring */}
-        <motion.circle
-          cx="720"
-          cy="90"
-          r="65"
-          stroke="#C8A27A"
-          strokeWidth="1"
-          fill="none"
-          strokeDasharray="6 4"
-          strokeOpacity="0.6"
-          style={{ scale: ringScale, rotate: ringRotate }}
-        />
-
-        {/* Inner Solid Gateway Ring */}
-        <motion.circle
-          cx="720"
-          cy="90"
-          r="40"
+        {/* Upper Accent Line */}
+        <motion.line
+          x1={xLeft2}
+          y1="56"
+          x2={xRight2}
+          y2="56"
           stroke="#6F4E37"
-          strokeWidth="1.5"
-          fill="none"
-          strokeOpacity="0.7"
-          style={{ scale: ringScale }}
+          strokeWidth="1"
+          strokeOpacity="0.65"
         />
 
-        {/* Core Gateway Center Key */}
-        <motion.circle
-          cx="720"
-          cy="90"
-          r="8"
-          fill="#C8A27A"
-          style={{ scale: ringScale }}
+        {/* Lower Accent Line */}
+        <motion.line
+          x1={xLeft3}
+          y1="104"
+          x2={xRight3}
+          y2="104"
+          stroke="#7B9B7A"
+          strokeWidth="1"
+          strokeOpacity="0.55"
+        />
+
+        {/* Terminal End Ticks */}
+        <motion.line
+          x1={xLeft1}
+          y1="72"
+          x2={xLeft1}
+          y2="88"
+          stroke="#C8A27A"
+          strokeWidth="1.2"
+          strokeOpacity="0.7"
+        />
+        <motion.line
+          x1={xRight1}
+          y1="72"
+          x2={xRight1}
+          y2="88"
+          stroke="#C8A27A"
+          strokeWidth="1.2"
+          strokeOpacity="0.7"
         />
       </motion.svg>
     </div>

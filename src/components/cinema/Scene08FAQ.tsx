@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, Plus, Minus } from "lucide-react";
 import { useFAQs } from "../../hooks/useFAQs";
-import { sound } from "../../utils/audio";
 
 export function Scene08FAQ() {
   const containerRef = useRef<HTMLElement>(null);
@@ -21,7 +20,6 @@ export function Scene08FAQ() {
   const toggle = (idx: number) => {
     const next = openIndex === idx ? null : idx;
     setOpenIndex(next);
-    sound.playClick(next !== null ? 380 : 340);
   };
 
   return (
@@ -139,7 +137,6 @@ export function Scene08FAQ() {
         </span>
         <a
           href="#vault"
-          onClick={() => sound.playChime()}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>ONBOARD YOUR CIRCLE</span>

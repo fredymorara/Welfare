@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-// Scene 08 (Vault: concentric rings) → Scene 09 (Mobile App: phone silhouette and mobile signal beams)
+// Scene 08 (Vault) → Scene 09 (Mobile App)
+// Clean connecting line transition expanding symmetrically from center outward, without phone preview
 export function VaultToMobileMorph() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -11,75 +12,84 @@ export function VaultToMobileMorph() {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.7, 0.95], [0.2, 1, 1, 0.2]);
-  const ringScale = useTransform(scrollYProgress, [0.15, 0.6], [1.1, 0.4]);
-  const phoneScale = useTransform(scrollYProgress, [0.35, 0.85], [0.6, 1]);
-  const phoneY = useTransform(scrollYProgress, [0.35, 0.85], [30, 0]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.35, 0.7, 0.95], [0.2, 1, 1, 0.2]);
+
+  // Symmetrical horizontal spread from center (720) outward
+  const xLeft1 = useTransform(scrollYProgress, [0.2, 0.7], [720, 160]);
+  const xRight1 = useTransform(scrollYProgress, [0.2, 0.7], [720, 1280]);
+
+  const xLeft2 = useTransform(scrollYProgress, [0.25, 0.75], [720, 260]);
+  const xRight2 = useTransform(scrollYProgress, [0.25, 0.75], [720, 1180]);
+
+  const xLeft3 = useTransform(scrollYProgress, [0.3, 0.8], [720, 360]);
+  const xRight3 = useTransform(scrollYProgress, [0.3, 0.8], [720, 1080]);
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-32 sm:h-44 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center bg-void"
+      className="relative w-full h-28 sm:h-36 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center bg-void"
     >
       <motion.svg
         style={{ opacity }}
         className="absolute inset-0 w-full h-full overflow-visible"
-        viewBox="0 0 1440 180"
+        viewBox="0 0 1440 160"
         preserveAspectRatio="none"
       >
-        {/* Dissolving gateway circle */}
-        <motion.circle
-          cx="720"
-          cy="90"
-          r="80"
+        {/* Center Origin Mark */}
+        <circle cx="720" cy="80" r="3.5" fill="#C8A27A" />
+
+        {/* Primary Line: Expands symmetrically from center to both left and right */}
+        <motion.line
+          x1={xLeft1}
+          y1="80"
+          x2={xRight1}
+          y2="80"
           stroke="#C8A27A"
-          strokeWidth="1"
-          fill="none"
-          strokeDasharray="4 4"
-          strokeOpacity="0.4"
-          style={{ scale: ringScale }}
+          strokeWidth="1.5"
+          strokeOpacity="0.85"
         />
 
-        {/* Emerging phone outline */}
-        <motion.g style={{ scale: phoneScale, y: phoneY }}>
-          {/* Outer phone rounded bezel */}
-          <rect
-            x="670"
-            y="30"
-            width="100"
-            height="130"
-            rx="18"
-            fill="none"
-            stroke="#C8A27A"
-            strokeWidth="1.5"
-            strokeOpacity="0.7"
-          />
-          {/* Phone dynamic island pill */}
-          <rect
-            x="705"
-            y="42"
-            width="30"
-            height="5"
-            rx="2.5"
-            fill="#C8A27A"
-            fillOpacity="0.9"
-          />
-          {/* Signal wave arcs radiating left and right */}
-          <path
-            d="M 640,75 A 25 25 0 0 0 640,115"
-            stroke="#7B9B7A"
-            strokeWidth="1.5"
-            fill="none"
-            strokeOpacity="0.6"
-          />
-          <path
-            d="M 800,75 A 25 25 0 0 1 800,115"
-            stroke="#7B9B7A"
-            strokeWidth="1.5"
-            fill="none"
-            strokeOpacity="0.6"
-          />
-        </motion.g>
+        {/* Upper Track */}
+        <motion.line
+          x1={xLeft2}
+          y1="56"
+          x2={xRight2}
+          y2="56"
+          stroke="#6F4E37"
+          strokeWidth="1"
+          strokeOpacity="0.65"
+        />
+
+        {/* Lower Track */}
+        <motion.line
+          x1={xLeft3}
+          y1="104"
+          x2={xRight3}
+          y2="104"
+          stroke="#7B9B7A"
+          strokeWidth="1"
+          strokeOpacity="0.55"
+        />
+
+        {/* Vertical Ticks at Ends */}
+        <motion.line
+          x1={xLeft1}
+          y1="72"
+          x2={xLeft1}
+          y2="88"
+          stroke="#C8A27A"
+          strokeWidth="1.2"
+          strokeOpacity="0.7"
+        />
+        <motion.line
+          x1={xRight1}
+          y1="72"
+          x2={xRight1}
+          y2="88"
+          stroke="#C8A27A"
+          strokeWidth="1.2"
+          strokeOpacity="0.7"
+        />
       </motion.svg>
     </div>
   );

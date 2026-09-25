@@ -2,16 +2,23 @@
 
 import { ShieldCheck, ArrowUp, Lock, Terminal } from "lucide-react";
 import Image from "next/image";
-import { sound } from "../../utils/audio";
+import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
+
+const FOOTER_LINKS = [
+  { id: "heritage", title: "Heritage" },
+  { id: "how-it-works", title: "Process" },
+  { id: "yield", title: "Yield" },
+  { id: "pricing", title: "Pricing" },
+  { id: "faq", title: "FAQ" },
+  { id: "mobile-app", title: "App" },
+];
 
 export function AnimeFooter() {
   const scrollToTop = () => {
-    sound.playClick(450);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const jumpTo = (id: string) => {
-    sound.playClick(380);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -21,32 +28,21 @@ export function AnimeFooter() {
   return (
     <footer className="relative bg-[#1f150e] border-t-2 border-umber pt-20 pb-16 px-6 sm:px-16 lg:px-24 w-full select-none z-10">
       <div className="max-w-7xl mx-auto">
-        {/* Top Header */}
+        {/* Top Header with Official Kikoba Wordmark */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-16 border-b border-umber/40">
           <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-umber/50 border border-ochre/40 flex items-center justify-center p-2 shadow-[0_0_25px_rgba(200,162,122,0.18)] shrink-0">
-                <Image
-                  src="/brand/icon-main.png"
-                  alt="Kikoba Icon"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 text-[10px] font-mono text-ochre uppercase tracking-[0.3em]">
-                  <Terminal className="w-3.5 h-3.5" />
-                  <span>THE SOVEREIGN RECORD</span>
-                </div>
-                <h3 className="text-[34px] sm:text-[48px] font-black text-ivory tracking-[-0.03em] uppercase leading-none font-mono mt-1">
-                  KIKOBA
-                </h3>
-              </div>
+            <div className="flex flex-col gap-3 mb-2">
+              <Image
+                src="/brand/name-white.png"
+                alt="Kikoba"
+                width={2000}
+                height={301}
+                className="h-8 sm:h-10 w-auto object-contain self-start"
+              />
+              <p className="text-[13px] font-mono text-platinum/60 tracking-wider">
+                AUTONOMOUS CHAMA PROTOCOL FOR COLLECTIVE WEALTH
+              </p>
             </div>
-            <p className="text-[14px] font-mono text-platinum/60 tracking-wider">
-              AUTONOMOUS CHAMA PROTOCOL FOR COLLECTIVE WEALTH
-            </p>
           </div>
 
           <button
@@ -83,80 +79,27 @@ export function AnimeFooter() {
           {/* Column 2: Navigation Index */}
           <div className="md:col-span-3">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
-              {"// PLATFORM SECTIONS"}
+              {"// NAVIGATION"}
             </span>
-            <ul className="space-y-2 text-[12px] text-platinum/70">
-              <li>
-                <button
-                  onClick={() => jumpTo("heritage")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  01. The Heritage & Covenant
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("the-shift")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  02. The Manual Friction
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("the-engine")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  03. Autonomous Architecture
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("how-it-works")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  04. 4-Step How It Works
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("yield")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  05. Audited Cycle Yield
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("pricing")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  06. Protocol Pricing Tiers
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("faq")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  07. Frequently Asked Questions
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("vault")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  08. Onboard Your Circle
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => jumpTo("mobile-app")}
-                  className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left"
-                >
-                  09. Mobile App Waitlist
-                </button>
+            <ul className="space-y-2.5 text-[12px] text-platinum/70">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => jumpTo(link.id)}
+                    className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left uppercase tracking-wider"
+                  >
+                    {link.title}
+                  </button>
+                </li>
+              ))}
+              <li className="pt-3 border-t border-umber/30 flex gap-4 text-ochre uppercase font-bold text-[11px] tracking-widest">
+                <a href={SIGN_IN_URL} className="hover:text-ivory transition-colors">
+                  Sign In
+                </a>
+                <span>·</span>
+                <a href={SIGN_UP_URL} className="hover:text-ivory transition-colors">
+                  Sign Up
+                </a>
               </li>
             </ul>
           </div>
@@ -164,7 +107,7 @@ export function AnimeFooter() {
           {/* Column 3: Sovereign Protocol & Law */}
           <div className="md:col-span-4">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
-              {"// SOVEREIGN PROTOCOL"}
+              {"// PROTOCOL SECURITY"}
             </span>
             <div className="space-y-3 text-[12px] text-platinum/80 font-extralight">
               <div className="flex items-center gap-2">
@@ -173,11 +116,11 @@ export function AnimeFooter() {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-sage" />
-                <span>Kenya Data Protection Act (2019) Compliant</span>
+                <span>Kenya Data Protection Act Compliant</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-sage" />
-                <span>Direct Central Bank Partner Gateway Rails</span>
+                <span>Real-Time M-Pesa STK Ingestion</span>
               </div>
             </div>
 
@@ -187,20 +130,15 @@ export function AnimeFooter() {
           </div>
         </div>
 
-        {/* Bottom Coordinates & Credits */}
-        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/50 uppercase tracking-[0.2em]">
+        {/* Bottom Bar: Copyright & System Status */}
+        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/50 uppercase tracking-widest">
           <div className="flex items-center gap-2">
-            <span className="text-ochre">NAIROBI, KENYA</span>
-            <span>·</span>
-            <span>1° 17&apos; S, 36° 49&apos; E</span>
-            <span>·</span>
-            <span>© {new Date().getFullYear()} KIKOBA TECHNOLOGIES LTD.</span>
+            <span>© {new Date().getFullYear()} KIKOBA. ALL RIGHTS RESERVED.</span>
           </div>
 
-          <div className="flex items-center gap-4 text-ivory">
-            <span>HONOR THE ELDERS</span>
-            <span>{"///"}</span>
-            <span className="text-ochre">TRUST THE CODE</span>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-sage animate-ping" />
+            <span className="text-sage">MAINNET CONSENSUS STABLE</span>
           </div>
         </div>
       </div>
