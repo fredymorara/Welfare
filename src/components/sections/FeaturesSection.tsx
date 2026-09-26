@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SECTION_IDS } from "../../config/site";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { useAutoCycle } from "../../hooks/useAutoCycle";
 
 export function FeaturesSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -30,7 +31,21 @@ export function FeaturesSection() {
     offset: ["start end", "end start"],
   });
 
-  const [pulseNode, setPulseNode] = useState<number>(1);
+  const {
+    currentIndex,
+    handleSelect,
+    isInView,
+    isOverrideActive,
+    currentInterval,
+    cycleKey,
+  } = useAutoCycle({
+    containerRef,
+    totalItems: 3,
+    defaultInterval: 5000,
+    overrideInterval: 10000,
+  });
+
+  const pulseNode = currentIndex + 1;
 
   // Feature 1: M-Pesa Simulation State
   const [mpesaState, setMpesaState] = useState<"idle" | "simulating" | "success">("idle");
@@ -51,6 +66,7 @@ export function FeaturesSection() {
   );
 
   const handleSimulatePayment = () => {
+    handleSelect(0);
     setMpesaState("simulating");
     setTimeout(() => {
       setMpesaState("success");
@@ -59,18 +75,22 @@ export function FeaturesSection() {
   };
 
   const handleResetPayment = () => {
+    handleSelect(0);
     setMpesaState("idle");
   };
 
   const handleApproveLoan = () => {
+    handleSelect(1);
     setTreasurerApproved(true);
   };
 
   const handleResetLoan = () => {
+    handleSelect(1);
     setTreasurerApproved(false);
   };
 
   const handleDownloadStatement = () => {
+    handleSelect(2);
     setStatementDownloaded(true);
     setTimeout(() => setStatementDownloaded(false), 3000);
   };
@@ -92,7 +112,9 @@ export function FeaturesSection() {
         </div>
 
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          ● REAL INTERACTIVE FEATURES · SELECT TO TEST
+          {isOverrideActive
+            ? "● EXTENDED 10S FEATURE PREVIEW ACTIVE"
+            : "● REAL INTERACTIVE FEATURES · SELECT TO TEST"}
         </span>
       </div>
 
@@ -118,8 +140,8 @@ export function FeaturesSection() {
         {/* Feature Selector Tabs */}
         <div className="flex flex-col sm:flex-row gap-3 mb-8">
           <button
-            onClick={() => setPulseNode(1)}
-            className={`flex-1 p-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[12px] uppercase tracking-wider ${
+            onClick={() => handleSelect(0)}
+            className={`relative overflow-hidden flex-1 p-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[12px] uppercase tracking-wider ${
               pulseNode === 1
                 ? "border-ochre bg-umber/30 text-ochre shadow-[0_0_20px_rgba(200,162,122,0.2)]"
                 : "border-umber/40 text-platinum/60 hover:border-umber/80 hover:text-platinum"
@@ -131,11 +153,22 @@ export function FeaturesSection() {
             </div>
             <div className="font-bold text-[14px] text-ivory">Instant M-Pesa Recording</div>
             <div className="text-[10px] text-platinum/50 font-normal lowercase mt-0.5">Automated SMS & payment logging</div>
+
+            {pulseNode === 1 && isInView && (
+              <motion.div
+                key={`feat-progress-1-${cycleKey}`}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: currentInterval / 1000, ease: "linear" }}
+                style={{ originX: 0 }}
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-ochre"
+              />
+            )}
           </button>
 
           <button
-            onClick={() => setPulseNode(2)}
-            className={`flex-1 p-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[12px] uppercase tracking-wider ${
+            onClick={() => handleSelect(1)}
+            className={`relative overflow-hidden flex-1 p-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[12px] uppercase tracking-wider ${
               pulseNode === 2
                 ? "border-ochre bg-umber/30 text-ochre shadow-[0_0_20px_rgba(200,162,122,0.2)]"
                 : "border-umber/40 text-platinum/60 hover:border-umber/80 hover:text-platinum"
@@ -147,11 +180,22 @@ export function FeaturesSection() {
             </div>
             <div className="font-bold text-[14px] text-ivory">Two-Official Loan Approvals</div>
             <div className="text-[10px] text-platinum/50 font-normal lowercase mt-0.5">Both Chair & Treasurer must verify</div>
+
+            {pulseNode === 2 && isInView && (
+              <motion.div
+                key={`feat-progress-2-${cycleKey}`}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: currentInterval / 1000, ease: "linear" }}
+                style={{ originX: 0 }}
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-ochre"
+              />
+            )}
           </button>
 
           <button
-            onClick={() => setPulseNode(3)}
-            className={`flex-1 p-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[12px] uppercase tracking-wider ${
+            onClick={() => handleSelect(2)}
+            className={`relative overflow-hidden flex-1 p-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[12px] uppercase tracking-wider ${
               pulseNode === 3
                 ? "border-ochre bg-umber/30 text-ochre shadow-[0_0_20px_rgba(200,162,122,0.2)]"
                 : "border-umber/40 text-platinum/60 hover:border-umber/80 hover:text-platinum"
@@ -163,6 +207,17 @@ export function FeaturesSection() {
             </div>
             <div className="font-bold text-[14px] text-ivory">24/7 Member Statements</div>
             <div className="text-[10px] text-platinum/50 font-normal lowercase mt-0.5">Every member sees group balance</div>
+
+            {pulseNode === 3 && isInView && (
+              <motion.div
+                key={`feat-progress-3-${cycleKey}`}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: currentInterval / 1000, ease: "linear" }}
+                style={{ originX: 0 }}
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-ochre"
+              />
+            )}
           </button>
         </div>
 
@@ -441,7 +496,10 @@ export function FeaturesSection() {
                   <div className="flex items-center justify-between border-b border-umber/40 pb-3">
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => setMemberTab("member")}
+                        onClick={() => {
+                          handleSelect(2);
+                          setMemberTab("member");
+                        }}
                         className={`px-4 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-colors cursor-pointer ${
                           memberTab === "member"
                             ? "bg-ochre text-void font-bold"
@@ -451,7 +509,10 @@ export function FeaturesSection() {
                         Individual Member View
                       </button>
                       <button
-                        onClick={() => setMemberTab("group")}
+                        onClick={() => {
+                          handleSelect(2);
+                          setMemberTab("group");
+                        }}
                         className={`px-4 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-colors cursor-pointer ${
                           memberTab === "group"
                             ? "bg-ochre text-void font-bold"

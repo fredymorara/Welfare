@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import { SECTION_IDS } from "../../config/site";
 import { useIsMobile } from "../../hooks/useIsMobile";
+import { useAutoCycle } from "../../hooks/useAutoCycle";
 
 const STEPS = [
   {
@@ -69,7 +70,19 @@ export function HowItWorksSection() {
     offset: ["start end", "end start"],
   });
 
-  const [activeStep, setActiveStep] = useState(0);
+  const {
+    currentIndex: activeStep,
+    handleSelect,
+    isInView,
+    isOverrideActive,
+    currentInterval,
+    cycleKey,
+  } = useAutoCycle({
+    containerRef,
+    totalItems: STEPS.length,
+    defaultInterval: 5000,
+    overrideInterval: 10000,
+  });
 
   // Subtle background rail animation (desktop only)
   const railX = useTransform(scrollYProgress, [0, 1], [disableMotion ? "0%" : "-5%", disableMotion ? "0%" : "5%"]);
@@ -114,7 +127,9 @@ export function HowItWorksSection() {
           </span>
         </div>
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          FROM GROUP SETUP TO COLLECTIVE GROWTH
+          {isOverrideActive
+            ? "● EXTENDED 10S STEP PREVIEW ACTIVE"
+            : "FROM GROUP SETUP TO COLLECTIVE GROWTH"}
         </span>
       </div>
 
@@ -141,9 +156,9 @@ export function HowItWorksSection() {
               <button
                 key={step.number}
                 onClick={() => {
-                  setActiveStep(idx);
+                  handleSelect(idx);
                 }}
-                className={`flex-1 py-3 px-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[11px] uppercase tracking-widest ${
+                className={`relative overflow-hidden flex-1 py-3 px-4 border transition-all duration-300 cursor-pointer text-left font-mono text-[11px] uppercase tracking-widest ${
                   isActive
                     ? `${ac.border} bg-umber/30 ${ac.text}`
                     : "border-umber/40 text-platinum/50 hover:border-umber/80 hover:text-platinum/80"
@@ -153,6 +168,18 @@ export function HowItWorksSection() {
                   {step.number}.
                 </span>
                 {step.title}
+
+                {/* Animated active progress indicator: 5s default or 10s on manual selection */}
+                {isActive && isInView && (
+                  <motion.div
+                    key={`hw-progress-${activeStep}-${cycleKey}`}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: currentInterval / 1000, ease: "linear" }}
+                    style={{ originX: 0 }}
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 ${ac.dot}`}
+                  />
+                )}
               </button>
             );
           })}
