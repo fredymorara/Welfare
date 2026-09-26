@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://kikoba.co.ke";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kikobake.netlify.app";
 
   return {
     rules: [

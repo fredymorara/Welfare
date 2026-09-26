@@ -155,7 +155,7 @@ export default async function Image() {
               letterSpacing: "1.5px",
             }}
           >
-            KIKOBA.CO.KE
+            KIKOBAKE.NETLIFY.APP
           </span>
         </div>
       </div>
