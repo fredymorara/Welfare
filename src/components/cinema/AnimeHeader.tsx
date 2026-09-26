@@ -80,7 +80,7 @@ export function AnimeHeader() {
       {/* Accessibility: Keyboard Skip Link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-ochre focus:text-void focus:font-mono focus:text-[12px] focus:font-black focus:rounded-full focus:shadow-[0_0_20px_rgba(200,162,122,0.6)] focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2.5 focus:bg-ochre focus:text-void focus:font-mono focus:text-[12px] focus:font-black focus:rounded-full focus:shadow-[0_0_20px_rgba(200,162,122,0.6)] focus:outline-none"
       >
         Skip to content
       </a>
@@ -98,7 +98,7 @@ export function AnimeHeader() {
             href="/"
             onClick={handleLogoClick}
             aria-label="Kikoba Home"
-            className="flex items-center gap-3 cursor-pointer group shrink-0 min-h-[44px]"
+            className="flex items-center gap-3 cursor-pointer group shrink-0 min-h-11"
           >
             <Image
               src="/brand/name-white.png"
@@ -122,7 +122,7 @@ export function AnimeHeader() {
                   key={sec.id}
                   onClick={() => jumpTo(sec.id)}
                   aria-current={isActive ? "page" : undefined}
-                  className={`relative cursor-pointer py-2 px-1 min-h-[44px] flex items-center transition-colors duration-200 ${
+                  className={`relative cursor-pointer py-2 px-1 min-h-11 flex items-center transition-colors duration-200 ${
                     isActive
                       ? "text-ochre font-bold"
                       : "text-platinum/70 hover:text-ivory"
@@ -130,7 +130,7 @@ export function AnimeHeader() {
                 >
                   <span>{sec.title}</span>
                   <span
-                    className={`absolute bottom-1 left-0 right-0 h-[2px] rounded-full transition-all duration-300 ${
+                    className={`absolute bottom-1 left-0 right-0 h-0.5 rounded-full transition-all duration-300 ${
                       isActive
                         ? "bg-ochre opacity-100 scale-x-100"
                         : "bg-ochre/0 opacity-0 scale-x-0"
@@ -145,14 +145,14 @@ export function AnimeHeader() {
           <div className="flex items-center gap-2 sm:gap-4">
             <a
               href={SIGN_IN_URL}
-              className="text-platinum/80 hover:text-ivory font-mono text-[11px] sm:text-[12px] tracking-widest uppercase transition-colors px-3 py-2.5 min-h-[44px] flex items-center cursor-pointer font-bold"
+              className="text-platinum/80 hover:text-ivory font-mono text-[11px] sm:text-[12px] tracking-widest uppercase transition-colors px-3 py-2.5 min-h-11 flex items-center cursor-pointer font-bold"
             >
               Sign In
             </a>
 
             <a
               href={SIGN_UP_URL}
-              className="flex items-center gap-1.5 px-4 sm:px-5 py-2.5 min-h-[44px] rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[11px] sm:text-[12px] font-mono tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(200,162,122,0.3)] active:scale-95 cursor-pointer"
+              className="flex items-center gap-1.5 px-4 sm:px-5 py-2.5 min-h-11 rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[11px] sm:text-[12px] font-mono tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(200,162,122,0.3)] active:scale-95 cursor-pointer"
             >
               <span>Sign Up</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-3" />
@@ -164,7 +164,7 @@ export function AnimeHeader() {
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav-drawer"
-              className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg border border-umber/60 text-ivory hover:border-ochre transition-colors ml-1 cursor-pointer"
+              className="lg:hidden min-w-11 min-h-11 flex items-center justify-center rounded-lg border border-umber/60 text-ivory hover:border-ochre transition-colors ml-1 cursor-pointer"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -183,7 +183,7 @@ export function AnimeHeader() {
                 <button
                   key={sec.id}
                   onClick={() => jumpTo(sec.id)}
-                  className="min-h-[44px] text-left text-platinum hover:text-ochre py-2 border-b border-umber/20 flex items-center justify-between cursor-pointer"
+                  className="min-h-11 text-left text-platinum hover:text-ochre py-2 border-b border-umber/20 flex items-center justify-between cursor-pointer"
                 >
                   <span>{sec.title}</span>
                   <span className="text-ochre text-[10px]">JUMP →</span>
@@ -193,13 +193,13 @@ export function AnimeHeader() {
               <div className="pt-4 flex flex-col gap-3">
                 <a
                   href={SIGN_IN_URL}
-                  className="w-full text-center py-3 min-h-[44px] flex items-center justify-center border border-umber text-platinum font-mono text-[12px] uppercase tracking-widest hover:border-ochre transition-colors"
+                  className="w-full text-center py-3 min-h-11 flex items-center justify-center border border-umber text-platinum font-mono text-[12px] uppercase tracking-widest hover:border-ochre transition-colors"
                 >
                   Sign In
                 </a>
                 <a
                   href={SIGN_UP_URL}
-                  className="w-full text-center py-3 min-h-[44px] flex items-center justify-center bg-ochre text-void font-mono font-black text-[12px] uppercase tracking-widest"
+                  className="w-full text-center py-3 min-h-11 flex items-center justify-center bg-ochre text-void font-mono font-black text-[12px] uppercase tracking-widest"
                 >
                   Sign Up
                 </a>

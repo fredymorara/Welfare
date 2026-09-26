@@ -38,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} h-full`} data-scroll-behavior="smooth">
-      <body className="min-h-full flex flex-col bg-[#2E2118] text-[#F8F4EE] antialiased">
+      <body className="min-h-full flex flex-col bg-void text-ivory antialiased">
         {children}
       </body>
     </html>

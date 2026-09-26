@@ -45,7 +45,7 @@ export function AnimeFooter() {
                 href="/"
                 onClick={handleLogoClick}
                 aria-label="Kikoba Home"
-                className="inline-block cursor-pointer min-h-[44px] flex items-center"
+                className="flex items-center cursor-pointer min-h-11"
               >
                 <Image
                   src="/brand/name-white.png"
@@ -66,7 +66,7 @@ export function AnimeFooter() {
             onClick={scrollToTop}
             type="button"
             aria-label="Scroll back to top of page"
-            className="self-start md:self-end flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full border border-umber hover:border-ochre text-ivory text-[11px] font-mono tracking-widest uppercase transition-colors cursor-pointer group focus-visible:ring-2 focus-visible:ring-ochre"
+            className="self-start md:self-end flex items-center gap-2 px-5 py-2.5 min-h-11 rounded-full border border-umber hover:border-ochre text-ivory text-[11px] font-mono tracking-widest uppercase transition-colors cursor-pointer group focus-visible:ring-2 focus-visible:ring-ochre"
           >
             <span>BACK TO TOP</span>
             <ArrowUp className="w-3.5 h-3.5 text-ochre group-hover:-translate-y-1 transition-transform" />
@@ -103,13 +103,13 @@ export function AnimeFooter() {
                 <li key={link.id}>
                   <button
                     onClick={() => jumpTo(link.id)}
-                    className="w-full text-left py-2 min-h-[40px] flex items-center hover:text-ivory hover:underline transition-colors cursor-pointer uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
+                    className="w-full text-left py-2 min-h-10 flex items-center hover:text-ivory hover:underline transition-colors cursor-pointer uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
                   >
                     {link.title}
                   </button>
                 </li>
               ))}
-              <li className="pt-3 border-t border-umber/30 flex items-center gap-4 text-ochre uppercase font-bold text-[12px] tracking-widest min-h-[44px]">
+              <li className="pt-3 border-t border-umber/30 flex items-center gap-4 text-ochre uppercase font-bold text-[12px] tracking-widest min-h-11">
                 <a href={SIGN_IN_URL} className="hover:text-ivory transition-colors py-2">
                   Sign In
                 </a>
@@ -130,7 +130,7 @@ export function AnimeFooter() {
               <li>
                 <Link
                   href="/privacy"
-                  className="py-2 min-h-[40px] flex items-center hover:text-ivory hover:underline transition-colors block uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
+                  className="py-2 min-h-10 flex items-center hover:text-ivory hover:underline transition-colors uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
                 >
                   Privacy Policy
                 </Link>
@@ -138,7 +138,7 @@ export function AnimeFooter() {
               <li>
                 <Link
                   href="/terms"
-                  className="py-2 min-h-[40px] flex items-center hover:text-ivory hover:underline transition-colors block uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
+                  className="py-2 min-h-10 flex items-center hover:text-ivory hover:underline transition-colors uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
                 >
                   Terms of Service
                 </Link>
@@ -151,7 +151,7 @@ export function AnimeFooter() {
               </span>
               <a
                 href="mailto:support@kikoba.co.ke"
-                className="min-h-[44px] inline-flex items-center gap-2 text-[12px] text-ochre hover:text-ivory transition-colors focus-visible:ring-2 focus-visible:ring-ochre rounded"
+                className="min-h-11 inline-flex items-center gap-2 text-[12px] text-ochre hover:text-ivory transition-colors focus-visible:ring-2 focus-visible:ring-ochre rounded"
               >
                 <Mail className="w-3.5 h-3.5 text-ochre shrink-0" />
                 <span>support@kikoba.co.ke</span>

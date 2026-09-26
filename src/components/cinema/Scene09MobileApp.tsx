@@ -43,7 +43,7 @@ export function Scene09MobileApp() {
           opacity: glowOpacity,
           background: "radial-gradient(circle, rgba(200,162,122,0.3) 0%, rgba(111,78,55,0.15) 50%, transparent 80%)",
         }}
-        className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[500px] h-[600px] rounded-full pointer-events-none z-0 blur-[100px]"
+        className="absolute right-[5%] top-1/2 -translate-y-1/2 w-125 h-150 rounded-full pointer-events-none z-0 blur-[100px]"
       />
 
       {/* Top Narrative Anchor */}

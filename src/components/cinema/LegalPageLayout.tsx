@@ -66,7 +66,7 @@ export function LegalCallout({
     <div
       className={`relative bg-void-surface border border-ochre/30 rounded-xl p-6 sm:p-7 overflow-hidden my-6 shadow-[0_4px_24px_rgba(0,0,0,0.3)] ${className}`}
     >
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-transparent via-ochre to-transparent opacity-80" />
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-ochre to-transparent opacity-80" />
       <div className="relative z-10 flex flex-col gap-2.5 text-platinum/90">
         {children}
       </div>
@@ -138,7 +138,7 @@ export function LegalPageLayout({
           <Link
             href="/"
             aria-label="Return to Kikoba homepage"
-            className="min-h-[44px] inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-platinum/60 hover:text-ochre transition-colors mb-6 cursor-pointer group"
+            className="min-h-11 inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-platinum/60 hover:text-ochre transition-colors mb-6 cursor-pointer group"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Overview</span>
