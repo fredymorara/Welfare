@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 const FOOTER_LINKS = [
@@ -19,6 +20,16 @@ export function AnimeFooter() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    const el = document.getElementById("heritage");
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -30,13 +41,15 @@ export function AnimeFooter() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-umber/40">
           <div>
             <div className="flex flex-col gap-3 mb-2">
-              <Image
-                src="/brand/name-white.png"
-                alt="Kikoba"
-                width={2000}
-                height={301}
-                className="h-8 sm:h-10 w-auto object-contain self-start"
-              />
+              <Link href="/" onClick={handleLogoClick} className="inline-block cursor-pointer">
+                <Image
+                  src="/brand/name-white.png"
+                  alt="Kikoba"
+                  width={2000}
+                  height={301}
+                  className="h-8 sm:h-10 w-auto object-contain self-start"
+                />
+              </Link>
               <p className="text-[13px] font-mono text-platinum/60 tracking-wider">
                 SIMPLE DIGITAL ACCOUNTING & SAVINGS PLATFORM FOR CHAMAS
               </p>
@@ -53,10 +66,10 @@ export function AnimeFooter() {
           </button>
         </div>
 
-        {/* Clean 2-Column Content */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 py-12 border-b border-umber/40 font-mono">
+        {/* Clean 3-Column Content: Heritage, Navigation, Legal & Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 py-12 border-b border-umber/40 font-mono">
           {/* Column 1: Cultural Heritage */}
-          <div className="md:col-span-8 lg:col-span-9 max-w-3xl">
+          <div className="md:col-span-6 lg:col-span-6 max-w-2xl">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// CULTURAL HERITAGE"}
             </span>
@@ -74,7 +87,7 @@ export function AnimeFooter() {
           </div>
 
           {/* Column 2: Navigation Links */}
-          <div className="md:col-span-4 lg:col-span-3">
+          <div className="md:col-span-3 lg:col-span-3">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// NAVIGATION"}
             </span>
@@ -99,6 +112,44 @@ export function AnimeFooter() {
                 </a>
               </li>
             </ul>
+          </div>
+
+          {/* Column 3: Legal & Direct Contact */}
+          <div className="md:col-span-3 lg:col-span-3">
+            <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
+              {"// LEGAL & SUPPORT"}
+            </span>
+            <ul className="space-y-3 text-[13px] text-platinum/70 mb-5">
+              <li>
+                <Link
+                  href="/privacy"
+                  className="hover:text-ivory hover:underline transition-colors block uppercase tracking-wider"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="hover:text-ivory hover:underline transition-colors block uppercase tracking-wider"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+
+            <div className="pt-3 border-t border-umber/30">
+              <span className="text-[10px] text-platinum/50 uppercase tracking-widest block mb-2">
+                Support Email
+              </span>
+              <a
+                href="mailto:support@kikoba.co.ke"
+                className="inline-flex items-center gap-2 text-[12px] text-ochre hover:text-ivory transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-ochre shrink-0" />
+                <span>support@kikoba.co.ke</span>
+              </a>
+            </div>
           </div>
         </div>
 

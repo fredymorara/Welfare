@@ -43,6 +43,16 @@ export function AnimeHeader() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    const el = document.getElementById("heritage");
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -58,10 +68,7 @@ export function AnimeHeader() {
         {/* Official Brand Logomark */}
         <Link
           href="/"
-          onClick={(e) => {
-            e.preventDefault();
-            jumpTo("heritage");
-          }}
+          onClick={handleLogoClick}
           className="flex items-center gap-3 cursor-pointer group shrink-0"
         >
           <Image
