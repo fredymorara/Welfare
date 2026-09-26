@@ -30,39 +30,37 @@ export function ProblemSection() {
       ref={containerRef}
       id={SECTION_IDS.PROBLEM}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]"
-      style={{ contain: "paint" }}
     >
-      {/* Dynamic Parallax Kintsugi Golden Fissure (Optimized vector glow without heavy SVG filters) */}
+      {/* Dynamic Parallax Kintsugi Golden Fissure */}
       {!disableMotion ? (
         <motion.svg
           style={{ scale: crackScale, opacity: crackOpacity }}
-          className="absolute inset-0 w-full h-full pointer-events-none z-0 will-change-transform"
+          className="absolute inset-0 w-full h-full pointer-events-none z-0 will-change-transform kintsugi-gold"
           viewBox="0 0 1440 900"
           preserveAspectRatio="none"
         >
-          {/* Underlay glow strokes */}
+          {/* Main jagged fissure */}
           <path
             d="M 180 0 L 440 320 L 720 270 L 930 630 L 1220 900"
             stroke="#C8A27A"
-            strokeWidth="5"
-            strokeOpacity="0.2"
+            strokeWidth="2.5"
             fill="none"
             strokeDasharray="10 5"
           />
-          <path
-            d="M 180 0 L 440 320 L 720 270 L 930 630 L 1220 900"
-            stroke="#C8A27A"
-            strokeWidth="2"
-            strokeOpacity="0.85"
-            fill="none"
-            strokeDasharray="10 5"
-          />
+          {/* Lateral upper branch */}
           <path
             d="M 720 270 L 1120 190 L 1440 380"
             stroke="#C8A27A"
             strokeWidth="1.5"
-            strokeOpacity="0.75"
             fill="none"
+          />
+          {/* Downward connecting branch that bleeds into the next transition */}
+          <path
+            d="M 720 270 L 685 450 L 710 680 L 660 920"
+            stroke="#C8A27A"
+            strokeWidth="2"
+            fill="none"
+            strokeDasharray="8 4"
           />
         </motion.svg>
       ) : (

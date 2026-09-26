@@ -23,8 +23,7 @@ export function ProblemToFeaturesDivider() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-32 sm:h-44 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center"
-      style={{ contain: "paint" }}
+      className="relative w-full h-36 sm:h-48 -mt-20 sm:-mt-28 -mb-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center"
     >
       {/* Background Morphing Curve: Dark Obsidian (#1c130d) to Solid Brown (#2E2118) */}
       <svg
@@ -36,42 +35,43 @@ export function ProblemToFeaturesDivider() {
           d="M 0,0 L 1440,0 L 1440,180 L 0,180 Z"
           fill="#2E2118"
         />
-        {/* Angled architectural transition cut */}
+        {/* Angled architectural transition cut that bleeds seamlessly from ProblemSection */}
         <polygon
-          points="0,0 1440,0 1440,70 0,140"
+          points="0,0 1440,0 1440,80 0,160"
           fill="#1c130d"
-          opacity="0.9"
         />
       </svg>
 
       {/* Morphing Visual Continuity: Jagged Cracks Aligning into Orthogonal Circuit Bus */}
       {disableMotion ? (
         <svg
-          className="absolute inset-0 w-full h-full overflow-visible opacity-70"
+          className="absolute inset-0 w-full h-full overflow-visible opacity-80"
           viewBox="0 0 1440 180"
           preserveAspectRatio="none"
         >
+          {/* Chaotic input line bleeding directly out of ProblemSection */}
           <path
-            d="M 660,-20 L 685,30 L 650,60 L 720,90 L 720,190"
+            d="M 660,-70 L 685,-20 L 650,25 L 720,70 L 720,180"
             fill="none"
             stroke="#C8A27A"
-            strokeWidth="1.75"
+            strokeWidth="2"
+            className="kintsugi-gold"
           />
           <path
-            d="M 720,90 L 480,90 L 480,190"
-            fill="none"
-            stroke="#C8A27A"
-            strokeWidth="1.25"
-          />
-          <path
-            d="M 720,90 L 960,90 L 960,190"
+            d="M 720,70 L 480,70 L 480,180"
             fill="none"
             stroke="#C8A27A"
             strokeWidth="1.25"
           />
-          <circle cx="720" cy="90" r="4" fill="#F8F4EE" stroke="#C8A27A" strokeWidth="2" />
-          <circle cx="480" cy="90" r="3" fill="#C8A27A" />
-          <circle cx="960" cy="90" r="3" fill="#C8A27A" />
+          <path
+            d="M 720,70 L 960,70 L 960,180"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="1.25"
+          />
+          <circle cx="720" cy="70" r="4" fill="#F8F4EE" stroke="#C8A27A" strokeWidth="2" />
+          <circle cx="480" cy="70" r="3" fill="#C8A27A" />
+          <circle cx="960" cy="70" r="3" fill="#C8A27A" />
         </svg>
       ) : (
         <svg
@@ -79,18 +79,19 @@ export function ProblemToFeaturesDivider() {
           viewBox="0 0 1440 180"
           preserveAspectRatio="none"
         >
-          {/* Chaotic input line from above that snaps into 90° right angles */}
+          {/* Chaotic input line bleeding directly out of ProblemSection and snapping into orthogonal bus */}
           <motion.path
-            d="M 660,-20 L 685,30 L 650,60 L 720,90 L 720,190"
+            d="M 660,-70 L 685,-20 L 650,25 L 720,70 L 720,180"
             fill="none"
             stroke="#C8A27A"
-            strokeWidth="2"
+            strokeWidth="2.5"
             style={{ pathLength: circuitLength }}
+            className="kintsugi-gold"
           />
 
           {/* Bus branch 1 to left node */}
           <motion.path
-            d="M 720,90 L 480,90 L 480,190"
+            d="M 720,70 L 480,70 L 480,180"
             fill="none"
             stroke="#C8A27A"
             strokeWidth="1.5"
@@ -99,7 +100,7 @@ export function ProblemToFeaturesDivider() {
 
           {/* Bus branch 2 to right node */}
           <motion.path
-            d="M 720,90 L 960,90 L 960,190"
+            d="M 720,70 L 960,70 L 960,180"
             fill="none"
             stroke="#C8A27A"
             strokeWidth="1.5"
@@ -109,7 +110,7 @@ export function ProblemToFeaturesDivider() {
           {/* Circuit Intersection Pins / Nodes */}
           <motion.circle
             cx="720"
-            cy="90"
+            cy="70"
             r="4"
             fill="#F8F4EE"
             stroke="#C8A27A"
@@ -118,14 +119,14 @@ export function ProblemToFeaturesDivider() {
           />
           <motion.circle
             cx="480"
-            cy="90"
+            cy="70"
             r="3"
             fill="#C8A27A"
             style={{ scale: nodeScale, opacity: circuitGlow }}
           />
           <motion.circle
             cx="960"
-            cy="90"
+            cy="70"
             r="3"
             fill="#C8A27A"
             style={{ scale: nodeScale, opacity: circuitGlow }}
