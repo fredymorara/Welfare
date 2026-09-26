@@ -7,11 +7,10 @@ const SCENES = [
   { id: "the-shift", code: "02", name: "CHALLENGE" },
   { id: "the-engine", code: "03", name: "SECURITY" },
   { id: "how-it-works", code: "04", name: "PROCESS" },
-  { id: "yield", code: "05", name: "SAVINGS" },
-  { id: "pricing", code: "06", name: "PRICING" },
-  { id: "faq", code: "07", name: "FAQ" },
-  { id: "vault", code: "08", name: "SIGN UP" },
-  { id: "mobile-app", code: "09", name: "MOBILE APP" },
+  { id: "pricing", code: "05", name: "PRICING" },
+  { id: "faq", code: "06", name: "FAQ" },
+  { id: "vault", code: "07", name: "SIGN UP" },
+  { id: "mobile-app", code: "08", name: "MOBILE APP" },
 ];
 
 export function SceneProgressHUD() {

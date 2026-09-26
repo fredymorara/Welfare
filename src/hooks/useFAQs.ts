@@ -3,34 +3,39 @@ import { API_URL } from "../config/api";
 
 export const MOCK_FAQS: FAQItem[] = [
   {
-    question: "Is there a free trial?",
+    question: "What is Kikoba?",
     answer:
-      "Select plans include a 14-day free trial so you can run Kikoba with your group before committing to a paid plan. No credit card required.",
+      "Kikoba is a digital platform for managing chamas, welfare groups, and savings associations. It helps your group track contributions, issue and repay loans, manage events and projects, log expenses, and keep every member informed.",
   },
   {
-    question: "How does M-Pesa integration work?",
+    question: "How do I register my group on Kikoba?",
     answer:
-      "Kikoba connects directly to Safaricom's STK Push API. When a member makes a contribution, the payment hits the group's Kikoba ledger within seconds — no screenshots, no WhatsApp receipts.",
+      "Click Get Started button at the top and follow the registration flow to create your group and your own admin account. Once registered, you can start adding members and configuring your group's contribution categories, loan types, and roles.",
+  },
+  {
+    question: "How much does Kikoba cost?",
+    answer:
+      "Kikoba offers several subscription tiers priced per billing period, with limits on members and features that scale with your group's size. Visit the Pricing section for current package details, or check in-app under Subscription once you're logged in.",
+  },
+  {
+    question: "Is my group's financial data secure on Kikoba?",
+    answer:
+      "Yes. Each group's data is isolated from every other group on the platform, access is controlled by roles and permissions, and all data is encrypted in transit. Only members you explicitly add to your group can see its records.",
+  },
+  {
+    question: "Is there a free trial?",
+    answer:
+      "Selected subscription packages include a free trial period so you can explore Kikoba's features before committing to a paid plan. Trial availability and duration are shown on the package details when you sign up.",
   },
   {
     question: "Who approves loan requests?",
     answer:
-      "An admin you appoint reviews and approves loan requests in the app. Once approved, automated reminders and late-penalty calculations keep repayments on track without treasurer involvement.",
+      "An admin or appointed official reviews and approves loan requests directly in the platform. Once approved, automated reminders and repayment tracking keep everything on schedule.",
   },
   {
     question: "Can I manage more than one group?",
     answer:
-      "Yes. If you belong to multiple chamas or vikoba, you can switch between them from a single account without logging out. Each group's ledger is completely isolated.",
-  },
-  {
-    question: "Is every transaction permanently recorded?",
-    answer:
-      "Every contribution, loan disbursement, repayment, fine, and dividend is tied to an immutable transaction record. Nothing moves without a timestamped trail every member can audit.",
-  },
-  {
-    question: "What happens when a cycle ends?",
-    answer:
-      "At cycle close, Kikoba automatically calculates loan interest, member fines, net pool balance, and each member's dividend — then generates a full PDF report. Payouts can be dispatched directly to M-Pesa.",
+      "Yes. If you belong to multiple groups, you can switch between them from a single account without logging in and out. Each group's records and permissions remain completely isolated.",
   },
 ];
 

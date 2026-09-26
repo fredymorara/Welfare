@@ -31,10 +31,10 @@ const STEPS = [
   },
   {
     number: "04",
-    title: "Share Dividends",
-    subtitle: "[ DIVIDENDS ]",
-    body: "At cycle end, Kikoba automatically calculates accumulated interest, fines, and each member's exact dividend. Payouts are transparent, fair, and dispute-free.",
-    detail: "CLEAR & HONEST PAYOUTS",
+    title: "Grow Together",
+    subtitle: "[ GROW TOGETHER ]",
+    body: "Watch your community's wealth grow with transparent reporting and real-time visibility into every contribution, loan, and expense.",
+    detail: "TRANSPARENT FINANCIAL INSIGHTS",
     accent: "sage" as const,
   },
 ];
@@ -95,7 +95,7 @@ export function Scene06HowItWorks() {
           </span>
         </div>
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          FROM FIRST CONTRIBUTION TO YEAR-END DIVIDEND
+          FROM GROUP SETUP TO COLLECTIVE GROWTH
         </span>
       </div>
 
@@ -182,13 +182,13 @@ export function Scene06HowItWorks() {
       {/* Section Footer */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          CALCULATE YOUR GROUP&apos;S EARNINGS & SAVINGS
+          AFFORDABLE PLANS FOR EVERY SIZE GROUP
         </span>
         <a
-          href="#yield"
+          href="#pricing"
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
-          <span>VIEW SAVINGS CALCULATOR</span>
+          <span>VIEW PLANS & PRICING</span>
           <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
         </a>
       </div>

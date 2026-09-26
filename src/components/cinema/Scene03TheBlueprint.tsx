@@ -548,8 +548,8 @@ export function Scene03TheBlueprint() {
                               <span className="text-[16px] font-bold text-ivory">KES 48,500</span>
                             </div>
                             <div className="p-3 bg-umber/20 border border-umber/40 rounded-sm">
-                              <span className="text-platinum/50 text-[10px] block">DIVIDENDS EARNED</span>
-                              <span className="text-[16px] font-bold text-sage">+KES 6,250</span>
+                              <span className="text-platinum/50 text-[10px] block">LOAN LIMIT</span>
+                              <span className="text-[16px] font-bold text-sage">KES 145,500</span>
                             </div>
                             <div className="p-3 bg-umber/20 border border-umber/40 rounded-sm">
                               <span className="text-platinum/50 text-[10px] block">ACTIVE LOANS</span>
@@ -609,7 +609,7 @@ export function Scene03TheBlueprint() {
                       </div>
                       <div className="flex items-start gap-2">
                         <Check className="w-4 h-4 text-sage shrink-0 mt-0.5" />
-                        <span><strong>Automatic Dividends:</strong> Net interest and late fines are distributed cleanly according to each member&apos;s share.</span>
+                        <span><strong>Transparent Reporting:</strong> Every contribution, loan repayment, and expense is clearly recorded in real time.</span>
                       </div>
                     </div>
                   </div>

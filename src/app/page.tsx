@@ -8,9 +8,7 @@ import { FractureToCircuitMorph } from "../components/cinema/FractureToCircuitMo
 import { Scene03TheBlueprint } from "../components/cinema/Scene03TheBlueprint";
 import { CircuitToHowItWorksMorph } from "../components/cinema/CircuitToHowItWorksMorph";
 import { Scene06HowItWorks } from "../components/cinema/Scene06HowItWorks";
-import { HowItWorksToHarvestMorph } from "../components/cinema/HowItWorksToHarvestMorph";
-import { Scene04TheHarvest } from "../components/cinema/Scene04TheHarvest";
-import { HarvestToPricingMorph } from "../components/cinema/HarvestToPricingMorph";
+import { HowItWorksToPricingMorph } from "../components/cinema/HowItWorksToPricingMorph";
 import { Scene07Pricing } from "../components/cinema/Scene07Pricing";
 import { PricingToFaqMorph } from "../components/cinema/PricingToFaqMorph";
 import { Scene08FAQ } from "../components/cinema/Scene08FAQ";
@@ -30,7 +28,7 @@ export default function Home() {
       {/* High-Craft Anime / Manga Show Navigation Header */}
       <AnimeHeader />
 
-      {/* The 9 Episodic Scenes in Proper Narrative Sequence with Seamless Morphs */}
+      {/* The 8 Episodic Scenes in Proper Narrative Sequence with Seamless Morphs */}
       <main className="relative z-10 flex flex-col">
         {/* Scene 01: Heritage — Sacred origin, solid void */}
         <Scene01TheCircle />
@@ -53,34 +51,28 @@ export default function Home() {
         {/* Scene 04: How It Works — 4-step workflow, dark translucent */}
         <Scene06HowItWorks />
 
-        {/* Morph 04: Process rails curve outward into radiant harvest arcs */}
-        <HowItWorksToHarvestMorph />
+        {/* Morph 04: Process rails condense into 3 tiered pricing pillars */}
+        <HowItWorksToPricingMorph />
 
-        {/* Scene 05: Yield — Group yield calculator, dark translucent */}
-        <Scene04TheHarvest />
-
-        {/* Morph 05: Radiant harvest arcs condense into 3 vertical tiered pillars */}
-        <HarvestToPricingMorph />
-
-        {/* Scene 06: Pricing — Live API plan tiers, solid void */}
+        {/* Scene 05: Pricing — Live API plan tiers, solid void */}
         <Scene07Pricing />
 
-        {/* Morph 06: Tier blocks fragment into open question arcs */}
+        {/* Morph 05: Tier blocks fragment into open question arcs */}
         <PricingToFaqMorph />
 
-        {/* Scene 07: FAQ — Live API accordion, dark translucent */}
+        {/* Scene 06: FAQ — Clear, verified answers, dark translucent */}
         <Scene08FAQ />
 
-        {/* Morph 07: Query brackets ignite into concentric gateway rings */}
+        {/* Morph 06: Query brackets ignite into concentric gateway rings */}
         <FaqToVaultMorph />
 
-        {/* Scene 08: The Vault — Sovereign onboarding gateway, solid void */}
+        {/* Scene 07: The Vault — Sovereign onboarding gateway, solid void */}
         <Scene05TheHorizon />
 
-        {/* Morph 08: Concentric gateway rings condense into phone silhouette */}
+        {/* Morph 07: Concentric gateway rings condense into phone silhouette */}
         <VaultToMobileMorph />
 
-        {/* Scene 09: Mobile App — Coming soon teaser, solid void */}
+        {/* Scene 08: Mobile App — Coming soon teaser, solid void */}
         <Scene09MobileApp />
       </main>
 

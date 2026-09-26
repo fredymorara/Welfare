@@ -181,7 +181,7 @@ export function Scene09MobileApp() {
                 { label: "Amina Contribution", amount: "+5,000", color: "#7B9B7A", y: 0 },
                 { label: "Kamau Loan Repmt.", amount: "+2,500", color: "#7B9B7A", y: 28 },
                 { label: "Event Expense", amount: "-1,200", color: "#C8A27A", y: 56 },
-                { label: "Ochieng Dividend", amount: "+8,400", color: "#7B9B7A", y: 84 },
+                { label: "Ochieng Contribution", amount: "+5,000", color: "#7B9B7A", y: 84 },
               ].map((tx) => (
                 <g key={tx.label}>
                   <rect x="24" y={300 + tx.y} width="232" height="22" rx="2" fill="#1c130d" />
