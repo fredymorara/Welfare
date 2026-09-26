@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from "motion/react";
 import {
   ArrowDown,
   Key,
@@ -17,9 +17,14 @@ import {
   Download,
 } from "lucide-react";
 import { SECTION_IDS } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export function FeaturesSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -38,8 +43,12 @@ export function FeaturesSection() {
   const [memberTab, setMemberTab] = useState<"member" | "group">("member");
   const [statementDownloaded, setStatementDownloaded] = useState<boolean>(false);
 
-  // Perspective on Scroll
-  const schematicRotateX = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [4, 0, -3]);
+  // Perspective on Scroll: disabled on mobile to prevent 3D card jitter
+  const schematicRotateX = useTransform(
+    scrollYProgress,
+    [0.1, 0.5, 0.9],
+    [disableMotion ? 0 : 4, 0, disableMotion ? 0 : -3]
+  );
 
   const handleSimulatePayment = () => {
     setMpesaState("simulating");

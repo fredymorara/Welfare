@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, type FormEvent } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { Smartphone, ArrowRight, CheckCircle2 } from "lucide-react";
 import { SECTION_IDS, SITE_CONFIG } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const PLATFORMS = [
   { label: "iOS", sub: "App Store", icon: "◆" },
@@ -12,6 +13,10 @@ const PLATFORMS = [
 
 export function MobileAppSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -20,7 +25,7 @@ export function MobileAppSection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // Phone mockup parallax
+  // Phone mockup parallax (desktop only)
   const phoneY = useTransform(scrollYProgress, [0, 1], ["12%", "-12%"]);
   const phoneRotate = useTransform(scrollYProgress, [0, 1], [4, -4]);
   const glowOpacity = useTransform(scrollYProgress, [0.2, 0.6, 1], [0.2, 0.55, 0.25]);
@@ -36,16 +41,18 @@ export function MobileAppSection() {
       ref={containerRef}
       id={SECTION_IDS.MOBILE_APP}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-20 w-full overflow-hidden select-none bg-void"
-      style={{ perspective: "1200px" }}
+      style={{ perspective: "1200px", contain: "paint" }}
     >
-      {/* Ambient glow behind phone */}
-      <motion.div
-        style={{
-          opacity: glowOpacity,
-          background: "radial-gradient(circle, rgba(200,162,122,0.3) 0%, rgba(111,78,55,0.15) 50%, transparent 80%)",
-        }}
-        className="absolute right-[5%] top-1/2 -translate-y-1/2 w-125 h-150 rounded-full pointer-events-none z-0 blur-[100px]"
-      />
+      {/* Ambient glow behind phone (desktop only) */}
+      {!disableMotion && (
+        <motion.div
+          style={{
+            opacity: glowOpacity,
+            background: "radial-gradient(circle, rgba(200,162,122,0.3) 0%, rgba(111,78,55,0.15) 50%, transparent 80%)",
+          }}
+          className="absolute right-[5%] top-1/2 -translate-y-1/2 w-125 h-150 rounded-full pointer-events-none z-0 blur-[100px] hidden lg:block"
+        />
+      )}
 
       {/* Top Narrative Anchor */}
       <div className="relative z-10 flex items-center justify-between border-b border-umber/40 pb-4">

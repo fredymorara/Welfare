@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import { SECTION_IDS } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const STEPS = [
   {
@@ -59,6 +60,10 @@ const ACCENT_CLASSES = {
 
 export function HowItWorksSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -66,26 +71,39 @@ export function HowItWorksSection() {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  // Subtle background rail animation
-  const railX = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  // Subtle background rail animation (desktop only)
+  const railX = useTransform(scrollYProgress, [0, 1], [disableMotion ? "0%" : "-5%", disableMotion ? "0%" : "5%"]);
 
   return (
     <section
       ref={containerRef}
       id={SECTION_IDS.HOW_IT_WORKS}
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]/85 backdrop-blur-md"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]"
+      style={{ contain: "paint" }}
     >
       {/* Scrolling horizontal rail lines in background */}
-      <motion.svg
-        style={{ x: railX }}
-        className="absolute inset-0 w-[110%] h-full pointer-events-none z-0 opacity-20"
-        viewBox="0 0 1600 900"
-        preserveAspectRatio="none"
-      >
-        {[120, 260, 400, 540, 680, 780].map((y, i) => (
-          <line key={i} x1="0" y1={y} x2="1600" y2={y} stroke="#6F4E37" strokeWidth="1" />
-        ))}
-      </motion.svg>
+      {!disableMotion ? (
+        <motion.svg
+          style={{ x: railX }}
+          className="absolute inset-0 w-[110%] h-full pointer-events-none z-0 opacity-20 will-change-transform"
+          viewBox="0 0 1600 900"
+          preserveAspectRatio="none"
+        >
+          {[120, 260, 400, 540, 680, 780].map((y, i) => (
+            <line key={i} x1="0" y1={y} x2="1600" y2={y} stroke="#6F4E37" strokeWidth="1" />
+          ))}
+        </motion.svg>
+      ) : (
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-15"
+          viewBox="0 0 1600 900"
+          preserveAspectRatio="none"
+        >
+          {[120, 260, 400, 540, 680, 780].map((y, i) => (
+            <line key={i} x1="0" y1={y} x2="1600" y2={y} stroke="#6F4E37" strokeWidth="1" />
+          ))}
+        </svg>
+      )}
 
       {/* Top Narrative Anchor */}
       <div className="relative z-10 flex items-center justify-between border-b border-umber/40 pb-4">

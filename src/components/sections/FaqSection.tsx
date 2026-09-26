@@ -1,13 +1,18 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "motion/react";
 import { ArrowDown, Plus, Minus } from "lucide-react";
 import { useFAQs } from "../../hooks/useFAQs";
 import { SECTION_IDS } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export function FaqSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -26,11 +31,12 @@ export function FaqSection() {
     <section
       ref={containerRef}
       id={SECTION_IDS.FAQ}
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#160e0a]/85 backdrop-blur-md"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#160e0a]"
+      style={{ contain: "paint" }}
     >
       {/* Subtle kintsugi gold line in background */}
       <motion.svg
-        style={{ opacity: crackOpacity }}
+        style={{ opacity: disableMotion ? 0.25 : crackOpacity }}
         className="absolute inset-0 w-full h-full pointer-events-none z-0"
         viewBox="0 0 1440 900"
         preserveAspectRatio="none"

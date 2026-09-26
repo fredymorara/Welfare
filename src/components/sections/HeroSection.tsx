@@ -1,23 +1,27 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 import { SECTION_IDS, SITE_CONFIG } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // Parallax shifts: Retain full solid color, only differential translation
-  const sealY = useTransform(scrollYProgress, [0, 1], ["0%", "45%"]);
-  const sealScale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
-
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  // Parallax shifts: completely disabled on mobile to ensure zero touch-scroll lag
+  const sealY = useTransform(scrollYProgress, [0, 1], ["0%", disableMotion ? "0%" : "35%"]);
+  const sealScale = useTransform(scrollYProgress, [0, 1], [1, disableMotion ? 1 : 1.15]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", disableMotion ? "0%" : "-12%"]);
 
   return (
     <section
@@ -25,25 +29,27 @@ export function HeroSection() {
       id={SECTION_IDS.HERO}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-32 pb-16 w-full overflow-hidden select-none bg-void"
     >
-      {/* Parallax Rotating Golden Baobab Seal */}
-      <motion.div
-        style={{ y: sealY, scale: sealScale }}
-        className="absolute -right-24 sm:-right-12 top-1/2 -translate-y-1/2 w-130 sm:w-195 lg:w-235 h-130 sm:h-195 lg:h-235 pointer-events-none z-0 will-change-transform opacity-35"
-      >
+      {/* Parallax Rotating Golden Baobab Seal (Desktop only: hidden on mobile to eliminate GPU rasterization lag) */}
+      {!disableMotion && (
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
-          className="w-full h-full rounded-full border border-ochre/80 flex items-center justify-center p-12 shadow-[0_0_80px_rgba(200,162,122,0.15)]"
+          style={{ y: sealY, scale: sealScale, contain: "paint" }}
+          className="hidden md:block absolute -right-24 sm:-right-12 top-1/2 -translate-y-1/2 w-130 sm:w-195 lg:w-235 h-130 sm:h-195 lg:h-235 pointer-events-none z-0 will-change-transform opacity-30"
         >
-          <div className="w-full h-full rounded-full border border-dashed border-ochre/50 flex items-center justify-center p-16">
-            <div className="w-full h-full rounded-full border border-umber flex items-center justify-center">
-              <span className="text-[12px] font-mono tracking-[0.45em] uppercase text-ochre rotate-45 select-none">
-                {SITE_CONFIG.culturalQuote.swahili} · HARAMBEE · {SITE_CONFIG.name.toUpperCase()}
-              </span>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+            className="w-full h-full rounded-full border border-ochre/70 flex items-center justify-center p-12"
+          >
+            <div className="w-full h-full rounded-full border border-dashed border-ochre/40 flex items-center justify-center p-16">
+              <div className="w-full h-full rounded-full border border-umber/80 flex items-center justify-center">
+                <span className="text-[12px] font-mono tracking-[0.45em] uppercase text-ochre rotate-45 select-none">
+                  {SITE_CONFIG.culturalQuote.swahili} · HARAMBEE · {SITE_CONFIG.name.toUpperCase()}
+                </span>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
 
       {/* Top Narrative Anchor Marker */}
       <div className="relative z-10 flex items-center justify-between border-b border-umber/40 pb-4">

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { Check, X, ArrowDown, ArrowUpRight } from "lucide-react";
 import { useSubscriptionPackages, MOCK_PACKAGES } from "../../hooks/useSubscriptionPackages";
 import { SIGN_UP_URL } from "../../config/api";
 import { SECTION_IDS } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 type Period = "monthly" | "annual";
 
@@ -45,6 +46,10 @@ function getFeatureValue(pkg: SubPackage, key: string): { available: boolean; la
 
 export function PricingSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -67,10 +72,11 @@ export function PricingSection() {
       ref={containerRef}
       id={SECTION_IDS.PRICING}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-void"
+      style={{ contain: "paint" }}
     >
       {/* Subtle parallax background geometry */}
       <motion.svg
-        style={{ y: bgY }}
+        style={{ y: disableMotion ? "0%" : bgY }}
         className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-10"
         viewBox="0 0 1440 900"
         preserveAspectRatio="none"

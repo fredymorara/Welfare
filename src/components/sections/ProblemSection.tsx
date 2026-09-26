@@ -1,52 +1,92 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import { SECTION_IDS } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export function ProblemSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  // Differential parallax between left indictment and floating dialogue cards
-  const leftX = useTransform(scrollYProgress, [0.1, 0.45], [-40, 0]);
-  const rightY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  // Differential parallax between left indictment and floating dialogue cards (desktop only)
+  const leftX = useTransform(scrollYProgress, [0.1, 0.45], [disableMotion ? 0 : -40, 0]);
+  const rightY = useTransform(scrollYProgress, [0, 1], [disableMotion ? 0 : 50, disableMotion ? 0 : -50]);
 
-  // Dynamic Kintsugi Crack Expansion
-  const crackScale = useTransform(scrollYProgress, [0.1, 0.6], [0.9, 1.15]);
-  const crackOpacity = useTransform(scrollYProgress, [0.1, 0.35, 0.8, 1], [0.2, 0.6, 0.6, 0.2]);
+  // Dynamic Kintsugi Crack Expansion (GPU scale & opacity)
+  const crackScale = useTransform(scrollYProgress, [0.1, 0.6], [0.95, 1.1]);
+  const crackOpacity = useTransform(scrollYProgress, [0.1, 0.35, 0.8, 1], [0.15, 0.45, 0.45, 0.15]);
 
   return (
     <section
       ref={containerRef}
       id={SECTION_IDS.PROBLEM}
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]/85 backdrop-blur-md"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]"
+      style={{ contain: "paint" }}
     >
-      {/* Dynamic Parallax Kintsugi Golden Fissure */}
-      <motion.svg
-        style={{ scale: crackScale, opacity: crackOpacity }}
-        className="absolute inset-0 w-full h-full pointer-events-none z-0 will-change-transform kintsugi-gold"
-        viewBox="0 0 1440 900"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M 180 0 L 440 320 L 720 270 L 930 630 L 1220 900"
-          stroke="#C8A27A"
-          strokeWidth="2.5"
-          fill="none"
-          strokeDasharray="10 5"
-        />
-        <path
-          d="M 720 270 L 1120 190 L 1440 380"
-          stroke="#C8A27A"
-          strokeWidth="1.5"
-          fill="none"
-        />
-      </motion.svg>
+      {/* Dynamic Parallax Kintsugi Golden Fissure (Optimized vector glow without heavy SVG filters) */}
+      {!disableMotion ? (
+        <motion.svg
+          style={{ scale: crackScale, opacity: crackOpacity }}
+          className="absolute inset-0 w-full h-full pointer-events-none z-0 will-change-transform"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="none"
+        >
+          {/* Underlay glow strokes */}
+          <path
+            d="M 180 0 L 440 320 L 720 270 L 930 630 L 1220 900"
+            stroke="#C8A27A"
+            strokeWidth="5"
+            strokeOpacity="0.2"
+            fill="none"
+            strokeDasharray="10 5"
+          />
+          <path
+            d="M 180 0 L 440 320 L 720 270 L 930 630 L 1220 900"
+            stroke="#C8A27A"
+            strokeWidth="2"
+            strokeOpacity="0.85"
+            fill="none"
+            strokeDasharray="10 5"
+          />
+          <path
+            d="M 720 270 L 1120 190 L 1440 380"
+            stroke="#C8A27A"
+            strokeWidth="1.5"
+            strokeOpacity="0.75"
+            fill="none"
+          />
+        </motion.svg>
+      ) : (
+        /* Static lightweight background on mobile devices */
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-20"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 180 0 L 440 320 L 720 270 L 930 630 L 1220 900"
+            stroke="#C8A27A"
+            strokeWidth="1.5"
+            fill="none"
+            strokeDasharray="10 5"
+          />
+          <path
+            d="M 720 270 L 1120 190 L 1440 380"
+            stroke="#C8A27A"
+            strokeWidth="1"
+            fill="none"
+          />
+        </svg>
+      )}
 
       {/* Top Header Marker */}
       <div className="relative z-10 flex items-center justify-between border-b border-umber/40 pb-4">

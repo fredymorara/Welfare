@@ -1,11 +1,16 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 // Sleek architectural connecting lines expanding symmetrically from center outward
 export function FaqToCtaDivider() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -27,13 +32,25 @@ export function FaqToCtaDivider() {
     <div
       ref={containerRef}
       className="relative w-full h-28 sm:h-36 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center bg-void"
+      style={{ contain: "paint" }}
     >
-      <motion.svg
-        style={{ opacity }}
-        className="absolute inset-0 w-full h-full overflow-visible"
-        viewBox="0 0 1440 160"
-        preserveAspectRatio="none"
-      >
+      {disableMotion ? (
+        <svg
+          className="absolute inset-0 w-full h-full overflow-visible opacity-50"
+          viewBox="0 0 1440 160"
+          preserveAspectRatio="none"
+        >
+          <circle cx="720" cy="80" r="3.5" fill="#C8A27A" />
+          <line x1="200" y1="80" x2="1240" y2="80" stroke="#C8A27A" strokeWidth="1.25" strokeOpacity="0.8" />
+          <line x1="320" y1="56" x2="1120" y2="56" stroke="#6F4E37" strokeWidth="1" strokeOpacity="0.6" />
+        </svg>
+      ) : (
+        <motion.svg
+          style={{ opacity }}
+          className="absolute inset-0 w-full h-full overflow-visible"
+          viewBox="0 0 1440 160"
+          preserveAspectRatio="none"
+        >
         {/* Center Origin Node */}
         <circle cx="720" cy="80" r="3.5" fill="#C8A27A" />
 
@@ -90,6 +107,7 @@ export function FaqToCtaDivider() {
           strokeOpacity="0.7"
         />
       </motion.svg>
+      )}
     </div>
   );
 }

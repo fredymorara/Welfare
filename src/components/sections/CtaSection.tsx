@@ -1,20 +1,25 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { SIGN_UP_URL, SIGN_IN_URL } from "../../config/api";
 import { SECTION_IDS, SITE_CONFIG } from "../../config/site";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export function CtaSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  // Background Horizon Parallax Rings
+  // Background Horizon Parallax Rings (desktop only)
   const ringScale = useTransform(scrollYProgress, [0, 1], [0.85, 1.3]);
   const ringRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
@@ -23,19 +28,21 @@ export function CtaSection() {
       ref={containerRef}
       id={SECTION_IDS.CTA}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-20 w-full overflow-hidden select-none bg-void"
-      style={{ perspective: "1200px" }}
+      style={{ perspective: "1200px", contain: "paint" }}
     >
-      {/* Background Horizon Gateway Vortex Rings */}
-      <motion.div
-        style={{ scale: ringScale, rotate: ringRotate }}
-        className="absolute inset-0 pointer-events-none z-0 will-change-transform flex items-center justify-center opacity-30"
-      >
-        <div className="w-150 sm:w-225 h-150 sm:h-225 rounded-full border border-ochre/40 flex items-center justify-center p-20 shadow-[0_0_100px_rgba(200,162,122,0.12)]">
-          <div className="w-full h-full rounded-full border border-dashed border-ochre/50 flex items-center justify-center p-20">
-            <div className="w-full h-full rounded-full border border-umber/60" />
+      {/* Background Horizon Gateway Vortex Rings (rendered on desktop only) */}
+      {!disableMotion && (
+        <motion.div
+          style={{ scale: ringScale, rotate: ringRotate }}
+          className="absolute inset-0 pointer-events-none z-0 will-change-transform hidden md:flex items-center justify-center opacity-30"
+        >
+          <div className="w-150 sm:w-225 h-150 sm:h-225 rounded-full border border-ochre/40 flex items-center justify-center p-20 shadow-[0_0_100px_rgba(200,162,122,0.12)]">
+            <div className="w-full h-full rounded-full border border-dashed border-ochre/50 flex items-center justify-center p-20">
+              <div className="w-full h-full rounded-full border border-umber/60" />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
 
       {/* Top Narrative Anchor */}
       <div className="relative z-10 flex items-center justify-between border-b border-umber/40 pb-4">

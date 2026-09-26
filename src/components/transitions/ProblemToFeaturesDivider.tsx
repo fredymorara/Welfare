@@ -1,10 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export function ProblemToFeaturesDivider() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
+  const disableMotion = isMobile || shouldReduceMotion;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -19,6 +24,7 @@ export function ProblemToFeaturesDivider() {
     <div
       ref={containerRef}
       className="relative w-full h-32 sm:h-44 -my-2 overflow-visible pointer-events-none select-none z-20 flex items-center justify-center"
+      style={{ contain: "paint" }}
     >
       {/* Background Morphing Curve: Dark Obsidian (#1c130d) to Solid Brown (#2E2118) */}
       <svg
@@ -39,63 +45,93 @@ export function ProblemToFeaturesDivider() {
       </svg>
 
       {/* Morphing Visual Continuity: Jagged Cracks Aligning into Orthogonal Circuit Bus */}
-      <svg
-        className="absolute inset-0 w-full h-full overflow-visible"
-        viewBox="0 0 1440 180"
-        preserveAspectRatio="none"
-      >
-        {/* Chaotic input line from above that snaps into 90° right angles */}
-        <motion.path
-          d="M 660,-20 L 685,30 L 650,60 L 720,90 L 720,190"
-          fill="none"
-          stroke="#C8A27A"
-          strokeWidth="2"
-          style={{ pathLength: circuitLength }}
-        />
+      {disableMotion ? (
+        <svg
+          className="absolute inset-0 w-full h-full overflow-visible opacity-70"
+          viewBox="0 0 1440 180"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M 660,-20 L 685,30 L 650,60 L 720,90 L 720,190"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="1.75"
+          />
+          <path
+            d="M 720,90 L 480,90 L 480,190"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="1.25"
+          />
+          <path
+            d="M 720,90 L 960,90 L 960,190"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="1.25"
+          />
+          <circle cx="720" cy="90" r="4" fill="#F8F4EE" stroke="#C8A27A" strokeWidth="2" />
+          <circle cx="480" cy="90" r="3" fill="#C8A27A" />
+          <circle cx="960" cy="90" r="3" fill="#C8A27A" />
+        </svg>
+      ) : (
+        <svg
+          className="absolute inset-0 w-full h-full overflow-visible"
+          viewBox="0 0 1440 180"
+          preserveAspectRatio="none"
+        >
+          {/* Chaotic input line from above that snaps into 90° right angles */}
+          <motion.path
+            d="M 660,-20 L 685,30 L 650,60 L 720,90 L 720,190"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="2"
+            style={{ pathLength: circuitLength }}
+          />
 
-        {/* Bus branch 1 to left node */}
-        <motion.path
-          d="M 720,90 L 480,90 L 480,190"
-          fill="none"
-          stroke="#C8A27A"
-          strokeWidth="1.5"
-          style={{ pathLength: circuitLength }}
-        />
+          {/* Bus branch 1 to left node */}
+          <motion.path
+            d="M 720,90 L 480,90 L 480,190"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="1.5"
+            style={{ pathLength: circuitLength }}
+          />
 
-        {/* Bus branch 2 to right node */}
-        <motion.path
-          d="M 720,90 L 960,90 L 960,190"
-          fill="none"
-          stroke="#C8A27A"
-          strokeWidth="1.5"
-          style={{ pathLength: circuitLength }}
-        />
+          {/* Bus branch 2 to right node */}
+          <motion.path
+            d="M 720,90 L 960,90 L 960,190"
+            fill="none"
+            stroke="#C8A27A"
+            strokeWidth="1.5"
+            style={{ pathLength: circuitLength }}
+          />
 
-        {/* Circuit Intersection Pins / Nodes */}
-        <motion.circle
-          cx="720"
-          cy="90"
-          r="4"
-          fill="#F8F4EE"
-          stroke="#C8A27A"
-          strokeWidth="2"
-          style={{ scale: nodeScale, opacity: circuitGlow }}
-        />
-        <motion.circle
-          cx="480"
-          cy="90"
-          r="3"
-          fill="#C8A27A"
-          style={{ scale: nodeScale, opacity: circuitGlow }}
-        />
-        <motion.circle
-          cx="960"
-          cy="90"
-          r="3"
-          fill="#C8A27A"
-          style={{ scale: nodeScale, opacity: circuitGlow }}
-        />
-      </svg>
+          {/* Circuit Intersection Pins / Nodes */}
+          <motion.circle
+            cx="720"
+            cy="90"
+            r="4"
+            fill="#F8F4EE"
+            stroke="#C8A27A"
+            strokeWidth="2"
+            style={{ scale: nodeScale, opacity: circuitGlow }}
+          />
+          <motion.circle
+            cx="480"
+            cy="90"
+            r="3"
+            fill="#C8A27A"
+            style={{ scale: nodeScale, opacity: circuitGlow }}
+          />
+          <motion.circle
+            cx="960"
+            cy="90"
+            r="3"
+            fill="#C8A27A"
+            style={{ scale: nodeScale, opacity: circuitGlow }}
+          />
+        </svg>
+      )}
     </div>
   );
 }
