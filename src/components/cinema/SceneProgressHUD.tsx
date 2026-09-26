@@ -18,7 +18,9 @@ export function SceneProgressHUD() {
   const [scrollPercent, setScrollPercent] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const updateScroll = () => {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       if (totalScroll > 0) {
         setScrollPercent(Math.min(100, Math.max(0, (window.scrollY / totalScroll) * 100)));
@@ -35,6 +37,14 @@ export function SceneProgressHUD() {
           }
         }
       });
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -57,7 +67,7 @@ export function SceneProgressHUD() {
       {/* Background Vertical Laser Track */}
       <div className="relative flex flex-col items-center">
         {/* Track Line */}
-        <div className="w-[1.5px] h-48 bg-umber/40 relative overflow-hidden">
+        <div className="w-[1.5px] h-48 bg-umber/40 relative overflow-hidden" aria-hidden="true">
           {/* Active Filling Progress Line */}
           <div
             className="w-full bg-ochre transition-all duration-150 ease-out shadow-[0_0_10px_#C8A27A]"
@@ -67,14 +77,16 @@ export function SceneProgressHUD() {
       </div>
 
       {/* Chapter Pips */}
-      <div className="flex flex-col items-end gap-4 font-mono">
+      <div className="flex flex-col items-end gap-3 font-mono">
         {SCENES.map((scene) => {
           const isActive = activeId === scene.id;
           return (
             <button
               key={scene.id}
               onClick={() => jumpTo(scene.id)}
-              className="group flex items-center gap-3 cursor-pointer py-1 text-right focus:outline-none"
+              aria-label={`Jump to ${scene.name} section (Scene ${scene.code})`}
+              aria-current={isActive ? "step" : undefined}
+              className="group flex items-center gap-3 cursor-pointer py-1.5 px-1 text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-void rounded"
             >
               {/* Tooltip Label on Hover or Active */}
               <span
@@ -103,7 +115,7 @@ export function SceneProgressHUD() {
       </div>
 
       {/* Telemetry Progress Percentage */}
-      <div className="text-[9px] font-mono tracking-widest text-platinum/40 text-right pr-0.5">
+      <div className="text-[9px] font-mono tracking-widest text-platinum/40 text-right pr-0.5" aria-hidden="true">
         <span className="text-ochre font-bold">{Math.round(scrollPercent)}</span>%
       </div>
     </aside>

@@ -2,6 +2,8 @@
 
 @theme {
   --color-void: #2E2118;
+  --color-void-deep: #1f150e;
+  --color-void-surface: #231811;
   --color-umber: #6F4E37;
   --color-ochre: #C8A27A;
   --color-platinum: #E7E8EA;
@@ -13,6 +15,8 @@
 
 :root {
   --color-void: #2E2118;
+  --color-void-deep: #1f150e;
+  --color-void-surface: #231811;
   --color-umber: #6F4E37;
   --color-ochre: #C8A27A;
   --color-platinum: #E7E8EA;
@@ -33,6 +37,32 @@ body {
   color: #F8F4EE;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Accessibility: Universal High-Visibility Keyboard Focus Rings */
+:focus-visible {
+  outline: 2px solid var(--color-ochre);
+  outline-offset: 2px;
+}
+
+/* Motion Sensitivity: Respect prefers-reduced-motion without breaking state transitions */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* Calm continuous animations and long transforms while preserving clear visual state feedback */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.15s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+  }
+
+  .kintsugi-gold {
+    filter: none !important;
+  }
 }
 
 /* Kintsugi Crack Line Effect */

@@ -64,7 +64,7 @@ export function LegalCallout({
 }) {
   return (
     <div
-      className={`relative bg-[#231811] border border-ochre/30 rounded-xl p-6 sm:p-7 overflow-hidden my-6 shadow-[0_4px_24px_rgba(0,0,0,0.3)] ${className}`}
+      className={`relative bg-void-surface border border-ochre/30 rounded-xl p-6 sm:p-7 overflow-hidden my-6 shadow-[0_4px_24px_rgba(0,0,0,0.3)] ${className}`}
     >
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-linear-to-r from-transparent via-ochre to-transparent opacity-80" />
       <div className="relative z-10 flex flex-col gap-2.5 text-platinum/90">
@@ -128,16 +128,17 @@ export function LegalPageLayout({
       <AnimeHeader />
 
       {/* Main Legal Content Container */}
-      <main className="flex-1 relative pt-32 sm:pt-36 pb-20 px-6 sm:px-12 lg:px-16 xl:px-20 w-full z-10">
+      <main id="main-content" className="flex-1 relative pt-32 sm:pt-36 pb-20 px-6 sm:px-12 lg:px-16 xl:px-20 w-full z-10 focus:outline-none">
         {/* Ambient Warm Glow */}
         <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-ochre/5 blur-[120px] rounded-full pointer-events-none" />
 
         {/* Document Header */}
         <div className="max-w-4xl mx-auto mb-16 sm:mb-20 text-left">
-          {/* Back Link */}
+          {/* Back Link with accessible target sizing */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-platinum/60 hover:text-ochre transition-colors mb-8 cursor-pointer group"
+            aria-label="Return to Kikoba homepage"
+            className="min-h-[44px] inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-platinum/60 hover:text-ochre transition-colors mb-6 cursor-pointer group"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Overview</span>
@@ -145,7 +146,7 @@ export function LegalPageLayout({
 
           {/* Badge */}
           <div className="flex items-center gap-2 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-umber bg-[#231811] text-[11px] font-mono tracking-wider text-ochre uppercase">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-umber bg-void-surface text-[11px] font-mono tracking-wider text-ochre uppercase">
               <ShieldCheck className="w-3.5 h-3.5 text-sage" />
               <span>Legal Compliance & Governance</span>
             </span>
@@ -162,7 +163,7 @@ export function LegalPageLayout({
           </p>
 
           {/* Intro Paragraph */}
-          <div className="text-[16px] sm:text-[18px] text-platinum/90 font-light leading-relaxed p-6 rounded-xl border border-umber/40 bg-[#231811]/60">
+          <div className="text-[16px] sm:text-[18px] text-platinum/90 font-light leading-relaxed p-6 rounded-xl border border-umber/40 bg-void-surface/60">
             {intro}
           </div>
         </div>

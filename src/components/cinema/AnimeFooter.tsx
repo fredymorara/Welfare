@@ -34,14 +34,19 @@ export function AnimeFooter() {
   };
 
   return (
-    <footer className="relative bg-[#1f150e] border-t-2 border-umber pt-16 pb-12 px-6 sm:px-12 lg:px-16 xl:px-20 w-full select-none z-10">
+    <footer className="relative bg-void-deep border-t-2 border-umber pt-16 pb-12 px-6 sm:px-12 lg:px-16 xl:px-20 w-full select-none z-10">
       {/* Edge-to-Edge Container */}
       <div className="w-full">
         {/* Top Header with Official Kikoba Wordmark */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-umber/40">
           <div>
             <div className="flex flex-col gap-3 mb-2">
-              <Link href="/" onClick={handleLogoClick} className="inline-block cursor-pointer">
+              <Link
+                href="/"
+                onClick={handleLogoClick}
+                aria-label="Kikoba Home"
+                className="inline-block cursor-pointer min-h-[44px] flex items-center"
+              >
                 <Image
                   src="/brand/name-white.png"
                   alt="Kikoba"
@@ -59,7 +64,8 @@ export function AnimeFooter() {
           <button
             onClick={scrollToTop}
             type="button"
-            className="self-start md:self-end flex items-center gap-2 px-5 py-2.5 rounded-full border border-umber hover:border-ochre text-ivory text-[11px] font-mono tracking-widest uppercase transition-colors cursor-pointer group"
+            aria-label="Scroll back to top of page"
+            className="self-start md:self-end flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full border border-umber hover:border-ochre text-ivory text-[11px] font-mono tracking-widest uppercase transition-colors cursor-pointer group focus-visible:ring-2 focus-visible:ring-ochre"
           >
             <span>BACK TO TOP</span>
             <ArrowUp className="w-3.5 h-3.5 text-ochre group-hover:-translate-y-1 transition-transform" />
@@ -91,23 +97,23 @@ export function AnimeFooter() {
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// NAVIGATION"}
             </span>
-            <ul className="space-y-3 text-[13px] text-platinum/70">
+            <ul className="space-y-1 text-[13px] text-platinum/70">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => jumpTo(link.id)}
-                    className="hover:text-ivory hover:underline transition-colors cursor-pointer text-left uppercase tracking-wider"
+                    className="w-full text-left py-2 min-h-[40px] flex items-center hover:text-ivory hover:underline transition-colors cursor-pointer uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
                   >
                     {link.title}
                   </button>
                 </li>
               ))}
-              <li className="pt-3 border-t border-umber/30 flex gap-4 text-ochre uppercase font-bold text-[12px] tracking-widest">
-                <a href={SIGN_IN_URL} className="hover:text-ivory transition-colors">
+              <li className="pt-3 border-t border-umber/30 flex items-center gap-4 text-ochre uppercase font-bold text-[12px] tracking-widest min-h-[44px]">
+                <a href={SIGN_IN_URL} className="hover:text-ivory transition-colors py-2">
                   Sign In
                 </a>
                 <span>·</span>
-                <a href={SIGN_UP_URL} className="hover:text-ivory transition-colors">
+                <a href={SIGN_UP_URL} className="hover:text-ivory transition-colors py-2">
                   Sign Up
                 </a>
               </li>
@@ -119,11 +125,11 @@ export function AnimeFooter() {
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// LEGAL & SUPPORT"}
             </span>
-            <ul className="space-y-3 text-[13px] text-platinum/70 mb-5">
+            <ul className="space-y-1 text-[13px] text-platinum/70 mb-5">
               <li>
                 <Link
                   href="/privacy"
-                  className="hover:text-ivory hover:underline transition-colors block uppercase tracking-wider"
+                  className="py-2 min-h-[40px] flex items-center hover:text-ivory hover:underline transition-colors block uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
                 >
                   Privacy Policy
                 </Link>
@@ -131,7 +137,7 @@ export function AnimeFooter() {
               <li>
                 <Link
                   href="/terms"
-                  className="hover:text-ivory hover:underline transition-colors block uppercase tracking-wider"
+                  className="py-2 min-h-[40px] flex items-center hover:text-ivory hover:underline transition-colors block uppercase tracking-wider focus-visible:ring-2 focus-visible:ring-ochre rounded"
                 >
                   Terms of Service
                 </Link>
@@ -144,7 +150,7 @@ export function AnimeFooter() {
               </span>
               <a
                 href="mailto:support@kikoba.co.ke"
-                className="inline-flex items-center gap-2 text-[12px] text-ochre hover:text-ivory transition-colors"
+                className="min-h-[44px] inline-flex items-center gap-2 text-[12px] text-ochre hover:text-ivory transition-colors focus-visible:ring-2 focus-visible:ring-ochre rounded"
               >
                 <Mail className="w-3.5 h-3.5 text-ochre shrink-0" />
                 <span>support@kikoba.co.ke</span>

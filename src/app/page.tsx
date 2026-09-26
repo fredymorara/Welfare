@@ -29,7 +29,7 @@ export default function Home() {
       <AnimeHeader />
 
       {/* The 8 Episodic Scenes in Proper Narrative Sequence with Seamless Morphs */}
-      <main className="relative z-10 flex flex-col">
+      <main id="main-content" className="relative z-10 flex flex-col focus:outline-none">
         {/* Scene 01: Heritage — Sacred origin, solid void */}
         <Scene01TheCircle />
 
