@@ -17,32 +17,40 @@ export function SceneProgressHUD() {
   const [activeId, setActiveId] = useState("heritage");
   const [scrollPercent, setScrollPercent] = useState(0);
 
+  // Optimized Scene Tracking with IntersectionObserver (zero layout thrashing)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-25% 0px -45% 0px", threshold: 0.15 }
+    );
+
+    SCENES.forEach((scene) => {
+      const el = document.getElementById(scene.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Lightweight Progress Percentage Calculation (single RAF lock, no DOM reads in loop)
   useEffect(() => {
     let ticking = false;
 
-    const updateScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalScroll > 0) {
-        setScrollPercent(Math.min(100, Math.max(0, (window.scrollY / totalScroll) * 100)));
-      }
-
-      const scrollPos = window.scrollY + window.innerHeight * 0.45;
-      SCENES.forEach((scene) => {
-        const el = document.getElementById(scene.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveId(scene.id);
-          }
-        }
-      });
-      ticking = false;
-    };
-
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateScroll);
+        window.requestAnimationFrame(() => {
+          const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalScroll > 0) {
+            setScrollPercent(Math.min(100, Math.max(0, (window.scrollY / totalScroll) * 100)));
+          }
+          ticking = false;
+        });
         ticking = true;
       }
     };

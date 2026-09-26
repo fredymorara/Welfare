@@ -17,29 +17,37 @@ export function AnimeHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Optimized Section Spy using native IntersectionObserver (zero layout thrashing)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -50% 0px", threshold: 0.1 }
+    );
+
+    NAV_LINKS.forEach((sec) => {
+      const el = document.getElementById(sec.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Lightweight Header Backdrop Trigger with RAF Throttle
   useEffect(() => {
     let ticking = false;
 
-    const updateScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      const scrollPos = window.scrollY + window.innerHeight * 0.35;
-      NAV_LINKS.forEach((sec) => {
-        const el = document.getElementById(sec.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(sec.id);
-          }
-        }
-      });
-      ticking = false;
-    };
-
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateScroll);
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
         ticking = true;
       }
     };
@@ -150,7 +158,7 @@ export function AnimeHeader() {
               <ArrowUpRight className="w-3.5 h-3.5 stroke-3" />
             </a>
 
-            {/* Mobile Hamburger Button with proper ARIA attributes */}
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}

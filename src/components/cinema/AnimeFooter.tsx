@@ -52,6 +52,7 @@ export function AnimeFooter() {
                   alt="Kikoba"
                   width={2000}
                   height={301}
+                  loading="lazy"
                   className="h-8 sm:h-10 w-auto object-contain self-start"
                 />
               </Link>

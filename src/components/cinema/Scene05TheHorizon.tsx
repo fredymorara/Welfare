@@ -60,6 +60,7 @@ export function Scene05TheHorizon() {
               alt="Kikoba Emblem"
               width={50}
               height={50}
+              loading="lazy"
               className="w-full h-full object-contain"
             />
           </div>

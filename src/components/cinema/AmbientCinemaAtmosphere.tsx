@@ -6,30 +6,39 @@ export function AmbientCinemaAtmosphere() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Respect reduced motion: completely disable continuous particle loop
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let animationFrameId: number;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!canvas) return;
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }, 150);
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
-    // Generate 35 ambient floating golden dust embers
-    const particles = Array.from({ length: 35 }, () => ({
+    // 25 lightweight ambient floating embers (calibrated for 60fps on mobile)
+    const particles = Array.from({ length: 25 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 1.6 + 0.6,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: -Math.random() * 0.4 - 0.15,
-      alpha: Math.random() * 0.5 + 0.15,
+      radius: Math.random() * 1.5 + 0.6,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: -Math.random() * 0.35 - 0.1,
+      alpha: Math.random() * 0.45 + 0.15,
       pulseSpeed: Math.random() * 0.02 + 0.008,
       color: Math.random() > 0.3 ? "200, 162, 122" : "248, 244, 238", // Ochre or Ivory
     }));
@@ -39,7 +48,7 @@ export function AmbientCinemaAtmosphere() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      scrollSpeed = (currentScrollY - lastScrollY) * 0.08;
+      scrollSpeed = (currentScrollY - lastScrollY) * 0.05;
       lastScrollY = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -48,12 +57,13 @@ export function AmbientCinemaAtmosphere() {
       ctx.clearRect(0, 0, width, height);
 
       // Dampen scroll velocity reaction
-      scrollSpeed *= 0.94;
+      scrollSpeed *= 0.92;
 
-      particles.forEach((p) => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         p.y += p.vy - scrollSpeed;
         p.x += p.vx;
-        p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.005;
+        p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.004;
 
         // Wrap boundaries seamlessly
         if (p.y < 0) p.y = height;
@@ -61,15 +71,14 @@ export function AmbientCinemaAtmosphere() {
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
 
-        const currentAlpha = Math.max(0.08, Math.min(0.7, p.alpha));
+        const currentAlpha = Math.max(0.08, Math.min(0.65, p.alpha));
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${p.color}, ${currentAlpha})`;
-        ctx.shadowColor = `rgba(${p.color}, 0.5)`;
-        ctx.shadowBlur = 4;
+        // Hardware-accelerated direct arc fill without CPU-bound shadowBlur
         ctx.fill();
-      });
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -77,6 +86,7 @@ export function AmbientCinemaAtmosphere() {
     render();
 
     return () => {
+      clearTimeout(resizeTimer);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
       cancelAnimationFrame(animationFrameId);
@@ -84,7 +94,7 @@ export function AmbientCinemaAtmosphere() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-30 select-none overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-30 select-none overflow-hidden will-change-transform">
       {/* Floating Golden Dust Particles Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />
 
