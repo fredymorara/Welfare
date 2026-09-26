@@ -91,7 +91,7 @@ export function LegalSection({
         <div className="lg:col-span-4 mb-6 lg:mb-0">
           <div className="sticky top-28 space-y-2">
             <span className="inline-flex items-center gap-1.5 text-ochre font-mono text-[11px] sm:text-[12px] font-bold tracking-[0.25em] uppercase">
-              // SECTION {number < 10 ? `0${number}` : number}
+              {`// SECTION ${number < 10 ? `0${number}` : number}`}
             </span>
             <h2 className="text-xl sm:text-2xl font-bold text-ivory tracking-tight leading-snug">
               {title}

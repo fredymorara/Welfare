@@ -50,7 +50,7 @@ export function Scene07Pricing() {
   });
 
   const [period, setPeriod] = useState<Period>("monthly");
-  const { packages, loading } = useSubscriptionPackages();
+  const { packages } = useSubscriptionPackages();
   const displayPackages = packages && packages.length > 0 ? packages : MOCK_PACKAGES;
 
   const bgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);

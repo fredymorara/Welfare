@@ -3,6 +3,7 @@
 import { ArrowUp, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 const FOOTER_LINKS = [
@@ -12,6 +13,8 @@ const FOOTER_LINKS = [
 ];
 
 export function AnimeFooter() {
+  const router = useRouter();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -21,7 +24,7 @@ export function AnimeFooter() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = `/#${id}`;
+      router.push(`/#${id}`);
     }
   };
 

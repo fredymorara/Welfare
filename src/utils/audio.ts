@@ -2,7 +2,7 @@
 class SoundEngine {
   public enabled: boolean = false;
   public toggle(): boolean { return false; }
-  public playClick(_freq?: number) {}
+  public playClick(_freq?: number) { void _freq; }
   public playChime() {}
   public playUnlockBass() {}
 }

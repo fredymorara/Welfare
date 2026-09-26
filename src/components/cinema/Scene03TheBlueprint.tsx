@@ -10,13 +10,11 @@ import {
   CheckCircle2,
   RefreshCw,
   FileText,
-  Smartphone,
   Check,
   Clock,
   Send,
   Lock,
   Download,
-  Users,
 } from "lucide-react";
 
 export function Scene03TheBlueprint() {
