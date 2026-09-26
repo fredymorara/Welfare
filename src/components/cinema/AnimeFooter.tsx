@@ -52,7 +52,7 @@ export function AnimeFooter() {
               >
                 <Image
                   src="/brand/name-white.png"
-                  alt="Kikoba"
+                  alt="Kikoba - Digital Accounting for East African Chamas"
                   width={2000}
                   height={301}
                   loading="lazy"

@@ -57,7 +57,7 @@ export function Scene05TheHorizon() {
           <div className="w-16 h-16 rounded-2xl bg-umber/50 border border-ochre/50 flex items-center justify-center p-3 shadow-[0_0_35px_rgba(200,162,122,0.25)]">
             <Image
               src="/brand/icon-main.png"
-              alt="Kikoba Emblem"
+              alt="Kikoba - Group savings and chama accounting platform emblem"
               width={50}
               height={50}
               loading="lazy"

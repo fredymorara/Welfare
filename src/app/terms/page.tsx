@@ -13,13 +13,50 @@ export const metadata: Metadata = {
   description:
     "The terms governing your access to and use of Kikoba, the simplified accounting platform for organized community and friend groups.",
   alternates: { canonical: "/terms" },
+  openGraph: {
+    title: "Terms of Service | Kikoba",
+    description:
+      "Terms and conditions governing access, accounts, and use of Kikoba.",
+    url: "/terms",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service | Kikoba",
+    description:
+      "Terms and conditions governing access, accounts, and use of Kikoba.",
+  },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://kikobake.netlify.app",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Terms of Service",
+      item: "https://kikobake.netlify.app/terms",
+    },
+  ],
 };
 
 const LAST_UPDATED = "July 30, 2026";
 
 export default function TermsOfServicePage() {
   return (
-    <LegalPageLayout
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <LegalPageLayout
       title="Terms of Service"
       lastUpdated={LAST_UPDATED}
       intro={
@@ -249,5 +286,6 @@ export default function TermsOfServicePage() {
         </LegalCallout>
       </LegalSection>
     </LegalPageLayout>
+    </>
   );
 }

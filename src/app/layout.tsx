@@ -70,6 +70,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  appleWebApp: {
+    capable: true,
+    title: "Kikoba",
+    statusBarStyle: "black-translucent",
+  },
+  category: "finance",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -102,11 +108,20 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: "Kikoba",
+      legalName: "Kikoba Technologies",
       url: SITE_URL,
       logo: `${SITE_URL}/brand/name-main.png`,
       email: "support@kikoba.co.ke",
       description:
         "Digital Accounting & Management Platform for East African Chamas, Vikoba, and Savings Groups.",
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "support@kikoba.co.ke",
+        contactType: "customer service",
+        areaServed: ["KE", "TZ", "UG", "RW"],
+        availableLanguage: ["English", "Swahili"],
+      },
+      sameAs: ["https://twitter.com/kikobaapp"],
       areaServed: [
         { "@type": "Country", name: "Kenya" },
         { "@type": "Country", name: "Tanzania" },
@@ -119,23 +134,42 @@ const jsonLd = {
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
       name: "Kikoba",
+      alternateName: ["Kikoba Kenya", "Kikoba App", "Kikoba Chama Software"],
       description: "Simple Digital Accounting & Savings Platform for Chamas",
       publisher: { "@id": `${SITE_URL}/#organization` },
-      inLanguage: "en-KE",
+      inLanguage: ["en-KE", "sw-KE"],
     },
     {
       "@type": "SoftwareApplication",
       "@id": `${SITE_URL}/#software`,
       name: "Kikoba Group Ledger",
       applicationCategory: "FinanceApplication",
-      operatingSystem: "Web, Android, iOS",
+      applicationSubCategory: "Accounting & Chama Financial Management",
+      operatingSystem: "All (Web, Android, iOS)",
+      softwareVersion: "2.0",
       description:
         "Complete financial transparency, automated ledgers, loan management, and zero end-of-cycle disputes for collective savings groups.",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        ratingCount: "128",
+        bestRating: "5",
+        worstRating: "1",
+      },
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "KES",
+        description: "Free trial available on selected plans",
       },
+      featureList: [
+        "Automated Chama Ledgers & Financial Statements",
+        "Table Banking Loan Approval & Repayment Tracking",
+        "Dispute-Free Audit Logs & Member Contribution History",
+        "Multi-Group Management From a Single Account",
+        "Event & Welfare Fund Contributions Tracking",
+        "Role-based Access Control for Group Leaders",
+      ],
     },
     {
       "@type": "FAQPage",

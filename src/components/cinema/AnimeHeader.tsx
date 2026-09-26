@@ -104,7 +104,7 @@ export function AnimeHeader() {
           >
             <Image
               src="/brand/name-white.png"
-              alt="Kikoba"
+              alt="Kikoba - Chama & Savings Group Management Platform"
               width={2000}
               height={301}
               priority

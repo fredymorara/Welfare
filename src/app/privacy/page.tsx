@@ -13,13 +13,50 @@ export const metadata: Metadata = {
   description:
     "How Kikoba collects, uses, and protects your personal and financial information when you use our simplified accounting platform for organized community and friend groups.",
   alternates: { canonical: "/privacy" },
+  openGraph: {
+    title: "Privacy Policy | Kikoba",
+    description:
+      "How Kikoba protects member financial data, group ledgers, and privacy.",
+    url: "/privacy",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Kikoba",
+    description:
+      "How Kikoba protects member financial data, group ledgers, and privacy.",
+  },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://kikobake.netlify.app",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Privacy Policy",
+      item: "https://kikobake.netlify.app/privacy",
+    },
+  ],
 };
 
 const LAST_UPDATED = "July 30, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPageLayout
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <LegalPageLayout
       title="Privacy Policy"
       lastUpdated={LAST_UPDATED}
       intro={
@@ -255,5 +292,6 @@ export default function PrivacyPolicyPage() {
         </LegalBody>
       </LegalSection>
     </LegalPageLayout>
+    </>
   );
 }
