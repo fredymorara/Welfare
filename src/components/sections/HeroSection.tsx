@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
@@ -29,6 +30,37 @@ export function HeroSection() {
       id={SECTION_IDS.HERO}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-32 pb-16 w-full overflow-hidden select-none bg-void"
     >
+      {/* Background Image: Photo of women gathered around a smartphone */}
+      <div className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden">
+        <motion.div
+          className="absolute inset-0 z-0 will-change-transform saturate-[0.8] brightness-95"
+          initial={{
+            opacity: 0,
+            ...(disableMotion ? {} : { scale: 1.06 }),
+          }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={
+            disableMotion
+              ? { duration: 0 }
+              : { duration: 1.8, ease: [0.22, 1, 0.36, 1] }
+          }
+        >
+          <Image
+            src="https://images.pexels.com/photos/33693165/pexels-photo-33693165.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            alt="Group of women gathered around a smartphone"
+            priority
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </motion.div>
+
+        {/* Dark scrim and gradient overlays for text contrast and depth */}
+        <div className="absolute inset-0 bg-black/60 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent z-0" />
+      </div>
+
       {/* Parallax Rotating Golden Baobab Seal (Desktop only: hidden on mobile to eliminate GPU rasterization lag) */}
       {!disableMotion && (
         <motion.div

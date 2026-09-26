@@ -119,10 +119,8 @@ export function Header() {
       </a>
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 border-b transition-[background-color,border-color,padding,box-shadow] duration-300 ${
-          scrolled
-            ? "bg-void/90 backdrop-blur-md border-umber/50 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-            : "bg-linear-to-b from-void via-void/80 to-transparent border-umber/0 py-5"
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-umber/40 bg-void/80 backdrop-blur-md py-3 transition-[background-color,box-shadow] duration-200 ${
+          scrolled ? "shadow-[0_10px_35px_rgba(0,0,0,0.6)]" : "shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
         }`}
       >
         <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-20 flex items-center justify-between">
