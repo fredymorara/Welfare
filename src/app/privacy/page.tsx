@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import {
-  LegalPageLayout,
+  LegalLayout,
   LegalSection,
   LegalH3,
   LegalBody,
   LegalList,
   LegalCallout,
-} from "../../components/cinema/LegalPageLayout";
+} from "../../components/layout";
+import { SITE_CONFIG } from "../../config/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -36,18 +37,18 @@ const breadcrumbJsonLd = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://kikobake.netlify.app",
+      item: SITE_CONFIG.url,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Privacy Policy",
-      item: "https://kikobake.netlify.app/privacy",
+      item: `${SITE_CONFIG.url}/privacy`,
     },
   ],
 };
 
-const LAST_UPDATED = "July 30, 2026";
+const LAST_UPDATED = SITE_CONFIG.legalLastUpdated;
 
 export default function PrivacyPolicyPage() {
   return (
@@ -56,7 +57,7 @@ export default function PrivacyPolicyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <LegalPageLayout
+      <LegalLayout
       title="Privacy Policy"
       lastUpdated={LAST_UPDATED}
       intro={
@@ -273,10 +274,10 @@ export default function PrivacyPolicyPage() {
           <LegalBody className="mb-0">
             <strong className="text-ivory font-medium">Email:</strong>{" "}
             <a
-              href="mailto:support@kikoba.co.ke"
+              href={`mailto:${SITE_CONFIG.supportEmail}`}
               className="text-ochre hover:text-[#d8b894] underline font-semibold transition-colors"
             >
-              support@kikoba.co.ke
+              {SITE_CONFIG.supportEmail}
             </a>
           </LegalBody>
         </LegalCallout>
@@ -291,7 +292,7 @@ export default function PrivacyPolicyPage() {
           any changes constitutes acceptance of the updated policy.
         </LegalBody>
       </LegalSection>
-    </LegalPageLayout>
+    </LegalLayout>
     </>
   );
 }

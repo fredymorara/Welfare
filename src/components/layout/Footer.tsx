@@ -5,14 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
+import { MAIN_NAVIGATION_LINKS, SECTION_IDS, SITE_CONFIG } from "../../config/site";
 
-const FOOTER_LINKS = [
-  { id: "how-it-works", title: "How It Works" },
-  { id: "pricing", title: "Pricing" },
-  { id: "faq", title: "FAQ" },
-];
-
-export function AnimeFooter() {
+export function Footer() {
   const router = useRouter();
 
   const scrollToTop = () => {
@@ -29,7 +24,7 @@ export function AnimeFooter() {
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    const el = document.getElementById("heritage");
+    const el = document.getElementById(SECTION_IDS.HERO);
     if (el) {
       e.preventDefault();
       el.scrollIntoView({ behavior: "smooth" });
@@ -47,12 +42,12 @@ export function AnimeFooter() {
               <Link
                 href="/"
                 onClick={handleLogoClick}
-                aria-label="Kikoba Home"
+                aria-label={`${SITE_CONFIG.name} Home`}
                 className="flex items-center cursor-pointer min-h-11"
               >
                 <Image
                   src="/brand/name-white.png"
-                  alt="Kikoba - Digital Accounting for East African Chamas"
+                  alt={`${SITE_CONFIG.name} - Digital Accounting for East African Chamas`}
                   width={2000}
                   height={301}
                   loading="lazy"
@@ -85,13 +80,13 @@ export function AnimeFooter() {
             </span>
             <p className="text-[14px] font-extralight text-platinum/80 leading-relaxed mb-4">
               Chamas, Vikoba, and Table Banking groups are the heartbeat of our
-              communities. Kikoba makes collective savings simple, transparent,
+              communities. {SITE_CONFIG.name} makes collective savings simple, transparent,
               and dispute-free so trust grows stronger with every cycle.
             </p>
             <div className="p-3 border-l-2 border-sage bg-void text-[12px] text-sage">
-              &ldquo;Umoja ni Nguvu, Utengano ni Udhaifu.&rdquo; <br />
+              &ldquo;{SITE_CONFIG.culturalQuote.swahili}&rdquo; <br />
               <span className="text-[10px] text-platinum/50 font-normal">
-                Unity is Strength, Division is Weakness.
+                {SITE_CONFIG.culturalQuote.english}
               </span>
             </div>
           </div>
@@ -102,7 +97,7 @@ export function AnimeFooter() {
               {"// NAVIGATION"}
             </span>
             <ul className="space-y-1 text-[13px] text-platinum/70">
-              {FOOTER_LINKS.map((link) => (
+              {MAIN_NAVIGATION_LINKS.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => jumpTo(link.id)}
@@ -153,20 +148,20 @@ export function AnimeFooter() {
                 Support Email
               </span>
               <a
-                href="mailto:support@kikoba.co.ke"
+                href={`mailto:${SITE_CONFIG.supportEmail}`}
                 className="min-h-11 inline-flex items-center gap-2 text-[12px] text-ochre hover:text-ivory transition-colors focus-visible:ring-2 focus-visible:ring-ochre rounded"
               >
                 <Mail className="w-3.5 h-3.5 text-ochre shrink-0" />
-                <span>support@kikoba.co.ke</span>
+                <span>{SITE_CONFIG.supportEmail}</span>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar: Clean Copyright, No Bloat */}
+        {/* Bottom Bar: Clean Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-platinum/50 uppercase tracking-widest">
           <div>
-            © {new Date().getFullYear()} KIKOBA. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} {SITE_CONFIG.name.toUpperCase()}. ALL RIGHTS RESERVED.
           </div>
 
           <div>

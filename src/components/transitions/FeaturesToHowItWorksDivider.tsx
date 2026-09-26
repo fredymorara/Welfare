@@ -3,9 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-// Scene 06 (Pricing) → Scene 07 (FAQ)
-// Pure connecting lines expanding symmetrically from center outward like other transitions
-export function PricingToFaqMorph() {
+// Connecting lines expand symmetrically from center outward to left and right
+export function FeaturesToHowItWorksDivider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -14,14 +13,18 @@ export function PricingToFaqMorph() {
 
   const opacity = useTransform(scrollYProgress, [0.1, 0.35, 0.7, 0.95], [0.2, 1, 1, 0.2]);
 
-  // Symmetrical horizontal spread from center (720) outward
+  // Symmetrical horizontal spread from center (720) outward to both sides
   const xLeft1 = useTransform(scrollYProgress, [0.2, 0.7], [720, 160]);
   const xRight1 = useTransform(scrollYProgress, [0.2, 0.7], [720, 1280]);
 
   const xLeft2 = useTransform(scrollYProgress, [0.25, 0.75], [720, 260]);
   const xRight2 = useTransform(scrollYProgress, [0.25, 0.75], [720, 1180]);
 
-  const centerPulse = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0.6, 1.2, 0.8]);
+  const xLeft3 = useTransform(scrollYProgress, [0.3, 0.8], [720, 360]);
+  const xRight3 = useTransform(scrollYProgress, [0.3, 0.8], [720, 1080]);
+
+  // Center node pulse
+  const centerScale = useTransform(scrollYProgress, [0.15, 0.5, 0.85], [0.5, 1.2, 0.8]);
 
   return (
     <div
@@ -34,16 +37,26 @@ export function PricingToFaqMorph() {
         viewBox="0 0 1440 160"
         preserveAspectRatio="none"
       >
-        {/* Center Pivot Marker */}
+        {/* Central Origin Node */}
         <motion.circle
           cx="720"
           cy="80"
           r="4"
           fill="#C8A27A"
-          style={{ scale: centerPulse }}
+          style={{ scale: centerScale }}
+        />
+        <motion.circle
+          cx="720"
+          cy="80"
+          r="12"
+          fill="none"
+          stroke="#C8A27A"
+          strokeWidth="1"
+          strokeOpacity="0.4"
+          style={{ scale: centerScale }}
         />
 
-        {/* Primary Connecting Line: Expanding from center to both sides */}
+        {/* Primary rail: expands symmetrically from center (720) left & right */}
         <motion.line
           x1={xLeft1}
           y1="80"
@@ -54,29 +67,29 @@ export function PricingToFaqMorph() {
           strokeOpacity="0.85"
         />
 
-        {/* Secondary Upper Guide Line */}
+        {/* Upper secondary guide rail: expands symmetrically from center */}
         <motion.line
           x1={xLeft2}
-          y1="60"
+          y1="55"
           x2={xRight2}
-          y2="60"
+          y2="55"
           stroke="#6F4E37"
           strokeWidth="1"
           strokeOpacity="0.65"
         />
 
-        {/* Secondary Lower Guide Line */}
+        {/* Lower tertiary guide rail: expands symmetrically from center */}
         <motion.line
-          x1={xLeft2}
-          y1="100"
-          x2={xRight2}
-          y2="100"
-          stroke="#6F4E37"
+          x1={xLeft3}
+          y1="105"
+          x2={xRight3}
+          y2="105"
+          stroke="#7B9B7A"
           strokeWidth="1"
-          strokeOpacity="0.65"
+          strokeOpacity="0.55"
         />
 
-        {/* End ticks on primary line */}
+        {/* Subtle vertical tick marks at expanding ends */}
         <motion.line
           x1={xLeft1}
           y1="72"
@@ -94,6 +107,25 @@ export function PricingToFaqMorph() {
           stroke="#C8A27A"
           strokeWidth="1.2"
           strokeOpacity="0.7"
+        />
+
+        <motion.line
+          x1={xLeft2}
+          y1="50"
+          x2={xLeft2}
+          y2="60"
+          stroke="#6F4E37"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+        />
+        <motion.line
+          x1={xRight2}
+          y1="50"
+          x2={xRight2}
+          y2="60"
+          stroke="#6F4E37"
+          strokeWidth="1"
+          strokeOpacity="0.5"
         />
       </motion.svg>
     </div>

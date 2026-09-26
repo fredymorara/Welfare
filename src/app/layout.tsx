@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SITE_CONFIG } from "../config/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -9,16 +10,15 @@ const inter = Inter({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kikobake.netlify.app";
+const SITE_URL = SITE_CONFIG.url;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Kikoba — Wealth is Collective | Simple Chama & Savings Group Software",
-    template: "%s | Kikoba",
+    default: SITE_CONFIG.titleDefault,
+    template: SITE_CONFIG.titleTemplate,
   },
-  description:
-    "The executive digital accounting & management platform for East African chamas, vikoba, and table banking groups. Real-time ledgers, transparent loan tracking, and zero end-of-cycle disputes.",
+  description: SITE_CONFIG.description,
   keywords: [
     "chama management software",
     "vikoba app kenya",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     "kenya savings groups",
     "east africa chama software",
   ],
-  authors: [{ name: "Kikoba", url: SITE_URL }],
-  creator: "Kikoba",
-  publisher: "Kikoba",
+  authors: [{ name: SITE_CONFIG.name, url: SITE_URL }],
+  creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.name,
   formatDetection: {
     email: false,
     address: false,
@@ -44,20 +44,20 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Kikoba — Wealth is Collective | Simple Chama & Savings Group Software",
+    title: SITE_CONFIG.titleDefault,
     description:
       "Simple, transparent digital accounting and management for chamas, vikoba, and table banking groups. Automated ledgers, loan tracking, and dispute-free audits.",
     url: SITE_URL,
-    siteName: "Kikoba",
-    locale: "en_KE",
+    siteName: SITE_CONFIG.name,
+    locale: SITE_CONFIG.locale,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kikoba — Wealth is Collective",
+    title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
     description:
       "Simple, transparent digital accounting and management for East African chamas, vikoba, and table banking groups.",
-    creator: "@kikobaapp",
+    creator: SITE_CONFIG.social.twitterHandle,
   },
   robots: {
     index: true,
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: "Kikoba",
+    title: SITE_CONFIG.name,
     statusBarStyle: "black-translucent",
   },
   category: "finance",
@@ -88,10 +88,10 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   other: {
-    "geo.region": "KE",
-    "geo.placename": "Nairobi",
-    "geo.position": "-1.286389;36.817223",
-    "ICBM": "-1.286389, 36.817223",
+    "geo.region": SITE_CONFIG.geo.region,
+    "geo.placename": SITE_CONFIG.geo.placename,
+    "geo.position": SITE_CONFIG.geo.position,
+    "ICBM": SITE_CONFIG.geo.icbm,
   },
 };
 
@@ -107,21 +107,21 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: "Kikoba",
-      legalName: "Kikoba Technologies",
+      name: SITE_CONFIG.name,
+      legalName: SITE_CONFIG.legalName,
       url: SITE_URL,
       logo: `${SITE_URL}/brand/name-main.png`,
-      email: "support@kikoba.co.ke",
+      email: SITE_CONFIG.supportEmail,
       description:
         "Digital Accounting & Management Platform for East African Chamas, Vikoba, and Savings Groups.",
       contactPoint: {
         "@type": "ContactPoint",
-        email: "support@kikoba.co.ke",
+        email: SITE_CONFIG.supportEmail,
         contactType: "customer service",
         areaServed: ["KE", "TZ", "UG", "RW"],
         availableLanguage: ["English", "Swahili"],
       },
-      sameAs: ["https://twitter.com/kikobaapp"],
+      sameAs: [SITE_CONFIG.social.twitterUrl],
       areaServed: [
         { "@type": "Country", name: "Kenya" },
         { "@type": "Country", name: "Tanzania" },
@@ -133,11 +133,11 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "Kikoba",
-      alternateName: ["Kikoba Kenya", "Kikoba App", "Kikoba Chama Software"],
+      name: SITE_CONFIG.name,
+      alternateName: [`${SITE_CONFIG.name} Kenya`, `${SITE_CONFIG.name} App`, `${SITE_CONFIG.name} Chama Software`],
       description: "Simple Digital Accounting & Savings Platform for Chamas",
       publisher: { "@id": `${SITE_URL}/#organization` },
-      inLanguage: ["en-KE", "sw-KE"],
+      inLanguage: [...SITE_CONFIG.languages],
     },
     {
       "@type": "SoftwareApplication",

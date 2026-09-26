@@ -3,13 +3,14 @@
 import { useState, useRef, type FormEvent } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Smartphone, ArrowRight, CheckCircle2 } from "lucide-react";
+import { SECTION_IDS, SITE_CONFIG } from "../../config/site";
 
 const PLATFORMS = [
   { label: "iOS", sub: "App Store", icon: "◆" },
   { label: "Android", sub: "Google Play", icon: "◈" },
 ];
 
-export function Scene09MobileApp() {
+export function MobileAppSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -33,7 +34,7 @@ export function Scene09MobileApp() {
   return (
     <section
       ref={containerRef}
-      id="mobile-app"
+      id={SECTION_IDS.MOBILE_APP}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-20 w-full overflow-hidden select-none bg-void"
       style={{ perspective: "1200px" }}
     >
@@ -76,7 +77,7 @@ export function Scene09MobileApp() {
           </h2>
 
           <p className="text-[18px] sm:text-[21px] font-extralight text-platinum leading-[1.65] border-l-2 border-ochre pl-6 mb-8">
-            While Kikoba is already active and serving groups on the web today, we are developing a dedicated mobile app for Android and iOS. Get instant M-Pesa push notifications, approve loans on the move, and check your savings in one tap.
+            While {SITE_CONFIG.name} is already active and serving groups on the web today, we are developing a dedicated mobile app for Android and iOS. Get instant M-Pesa push notifications, approve loans on the move, and check your savings in one tap.
           </p>
 
           {/* Platform Badges */}
@@ -209,7 +210,7 @@ export function Scene09MobileApp() {
       <div className="relative z-10 pt-6 border-t border-umber/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/50 uppercase tracking-widest">
         <div className="flex items-center gap-3">
           <Smartphone className="w-3.5 h-3.5 text-ochre" />
-          <span>iOS · ANDROID · AVAILABLE 2025</span>
+          <span>iOS · ANDROID · COMING SOON</span>
         </div>
         <span className="text-sage">● EARLY ACCESS REGISTRATIONS OPEN</span>
       </div>

@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
+import { SECTION_IDS } from "../../config/site";
 
 const STEPS = [
   {
@@ -56,7 +57,7 @@ const ACCENT_CLASSES = {
   },
 };
 
-export function Scene06HowItWorks() {
+export function HowItWorksSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -71,7 +72,7 @@ export function Scene06HowItWorks() {
   return (
     <section
       ref={containerRef}
-      id="how-it-works"
+      id={SECTION_IDS.HOW_IT_WORKS}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]/85 backdrop-blur-md"
     >
       {/* Scrolling horizontal rail lines in background */}
@@ -185,7 +186,7 @@ export function Scene06HowItWorks() {
           AFFORDABLE PLANS FOR EVERY SIZE GROUP
         </span>
         <a
-          href="#pricing"
+          href={`#${SECTION_IDS.PRICING}`}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>VIEW PLANS & PRICING</span>

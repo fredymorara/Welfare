@@ -1,83 +1,85 @@
 "use client";
 
-import { AnimeHeader } from "../components/cinema/AnimeHeader";
-import { Scene01TheCircle } from "../components/cinema/Scene01TheCircle";
-import { CircleToFractureMorph } from "../components/cinema/CircleToFractureMorph";
-import { Scene02TheFracture } from "../components/cinema/Scene02TheFracture";
-import { FractureToCircuitMorph } from "../components/cinema/FractureToCircuitMorph";
-import { Scene03TheBlueprint } from "../components/cinema/Scene03TheBlueprint";
-import { CircuitToHowItWorksMorph } from "../components/cinema/CircuitToHowItWorksMorph";
-import { Scene06HowItWorks } from "../components/cinema/Scene06HowItWorks";
-import { HowItWorksToPricingMorph } from "../components/cinema/HowItWorksToPricingMorph";
-import { Scene07Pricing } from "../components/cinema/Scene07Pricing";
-import { PricingToFaqMorph } from "../components/cinema/PricingToFaqMorph";
-import { Scene08FAQ } from "../components/cinema/Scene08FAQ";
-import { FaqToVaultMorph } from "../components/cinema/FaqToVaultMorph";
-import { Scene05TheHorizon } from "../components/cinema/Scene05TheHorizon";
-import { VaultToMobileMorph } from "../components/cinema/VaultToMobileMorph";
-import { Scene09MobileApp } from "../components/cinema/Scene09MobileApp";
-import { SceneProgressHUD } from "../components/cinema/SceneProgressHUD";
-import { AnimeFooter } from "../components/cinema/AnimeFooter";
+import { Header, Footer, ScrollProgressRail } from "../components/layout";
+import {
+  HeroSection,
+  ProblemSection,
+  FeaturesSection,
+  HowItWorksSection,
+  PricingSection,
+  FaqSection,
+  CtaSection,
+  MobileAppSection,
+} from "../components/sections";
+import {
+  HeroToProblemDivider,
+  ProblemToFeaturesDivider,
+  FeaturesToHowItWorksDivider,
+  HowItWorksToPricingDivider,
+  PricingToFaqDivider,
+  FaqToCtaDivider,
+  CtaToMobileDivider,
+} from "../components/transitions";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-void text-ivory selection:bg-ochre selection:text-void overflow-x-hidden">
-      {/* Right-Side Vertical Chapter Navigation Rail */}
-      <SceneProgressHUD />
+      {/* Right-Side Vertical Section Navigation Rail */}
+      <ScrollProgressRail />
 
-      {/* High-Craft Anime / Manga Show Navigation Header */}
-      <AnimeHeader />
+      {/* Main Navigation Header */}
+      <Header />
 
-      {/* The 8 Episodic Scenes in Proper Narrative Sequence with Seamless Morphs */}
+      {/* Modular Page Sections with Seamless Transitions */}
       <main id="main-content" className="relative z-10 flex flex-col focus:outline-none">
-        {/* Scene 01: Heritage — Sacred origin, solid void */}
-        <Scene01TheCircle />
+        {/* Section 01: Hero — Sacred origin, solid void */}
+        <HeroSection />
 
-        {/* Morph 01: Sacred circle splinters into kintsugi fractures */}
-        <CircleToFractureMorph />
+        {/* Transition 01: Hero to Problem */}
+        <HeroToProblemDivider />
 
-        {/* Scene 02: The Shift — Manual ledger collapse, dark translucent */}
-        <Scene02TheFracture />
+        {/* Section 02: Problem — Manual ledger collapse, dark translucent */}
+        <ProblemSection />
 
-        {/* Morph 02: Fractures straighten into orthogonal circuit traces */}
-        <FractureToCircuitMorph />
+        {/* Transition 02: Problem to Features */}
+        <ProblemToFeaturesDivider />
 
-        {/* Scene 03: The Engine — Consensus architecture, solid void */}
-        <Scene03TheBlueprint />
+        {/* Section 03: Features — Consensus architecture & interactive demos */}
+        <FeaturesSection />
 
-        {/* Morph 03: Circuit traces converge into 4 glowing process guide rails */}
-        <CircuitToHowItWorksMorph />
+        {/* Transition 03: Features to How It Works */}
+        <FeaturesToHowItWorksDivider />
 
-        {/* Scene 04: How It Works — 4-step workflow, dark translucent */}
-        <Scene06HowItWorks />
+        {/* Section 04: How It Works — 4-step workflow, dark translucent */}
+        <HowItWorksSection />
 
-        {/* Morph 04: Process rails condense into 3 tiered pricing pillars */}
-        <HowItWorksToPricingMorph />
+        {/* Transition 04: How It Works to Pricing */}
+        <HowItWorksToPricingDivider />
 
-        {/* Scene 05: Pricing — Live API plan tiers, solid void */}
-        <Scene07Pricing />
+        {/* Section 05: Pricing — Live API plan tiers, solid void */}
+        <PricingSection />
 
-        {/* Morph 05: Tier blocks fragment into open question arcs */}
-        <PricingToFaqMorph />
+        {/* Transition 05: Pricing to FAQ */}
+        <PricingToFaqDivider />
 
-        {/* Scene 06: FAQ — Clear, verified answers, dark translucent */}
-        <Scene08FAQ />
+        {/* Section 06: FAQ — Verified answers, dark translucent */}
+        <FaqSection />
 
-        {/* Morph 06: Query brackets ignite into concentric gateway rings */}
-        <FaqToVaultMorph />
+        {/* Transition 06: FAQ to CTA */}
+        <FaqToCtaDivider />
 
-        {/* Scene 07: The Vault — Sovereign onboarding gateway, solid void */}
-        <Scene05TheHorizon />
+        {/* Section 07: CTA — Onboarding gateway & trial signup */}
+        <CtaSection />
 
-        {/* Morph 07: Concentric gateway rings condense into phone silhouette */}
-        <VaultToMobileMorph />
+        {/* Transition 07: CTA to Mobile App */}
+        <CtaToMobileDivider />
 
-        {/* Scene 08: Mobile App — Coming soon teaser, solid void */}
-        <Scene09MobileApp />
+        {/* Section 08: Mobile App — Dedicated mobile app preview */}
+        <MobileAppSection />
       </main>
 
-      {/* Monumental Anime End Credits & Archive Footer */}
-      <AnimeFooter />
+      {/* Universal Footer */}
+      <Footer />
     </div>
   );
 }

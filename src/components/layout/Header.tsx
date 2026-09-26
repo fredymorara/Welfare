@@ -6,14 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
+import { MAIN_NAVIGATION_LINKS, SECTION_IDS, SITE_CONFIG } from "../../config/site";
 
-const NAV_LINKS = [
-  { id: "how-it-works", title: "How It Works" },
-  { id: "pricing", title: "Pricing" },
-  { id: "faq", title: "FAQ" },
-];
-
-export function AnimeHeader() {
+export function Header() {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,7 +27,7 @@ export function AnimeHeader() {
       { rootMargin: "-20% 0px -50% 0px", threshold: 0.1 }
     );
 
-    NAV_LINKS.forEach((sec) => {
+    MAIN_NAVIGATION_LINKS.forEach((sec) => {
       const el = document.getElementById(sec.id);
       if (el) observer.observe(el);
     });
@@ -70,7 +65,7 @@ export function AnimeHeader() {
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    const el = document.getElementById("heritage");
+    const el = document.getElementById(SECTION_IDS.HERO);
     if (el) {
       e.preventDefault();
       el.scrollIntoView({ behavior: "smooth" });
@@ -99,12 +94,12 @@ export function AnimeHeader() {
           <Link
             href="/"
             onClick={handleLogoClick}
-            aria-label="Kikoba Home"
+            aria-label={`${SITE_CONFIG.name} Home`}
             className="flex items-center gap-3 cursor-pointer group shrink-0 min-h-11"
           >
             <Image
               src="/brand/name-white.png"
-              alt="Kikoba - Chama & Savings Group Management Platform"
+              alt={`${SITE_CONFIG.name} - Chama & Savings Group Management Platform`}
               width={2000}
               height={301}
               priority
@@ -112,12 +107,12 @@ export function AnimeHeader() {
             />
           </Link>
 
-          {/* Center: Essential Single-Word Navigation Links */}
+          {/* Center: Essential Navigation Links */}
           <nav
             aria-label="Main Navigation"
             className="hidden lg:flex items-center gap-6 xl:gap-8 font-mono text-[12px] tracking-[0.2em] uppercase"
           >
-            {NAV_LINKS.map((sec) => {
+            {MAIN_NAVIGATION_LINKS.map((sec) => {
               const isActive = activeSection === sec.id;
               return (
                 <button
@@ -181,7 +176,7 @@ export function AnimeHeader() {
             className="lg:hidden bg-void border-b border-umber px-6 py-6 font-mono"
           >
             <div className="flex flex-col gap-2 text-[13px] uppercase tracking-widest">
-              {NAV_LINKS.map((sec) => (
+              {MAIN_NAVIGATION_LINKS.map((sec) => (
                 <button
                   key={sec.id}
                   onClick={() => jumpTo(sec.id)}

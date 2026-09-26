@@ -3,8 +3,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
+import { SECTION_IDS } from "../../config/site";
 
-export function Scene02TheFracture() {
+export function ProblemSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -22,7 +23,7 @@ export function Scene02TheFracture() {
   return (
     <section
       ref={containerRef}
-      id="the-shift"
+      id={SECTION_IDS.PROBLEM}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]/85 backdrop-blur-md"
     >
       {/* Dynamic Parallax Kintsugi Golden Fissure */}
@@ -137,7 +138,7 @@ export function Scene02TheFracture() {
         </span>
 
         <a
-          href="#the-engine"
+          href={`#${SECTION_IDS.FEATURES}`}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>HOW KIKOBA SOLVES THIS</span>

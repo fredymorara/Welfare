@@ -1,23 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SECTION_PROGRESS_ITEMS } from "../../config/site";
 
-const SCENES = [
-  { id: "heritage", code: "01", name: "HOME" },
-  { id: "the-shift", code: "02", name: "CHALLENGE" },
-  { id: "the-engine", code: "03", name: "SECURITY" },
-  { id: "how-it-works", code: "04", name: "PROCESS" },
-  { id: "pricing", code: "05", name: "PRICING" },
-  { id: "faq", code: "06", name: "FAQ" },
-  { id: "vault", code: "07", name: "SIGN UP" },
-  { id: "mobile-app", code: "08", name: "MOBILE APP" },
-];
-
-export function SceneProgressHUD() {
-  const [activeId, setActiveId] = useState("heritage");
+export function ScrollProgressRail() {
+  const [activeId, setActiveId] = useState<string>(SECTION_PROGRESS_ITEMS[0]?.id || "heritage");
   const [scrollPercent, setScrollPercent] = useState(0);
 
-  // Optimized Scene Tracking with IntersectionObserver (zero layout thrashing)
+  // Optimized Section Tracking with IntersectionObserver (zero layout thrashing)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -30,8 +20,8 @@ export function SceneProgressHUD() {
       { rootMargin: "-25% 0px -45% 0px", threshold: 0.15 }
     );
 
-    SCENES.forEach((scene) => {
-      const el = document.getElementById(scene.id);
+    SECTION_PROGRESS_ITEMS.forEach((item) => {
+      const el = document.getElementById(item.id);
       if (el) observer.observe(el);
     });
 
@@ -69,7 +59,7 @@ export function SceneProgressHUD() {
 
   return (
     <aside
-      aria-label="Scene Navigator"
+      aria-label="Section Navigator"
       className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end gap-6 select-none pointer-events-auto"
     >
       {/* Background Vertical Laser Track */}
@@ -84,15 +74,16 @@ export function SceneProgressHUD() {
         </div>
       </div>
 
-      {/* Chapter Pips */}
+      {/* Section Navigation Pips */}
       <div className="flex flex-col items-end gap-3 font-mono">
-        {SCENES.map((scene) => {
-          const isActive = activeId === scene.id;
+        {SECTION_PROGRESS_ITEMS.map((item, index) => {
+          const isActive = activeId === item.id;
+          const sectionNumber = String(index + 1).padStart(2, "0");
           return (
             <button
-              key={scene.id}
-              onClick={() => jumpTo(scene.id)}
-              aria-label={`Jump to ${scene.name} section (Scene ${scene.code})`}
+              key={item.id}
+              onClick={() => jumpTo(item.id)}
+              aria-label={`Jump to ${item.label} section (Section ${sectionNumber})`}
               aria-current={isActive ? "step" : undefined}
               className="group flex items-center gap-3 cursor-pointer py-1.5 px-1 text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-ochre focus-visible:ring-offset-2 focus-visible:ring-offset-void rounded"
             >
@@ -104,7 +95,7 @@ export function SceneProgressHUD() {
                     : "text-platinum/40 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
                 }`}
               >
-                {scene.name}
+                {item.label.toUpperCase()}
               </span>
 
               {/* Pip Marker */}

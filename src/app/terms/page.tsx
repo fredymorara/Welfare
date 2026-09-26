@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  LegalPageLayout,
+  LegalLayout,
   LegalSection,
   LegalBody,
   LegalList,
   LegalCallout,
-} from "../../components/cinema/LegalPageLayout";
+} from "../../components/layout";
+import { SITE_CONFIG } from "../../config/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -36,18 +37,18 @@ const breadcrumbJsonLd = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://kikobake.netlify.app",
+      item: SITE_CONFIG.url,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Terms of Service",
-      item: "https://kikobake.netlify.app/terms",
+      item: `${SITE_CONFIG.url}/terms`,
     },
   ],
 };
 
-const LAST_UPDATED = "July 30, 2026";
+const LAST_UPDATED = SITE_CONFIG.legalLastUpdated;
 
 export default function TermsOfServicePage() {
   return (
@@ -56,7 +57,7 @@ export default function TermsOfServicePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <LegalPageLayout
+      <LegalLayout
       title="Terms of Service"
       lastUpdated={LAST_UPDATED}
       intro={
@@ -277,15 +278,15 @@ export default function TermsOfServicePage() {
           <LegalBody className="mb-0">
             <strong className="text-ivory font-medium">Email:</strong>{" "}
             <a
-              href="mailto:support@kikoba.co.ke"
+              href={`mailto:${SITE_CONFIG.supportEmail}`}
               className="text-ochre hover:text-[#d8b894] underline font-semibold transition-colors"
             >
-              support@kikoba.co.ke
+              {SITE_CONFIG.supportEmail}
             </a>
           </LegalBody>
         </LegalCallout>
       </LegalSection>
-    </LegalPageLayout>
+    </LegalLayout>
     </>
   );
 }

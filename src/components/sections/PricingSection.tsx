@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Check, X, ArrowDown, ArrowUpRight } from "lucide-react";
 import { useSubscriptionPackages, MOCK_PACKAGES } from "../../hooks/useSubscriptionPackages";
 import { SIGN_UP_URL } from "../../config/api";
+import { SECTION_IDS } from "../../config/site";
 
 type Period = "monthly" | "annual";
 
@@ -42,7 +43,7 @@ function getFeatureValue(pkg: SubPackage, key: string): { available: boolean; la
   }
 }
 
-export function Scene07Pricing() {
+export function PricingSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -64,7 +65,7 @@ export function Scene07Pricing() {
   return (
     <section
       ref={containerRef}
-      id="pricing"
+      id={SECTION_IDS.PRICING}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-void"
     >
       {/* Subtle parallax background geometry */}
@@ -99,127 +100,136 @@ export function Scene07Pricing() {
             <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
               [ CHOOSE YOUR PLAN ]
             </span>
-            <h2 className="text-[44px] sm:text-[72px] lg:text-[88px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase">
-              Affordable plans. <br />
+            <h2 className="text-[44px] sm:text-[68px] lg:text-[88px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase">
+              Transparent plans. <br />
               <span className="text-ochre font-serif italic font-normal tracking-tight">
-                For every chama size.
+                No surprises.
               </span>
             </h2>
           </div>
 
           {/* Period Toggle */}
-          <div className="flex items-center gap-0 border border-umber/60 font-mono text-[11px] uppercase tracking-widest shrink-0">
+          <div className="flex items-center border border-umber/60 p-1 self-start sm:self-end font-mono text-[11px] uppercase tracking-wider">
             <button
               onClick={() => setPeriod("monthly")}
-              className={`px-5 py-2.5 transition-colors cursor-pointer ${period === "monthly" ? "bg-umber/60 text-ivory" : "text-platinum/50 hover:text-ivory"}`}
+              className={`px-4 py-2 transition-all cursor-pointer ${
+                period === "monthly" ? "bg-ochre text-void font-bold" : "text-platinum/60 hover:text-ivory"
+              }`}
             >
-              Monthly
+              Billed Monthly
             </button>
             <button
               onClick={() => setPeriod("annual")}
-              className={`px-5 py-2.5 transition-colors cursor-pointer relative ${period === "annual" ? "bg-umber/60 text-ivory" : "text-platinum/50 hover:text-ivory"}`}
+              className={`px-4 py-2 transition-all cursor-pointer flex items-center gap-1.5 ${
+                period === "annual" ? "bg-ochre text-void font-bold" : "text-platinum/60 hover:text-ivory"
+              }`}
             >
-              Annual
-              {period === "annual" && (
-                <span className="absolute -top-2.5 -right-2 text-[8px] bg-sage text-void px-1.5 py-0.5 rounded-sm font-bold">-16%</span>
-              )}
+              <span>Annual</span>
+              <span className="text-[9px] text-sage font-bold">SAVE UP TO 20%</span>
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {displayPackages.map((pkg) => {
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {displayPackages.map((pkg, idx) => {
             const style = PLAN_STYLE[pkg.code] ?? PLAN_STYLE.STARTER;
-              const { price, discount } = getPlanPrice(pkg, period);
-              const isFree = price === 0;
+            const { price } = getPlanPrice(pkg, period);
 
-              return (
-                <motion.div
-                  key={pkg._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-                  className={`relative border-2 ${style.accent} ${style.highlight ? "bg-umber/30 shadow-[0_0_50px_rgba(200,162,122,0.15)]" : "bg-void"} flex flex-col`}
-                >
-                  {style.badge && (
-                    <div className="absolute -top-3 left-6 text-[9px] font-mono tracking-[0.3em] uppercase bg-ochre text-void px-3 py-1">
-                      {style.badge}
-                    </div>
-                  )}
-
-                  <div className="p-8 flex-1">
-                    {/* Plan name */}
-                    <div className="text-[10px] font-mono tracking-[0.4em] uppercase text-platinum/50 mb-1">
-                      {pkg.code}
-                    </div>
-                    <h3 className="text-[28px] font-black text-ivory uppercase tracking-[-0.02em] mb-2">
-                      {pkg.name}
-                    </h3>
-                    <p className="text-[13px] font-extralight text-platinum/70 leading-relaxed mb-6">
-                      {pkg.description}
-                    </p>
-
-                    {/* Price */}
-                    <div className="mb-6 pb-6 border-b border-umber/30">
-                      {isFree ? (
-                        <div className="text-[40px] font-black text-ivory font-mono leading-none">
-                          FREE
-                        </div>
-                      ) : (
-                        <div className="flex items-end gap-2">
-                          <div className="text-[40px] font-black text-ivory font-mono leading-none">
-                            KES {price.toLocaleString()}
-                          </div>
-                          <div className="text-[12px] font-mono text-platinum/50 mb-1.5">
-                            /{period === "monthly" ? "mo" : "yr"}
-                          </div>
-                        </div>
-                      )}
-                      {discount > 0 && period === "annual" && (
-                        <div className="text-[11px] font-mono text-sage mt-1 uppercase tracking-widest">
-                          ✓ SAVE {discount}% VS MONTHLY
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Features */}
-                    <div className="space-y-3">
-                      {FEATURE_ROWS.map((row) => {
-                        const val = getFeatureValue(pkg, row.key);
-                        return (
-                          <div key={row.key} className="flex items-center gap-3 font-mono text-[12px]">
-                            <div className={`w-4 h-4 rounded-sm flex items-center justify-center shrink-0 ${val.available ? "bg-umber/40 text-ochre" : "bg-void text-platinum/20"}`}>
-                              {val.available ? <Check className="w-2.5 h-2.5" /> : <X className="w-2.5 h-2.5" />}
-                            </div>
-                            <span className={val.available ? "text-platinum/90" : "text-platinum/30"}>
-                              {val.label ?? row.label}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
+            return (
+              <motion.div
+                key={pkg._id ?? idx}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: idx * 0.1 }}
+                className={`relative flex flex-col justify-between border ${style.accent} bg-void-surface transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] ${
+                  style.highlight ? "shadow-[0_0_40px_rgba(200,162,122,0.15)] ring-1 ring-ochre/30" : ""
+                }`}
+              >
+                {/* Top Badge */}
+                {style.badge && (
+                  <div className="absolute -top-3 left-6 px-3 py-0.5 bg-ochre text-void font-mono text-[9px] font-black tracking-[0.25em] uppercase">
+                    {style.badge}
                   </div>
+                )}
 
-                  {/* CTA */}
-                  <div className="p-8 pt-0">
-                    <a
-                      href={SIGN_UP_URL}
-                      className={`flex items-center justify-center gap-2 w-full py-3.5 font-black text-[12px] font-mono tracking-widest uppercase transition-all duration-200 cursor-pointer ${style.cta}`}
-                    >
-                      <span>Sign Up</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                    {pkg.isTrial && (
-                      <div className="text-center text-[10px] font-mono text-platinum/40 mt-3 uppercase tracking-widest">
-                        {pkg.trialDurationDays ?? 14}-DAY FREE TRIAL INCLUDED
+                <div className="p-8 pb-6">
+                  {/* Package Code & Name */}
+                  <div className="text-[10px] font-mono text-ochre uppercase tracking-[0.3em] mb-2">
+                    {"//"} {pkg.code}
+                  </div>
+                  <h3 className="text-[26px] font-black text-ivory uppercase tracking-[-0.02em] mb-2">
+                    {pkg.name}
+                  </h3>
+                  <p className="text-[13px] text-platinum/70 font-light leading-relaxed mb-6 min-h-[40px]">
+                    {pkg.description}
+                  </p>
+
+                  {/* Price Block */}
+                  <div className="py-4 border-t border-b border-umber/30 mb-6 font-mono">
+                    {price === 0 ? (
+                      <div className="text-[36px] font-black text-ivory leading-none">FREE</div>
+                    ) : (
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-[14px] text-platinum/50 font-normal">KES</span>
+                        <span className="text-[36px] font-black text-ivory leading-none">
+                          {price.toLocaleString()}
+                        </span>
+                        <span className="text-[11px] text-platinum/40">
+                          /{period === "annual" ? "yr" : "mo"}
+                        </span>
                       </div>
                     )}
+                    <div className="text-[10px] text-platinum/40 mt-1 uppercase tracking-widest">
+                      {period === "annual" ? "BILLED ANNUALLY" : "BILLED MONTHLY"}
+                    </div>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
+
+                  {/* Feature Checklist */}
+                  <div className="space-y-3 font-mono text-[12px]">
+                    {FEATURE_ROWS.map(({ key, label }) => {
+                      const val = getFeatureValue(pkg, key);
+                      return (
+                        <div key={key} className="flex items-center justify-between gap-2">
+                          <span className={`text-[12px] ${val.available ? "text-platinum/80" : "text-platinum/30 line-through"}`}>
+                            {label}
+                          </span>
+                          <span className="shrink-0">
+                            {val.available ? (
+                              val.label ? (
+                                <span className="text-[10px] text-sage font-bold uppercase">{val.label}</span>
+                              ) : (
+                                <Check className="w-3.5 h-3.5 text-sage stroke-2" />
+                              )
+                            ) : (
+                              <X className="w-3.5 h-3.5 text-platinum/20" />
+                            )}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="p-8 pt-0">
+                  <a
+                    href={SIGN_UP_URL}
+                    className={`flex items-center justify-center gap-2 w-full py-3.5 font-black text-[12px] font-mono tracking-widest uppercase transition-all duration-200 cursor-pointer ${style.cta}`}
+                  >
+                    <span>Sign Up</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                  {pkg.isTrial && (
+                    <div className="text-center text-[10px] font-mono text-platinum/40 mt-3 uppercase tracking-widest">
+                      {pkg.trialDurationDays ?? 14}-DAY FREE TRIAL INCLUDED
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Section Footer */}
@@ -228,7 +238,7 @@ export function Scene07Pricing() {
           COMMON QUESTIONS FROM CHAMA LEADERS
         </span>
         <a
-          href="#faq"
+          href={`#${SECTION_IDS.FAQ}`}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>READ THE FAQ</span>

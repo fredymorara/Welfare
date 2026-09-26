@@ -4,8 +4,9 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
+import { SECTION_IDS, SITE_CONFIG } from "../../config/site";
 
-export function Scene01TheCircle() {
+export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -21,7 +22,7 @@ export function Scene01TheCircle() {
   return (
     <section
       ref={containerRef}
-      id="heritage"
+      id={SECTION_IDS.HERO}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-32 pb-16 w-full overflow-hidden select-none bg-void"
     >
       {/* Parallax Rotating Golden Baobab Seal */}
@@ -37,7 +38,7 @@ export function Scene01TheCircle() {
           <div className="w-full h-full rounded-full border border-dashed border-ochre/50 flex items-center justify-center p-16">
             <div className="w-full h-full rounded-full border border-umber flex items-center justify-center">
               <span className="text-[12px] font-mono tracking-[0.45em] uppercase text-ochre rotate-45 select-none">
-                UMOJA NI NGUVU · HARAMBEE · KIKOBA
+                {SITE_CONFIG.culturalQuote.swahili} · HARAMBEE · {SITE_CONFIG.name.toUpperCase()}
               </span>
             </div>
           </div>
@@ -107,7 +108,7 @@ export function Scene01TheCircle() {
           </a>
 
           <a
-            href="#how-it-works"
+            href={`#${SECTION_IDS.HOW_IT_WORKS}`}
             className="text-[12px] font-mono tracking-wider text-platinum/60 hover:text-ochre transition-colors pl-2 flex items-center gap-1.5"
           >
             <span>See How It Works</span>
@@ -126,7 +127,7 @@ export function Scene01TheCircle() {
         </div>
 
         <a
-          href="#the-shift"
+          href={`#${SECTION_IDS.PROBLEM}`}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>SEE THE CHALLENGE</span>

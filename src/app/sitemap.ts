@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { SITE_CONFIG } from "../config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kikobake.netlify.app";
+  const baseUrl = SITE_CONFIG.url;
   const lastModified = new Date();
 
   return [

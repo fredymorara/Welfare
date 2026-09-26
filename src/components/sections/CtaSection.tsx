@@ -5,8 +5,9 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { SIGN_UP_URL, SIGN_IN_URL } from "../../config/api";
+import { SECTION_IDS, SITE_CONFIG } from "../../config/site";
 
-export function Scene05TheHorizon() {
+export function CtaSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,7 +21,7 @@ export function Scene05TheHorizon() {
   return (
     <section
       ref={containerRef}
-      id="vault"
+      id={SECTION_IDS.CTA}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-20 w-full overflow-hidden select-none bg-void"
       style={{ perspective: "1200px" }}
     >
@@ -57,7 +58,7 @@ export function Scene05TheHorizon() {
           <div className="w-16 h-16 rounded-2xl bg-umber/50 border border-ochre/50 flex items-center justify-center p-3 shadow-[0_0_35px_rgba(200,162,122,0.25)]">
             <Image
               src="/brand/icon-main.png"
-              alt="Kikoba - Group savings and chama accounting platform emblem"
+              alt={`${SITE_CONFIG.name} - Group savings and chama accounting platform emblem`}
               width={50}
               height={50}
               loading="lazy"
@@ -123,11 +124,11 @@ export function Scene05TheHorizon() {
       {/* Bottom Scene Anchor Flow */}
       <div className="relative z-10 pt-6 border-t border-umber/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/60 uppercase tracking-widest">
         <div className="flex items-center gap-3">
-          <span className="text-ochre">● KIKOBA WEB PLATFORM</span>
+          <span className="text-ochre">● {SITE_CONFIG.name.toUpperCase()} WEB PLATFORM</span>
           <span className="text-sage hidden sm:inline">LIVE ON WEB TODAY · MOBILE APP COMING SOON</span>
         </div>
         <a
-          href="#mobile-app"
+          href={`#${SECTION_IDS.MOBILE_APP}`}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>THE MOBILE APP IS COMING</span>

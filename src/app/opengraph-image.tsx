@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og";
 import fs from "fs";
 import path from "path";
+import { SITE_CONFIG } from "../config/site";
 
-export const alt = "Kikoba — Wealth is Collective | Simple Chama & Savings Group Software";
+export const alt = SITE_CONFIG.titleDefault;
 export const size = {
   width: 1200,
   height: 630,
@@ -101,6 +102,7 @@ export default async function Image() {
         >
           <div
             style={{
+              display: "flex",
               fontSize: "64px",
               fontWeight: 800,
               lineHeight: 1.1,
@@ -108,10 +110,11 @@ export default async function Image() {
               color: "#F8F4EE",
             }}
           >
-            Wealth is Collective.
+            {`${SITE_CONFIG.tagline}.`}
           </div>
           <div
             style={{
+              display: "flex",
               fontSize: "26px",
               lineHeight: 1.4,
               color: "#E7E8EA",
@@ -155,7 +158,7 @@ export default async function Image() {
               letterSpacing: "1.5px",
             }}
           >
-            KIKOBAKE.NETLIFY.APP
+            {SITE_CONFIG.domain.toUpperCase()}
           </span>
         </div>
       </div>

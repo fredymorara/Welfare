@@ -3,9 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-// Scene 08 (Vault) → Scene 09 (Mobile App)
-// Clean connecting line transition expanding symmetrically from center outward, without phone preview
-export function VaultToMobileMorph() {
+// Sleek architectural connecting lines expanding symmetrically from center outward
+export function FaqToCtaDivider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -35,10 +34,10 @@ export function VaultToMobileMorph() {
         viewBox="0 0 1440 160"
         preserveAspectRatio="none"
       >
-        {/* Center Origin Mark */}
+        {/* Center Origin Node */}
         <circle cx="720" cy="80" r="3.5" fill="#C8A27A" />
 
-        {/* Primary Line: Expands symmetrically from center to both left and right */}
+        {/* Main Central Line: expands symmetrically from center (720) left & right */}
         <motion.line
           x1={xLeft1}
           y1="80"
@@ -49,7 +48,7 @@ export function VaultToMobileMorph() {
           strokeOpacity="0.85"
         />
 
-        {/* Upper Track */}
+        {/* Upper Accent Line */}
         <motion.line
           x1={xLeft2}
           y1="56"
@@ -60,7 +59,7 @@ export function VaultToMobileMorph() {
           strokeOpacity="0.65"
         />
 
-        {/* Lower Track */}
+        {/* Lower Accent Line */}
         <motion.line
           x1={xLeft3}
           y1="104"
@@ -71,7 +70,7 @@ export function VaultToMobileMorph() {
           strokeOpacity="0.55"
         />
 
-        {/* Vertical Ticks at Ends */}
+        {/* Terminal End Ticks */}
         <motion.line
           x1={xLeft1}
           y1="72"

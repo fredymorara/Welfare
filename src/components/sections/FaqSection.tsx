@@ -4,8 +4,9 @@ import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { ArrowDown, Plus, Minus } from "lucide-react";
 import { useFAQs } from "../../hooks/useFAQs";
+import { SECTION_IDS } from "../../config/site";
 
-export function Scene08FAQ() {
+export function FaqSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -24,7 +25,7 @@ export function Scene08FAQ() {
   return (
     <section
       ref={containerRef}
-      id="faq"
+      id={SECTION_IDS.FAQ}
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#160e0a]/85 backdrop-blur-md"
     >
       {/* Subtle kintsugi gold line in background */}
@@ -138,7 +139,7 @@ export function Scene08FAQ() {
           READY TO BRING HONESTY & CLARITY TO YOUR CHAMA?
         </span>
         <a
-          href="#vault"
+          href={`#${SECTION_IDS.CTA}`}
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
           <span>START YOUR GROUP TODAY</span>

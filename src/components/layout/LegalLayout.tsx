@@ -3,8 +3,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
-import { AnimeHeader } from "./AnimeHeader";
-import { AnimeFooter } from "./AnimeFooter";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import { SITE_CONFIG } from "../../config/site";
 
 export function LegalH3({
   children,
@@ -111,21 +112,23 @@ export function LegalSection({
   );
 }
 
-export function LegalPageLayout({
-  title,
-  lastUpdated,
-  intro,
-  children,
-}: {
+export interface LegalLayoutProps {
   title: string;
-  lastUpdated: string;
+  lastUpdated?: string;
   intro: ReactNode;
   children: ReactNode;
-}) {
+}
+
+export function LegalLayout({
+  title,
+  lastUpdated = SITE_CONFIG.legalLastUpdated,
+  intro,
+  children,
+}: LegalLayoutProps) {
   return (
     <div className="relative min-h-screen bg-void text-ivory selection:bg-ochre selection:text-void flex flex-col overflow-x-hidden">
-      {/* Kikoba Cinema Header */}
-      <AnimeHeader />
+      {/* Universal Header */}
+      <Header />
 
       {/* Main Legal Content Container */}
       <main id="main-content" className="flex-1 relative pt-32 sm:pt-36 pb-20 px-6 sm:px-12 lg:px-16 xl:px-20 w-full z-10 focus:outline-none">
@@ -174,8 +177,8 @@ export function LegalPageLayout({
         </div>
       </main>
 
-      {/* Kikoba Cinema Footer */}
-      <AnimeFooter />
+      {/* Universal Footer */}
+      <Footer />
     </div>
   );
 }

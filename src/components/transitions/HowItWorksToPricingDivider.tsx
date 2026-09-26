@@ -3,8 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
-// Scene 06 (4 rails) → Scene 07 (pricing: 3 compressed tier blocks)
-export function HowItWorksToPricingMorph() {
+export function HowItWorksToPricingDivider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
