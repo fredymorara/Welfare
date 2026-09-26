@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/api";
 
-export const MOCK_FAQS: FAQItem[] = [
+const MOCK_FAQS: FAQItem[] = [
   {
     question: "What is Kikoba?",
     answer:
