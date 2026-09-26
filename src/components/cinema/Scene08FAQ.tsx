@@ -12,7 +12,7 @@ export function Scene08FAQ() {
     offset: ["start end", "end start"],
   });
 
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { faqs } = useFAQs();
 
   const crackOpacity = useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0.1, 0.35, 0.35, 0.1]);
@@ -56,76 +56,79 @@ export function Scene08FAQ() {
         </span>
       </div>
 
-      {/* Main Drama */}
-      <div className="relative z-10 my-auto w-full max-w-4xl mx-auto py-10">
-        {/* Clean, Readable Section Header */}
-        <div className="text-center mb-12">
-          <span className="text-ochre font-mono text-[12px] sm:text-[13px] tracking-[0.3em] uppercase block mb-3">
-            [ FREQUENTLY ASKED QUESTIONS ]
-          </span>
-          <h2 className="text-[38px] sm:text-[56px] lg:text-[72px] font-black tracking-[-0.03em] text-ivory leading-[1.05] uppercase mb-4">
-            Frequently Asked{" "}
-            <span className="text-ochre font-serif italic font-normal">
-              Questions
+      {/* Main Drama: Compact Side-by-Side Layout (No Cards) */}
+      <div className="relative z-10 my-auto w-full max-w-6xl mx-auto py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          {/* Left Column: Clean, readable headline */}
+          <div className="lg:col-span-5">
+            <span className="text-ochre font-mono text-[12px] tracking-[0.3em] uppercase block mb-3">
+              [ CLARITY & ANSWERS ]
             </span>
-          </h2>
-          <p className="text-[16px] sm:text-[19px] font-extralight text-platinum/80 leading-relaxed max-w-2xl mx-auto">
-            Everything you need to know about setting up and running your chama on Kikoba.
-            Have more questions? Our support team in Nairobi is ready to help.
-          </p>
-        </div>
+            <h2 className="text-[34px] sm:text-[44px] lg:text-[50px] font-black tracking-[-0.03em] text-ivory leading-[1.05] uppercase mb-5">
+              Frequently <br />
+              <span className="text-ochre font-serif italic font-normal tracking-tight">
+                Asked Questions
+              </span>
+            </h2>
+            <p className="text-[15px] font-extralight text-platinum/75 leading-relaxed border-l-2 border-ochre pl-4 mb-6">
+              Everything you need to know about setting up and running your chama on Kikoba. Have more questions? Our support team in Nairobi is ready to help.
+            </p>
+            <div className="font-mono text-[11px] text-sage tracking-wider uppercase flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-sage" />
+              <span>SUPPORT AVAILABLE DAILY 8AM – 8PM EAT</span>
+            </div>
+          </div>
 
-        {/* Clean Accordion */}
-        <div className="divide-y divide-umber/40 border-y border-umber/40 bg-void/50 backdrop-blur-sm rounded-lg overflow-hidden">
-          {faqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
-            return (
-              <div key={idx} className="transition-colors duration-200 hover:bg-umber/10">
-                <button
-                  type="button"
-                  onClick={() => toggle(idx)}
-                  className="w-full flex items-center justify-between p-6 sm:p-7 text-left cursor-pointer group"
-                >
-                  <span
-                    className={`font-mono text-[15px] sm:text-[17px] font-semibold tracking-wide transition-colors duration-200 pr-6 ${
-                      isOpen ? "text-ochre" : "text-ivory group-hover:text-ochre"
-                    }`}
+          {/* Right Column: Clean, minimal accordion lines (NO CARDS) */}
+          <div className="lg:col-span-7 divide-y divide-umber/40 border-t border-b border-umber/40">
+            {faqs.map((faq, idx) => {
+              const isOpen = openIndex === idx;
+              return (
+                <div key={idx} className="transition-colors duration-150">
+                  <button
+                    type="button"
+                    onClick={() => toggle(idx)}
+                    className="w-full flex items-center justify-between py-4 sm:py-5 text-left cursor-pointer group"
                   >
-                    {faq.question}
-                  </span>
-                  <div
-                    className={`shrink-0 w-8 h-8 border rounded-sm flex items-center justify-center transition-all duration-200 ${
-                      isOpen
-                        ? "border-ochre text-ochre bg-ochre/15"
-                        : "border-umber/60 text-platinum/50 group-hover:border-ochre/50 group-hover:text-ivory"
-                    }`}
-                  >
-                    {isOpen ? <Minus className="w-4 h-4 stroke-2" /> : <Plus className="w-4 h-4 stroke-2" />}
-                  </div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
-                      className="overflow-hidden"
+                    <span
+                      className={`font-mono text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 pr-4 ${
+                        isOpen ? "text-ochre" : "text-ivory group-hover:text-ochre"
+                      }`}
                     >
-                      <div className="px-6 pb-6 sm:px-7 sm:pb-7">
-                        <div className="border-l-2 border-ochre pl-5 py-1">
-                          <p className="text-[15px] sm:text-[16px] font-extralight text-platinum leading-[1.7]">
+                      {faq.question}
+                    </span>
+                    <div
+                      className={`shrink-0 w-6 h-6 border rounded-sm flex items-center justify-center transition-all duration-200 ${
+                        isOpen
+                          ? "border-ochre text-ochre bg-ochre/15"
+                          : "border-umber/50 text-platinum/50 group-hover:border-ochre/50 group-hover:text-ivory"
+                      }`}
+                    >
+                      {isOpen ? <Minus className="w-3 h-3 stroke-2" /> : <Plus className="w-3 h-3 stroke-2" />}
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-5 pt-1">
+                          <p className="text-[14px] sm:text-[15px] font-extralight text-platinum leading-[1.65] border-l border-ochre/60 pl-4">
                             {faq.answer}
                           </p>
                         </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
