@@ -14,28 +14,59 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Optimized Section Spy using native IntersectionObserver (zero layout thrashing)
+  // Precise Section Spy observing all sections with active viewport detection
   useEffect(() => {
+    const visibleSections = new Map<string, number>();
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
           }
         });
+
+        // If at the top of page, force hero state (no nav options underlined)
+        if (window.scrollY < 200) {
+          setActiveSection(SECTION_IDS.HERO);
+          return;
+        }
+
+        // If no observed section is currently in the active reading zone, clear active state
+        if (visibleSections.size === 0) {
+          setActiveSection("");
+          return;
+        }
+
+        // Select the section with the highest visible ratio in the active reading zone
+        let bestId = "";
+        let bestRatio = -1;
+        visibleSections.forEach((ratio, id) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        });
+
+        if (bestId) {
+          setActiveSection(bestId);
+        }
       },
-      { rootMargin: "-20% 0px -50% 0px", threshold: 0.1 }
+      { rootMargin: "-20% 0px -40% 0px", threshold: [0.05, 0.1, 0.25, 0.5] }
     );
 
-    MAIN_NAVIGATION_LINKS.forEach((sec) => {
-      const el = document.getElementById(sec.id);
+    const allSectionIds = Object.values(SECTION_IDS);
+    allSectionIds.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
   }, []);
 
-  // Lightweight Header Backdrop Trigger with RAF Throttle
+  // Lightweight Header Backdrop Trigger with RAF Throttle & Scroll Position Guard
   useEffect(() => {
     let ticking = false;
 
@@ -43,6 +74,11 @@ export function Header() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           setScrolled(window.scrollY > 20);
+          if (window.scrollY < 200) {
+            setActiveSection(SECTION_IDS.HERO);
+          } else if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+            setActiveSection("");
+          }
           ticking = false;
         });
         ticking = true;
