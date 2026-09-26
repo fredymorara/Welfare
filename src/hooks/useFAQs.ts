@@ -60,7 +60,7 @@ export function useFAQs(): UseFAQsResult {
       })
       .catch((err) => {
         if (err.name !== "AbortError") {
-          console.warn("Failed to load FAQs from API, using fallback content.", err.message);
+          console.debug("API offline, utilizing fallback FAQ content:", err.message);
           setFaqs(MOCK_FAQS);
           setError(null);
         }

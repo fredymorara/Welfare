@@ -100,7 +100,7 @@ export function useSubscriptionPackages(): UseSubscriptionPackagesResult {
       })
       .catch((err) => {
         if (err.name !== "AbortError") {
-          console.warn("Failed to load plans from API, using default plans.", err.message);
+          console.debug("API offline, utilizing default plans:", err.message);
           setPackages(MOCK_PACKAGES);
           setError(null);
         }
