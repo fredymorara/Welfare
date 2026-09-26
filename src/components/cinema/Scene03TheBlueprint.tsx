@@ -71,7 +71,7 @@ export function Scene03TheBlueprint() {
     <section
       ref={containerRef}
       id="the-engine"
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-void"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-void"
       style={{ perspective: "1200px" }}
     >
       {/* Top Narrative Anchor */}
@@ -89,7 +89,7 @@ export function Scene03TheBlueprint() {
       </div>
 
       {/* Center Monolithic Drama & Clean Schematic Stage */}
-      <div className="relative z-10 my-auto w-full max-w-6xl mx-auto py-8">
+      <div className="relative z-10 my-auto w-full max-w-7xl mx-auto py-8">
         <div className="mb-10">
           <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
             [ HOW KIKOBA PROTECTS YOUR MONEY ]

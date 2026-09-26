@@ -25,7 +25,7 @@ export function Scene08FAQ() {
     <section
       ref={containerRef}
       id="faq"
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#160e0a]/85 backdrop-blur-md"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#160e0a]/85 backdrop-blur-md"
     >
       {/* Subtle kintsugi gold line in background */}
       <motion.svg
@@ -57,7 +57,7 @@ export function Scene08FAQ() {
       </div>
 
       {/* Main Drama: Compact Side-by-Side Layout (No Cards) */}
-      <div className="relative z-10 my-auto w-full max-w-6xl mx-auto py-6">
+      <div className="relative z-10 my-auto w-full max-w-7xl mx-auto py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           {/* Left Column: Clean, readable headline */}
           <div className="lg:col-span-5">

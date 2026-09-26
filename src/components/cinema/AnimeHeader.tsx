@@ -7,10 +7,9 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 const NAV_LINKS = [
-  { id: "how-it-works", title: "Process" },
+  { id: "how-it-works", title: "How It Works" },
   { id: "pricing", title: "Pricing" },
   { id: "faq", title: "FAQ" },
-  { id: "mobile-app", title: "App" },
 ];
 
 export function AnimeHeader() {
@@ -55,7 +54,7 @@ export function AnimeHeader() {
           : "bg-linear-to-b from-void via-void/80 to-transparent border-umber/0 py-5"
       }`}
     >
-      <div className="w-full px-6 sm:px-10 lg:px-12 xl:px-16 flex items-center justify-between">
+      <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-20 flex items-center justify-between">
         {/* Official Brand Logomark */}
         <Link
           href="/"

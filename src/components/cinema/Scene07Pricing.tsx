@@ -65,7 +65,7 @@ export function Scene07Pricing() {
     <section
       ref={containerRef}
       id="pricing"
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-void"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-void"
     >
       {/* Subtle parallax background geometry */}
       <motion.svg
@@ -93,7 +93,7 @@ export function Scene07Pricing() {
       </div>
 
       {/* Main Drama */}
-      <div className="relative z-10 my-auto w-full max-w-6xl mx-auto">
+      <div className="relative z-10 my-auto w-full max-w-7xl mx-auto">
         <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
             <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">

@@ -1,16 +1,13 @@
 "use client";
 
-import { ShieldCheck, ArrowUp, Lock, Terminal } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import Image from "next/image";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 const FOOTER_LINKS = [
-  { id: "heritage", title: "Home" },
-  { id: "how-it-works", title: "Process" },
-  { id: "yield", title: "Savings" },
+  { id: "how-it-works", title: "How It Works" },
   { id: "pricing", title: "Pricing" },
   { id: "faq", title: "FAQ" },
-  { id: "mobile-app", title: "App" },
 ];
 
 export function AnimeFooter() {
@@ -26,10 +23,11 @@ export function AnimeFooter() {
   };
 
   return (
-    <footer className="relative bg-[#1f150e] border-t-2 border-umber pt-20 pb-16 px-6 sm:px-16 lg:px-24 w-full select-none z-10">
-      <div className="max-w-7xl mx-auto">
+    <footer className="relative bg-[#1f150e] border-t-2 border-umber pt-16 pb-12 px-6 sm:px-12 lg:px-16 xl:px-20 w-full select-none z-10">
+      {/* Edge-to-Edge Container */}
+      <div className="w-full">
         {/* Top Header with Official Kikoba Wordmark */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-16 border-b border-umber/40">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-umber/40">
           <div>
             <div className="flex flex-col gap-3 mb-2">
               <Image
@@ -55,10 +53,10 @@ export function AnimeFooter() {
           </button>
         </div>
 
-        {/* 3 Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 py-16 border-b border-umber/40 font-mono">
+        {/* Clean 2-Column Content */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 py-12 border-b border-umber/40 font-mono">
           {/* Column 1: Cultural Heritage */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-8 lg:col-span-9 max-w-3xl">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// CULTURAL HERITAGE"}
             </span>
@@ -75,12 +73,12 @@ export function AnimeFooter() {
             </div>
           </div>
 
-          {/* Column 2: Navigation Index */}
-          <div className="md:col-span-3">
+          {/* Column 2: Navigation Links */}
+          <div className="md:col-span-4 lg:col-span-3">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
               {"// NAVIGATION"}
             </span>
-            <ul className="space-y-2.5 text-[12px] text-platinum/70">
+            <ul className="space-y-3 text-[13px] text-platinum/70">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.id}>
                   <button
@@ -91,7 +89,7 @@ export function AnimeFooter() {
                   </button>
                 </li>
               ))}
-              <li className="pt-3 border-t border-umber/30 flex gap-4 text-ochre uppercase font-bold text-[11px] tracking-widest">
+              <li className="pt-3 border-t border-umber/30 flex gap-4 text-ochre uppercase font-bold text-[12px] tracking-widest">
                 <a href={SIGN_IN_URL} className="hover:text-ivory transition-colors">
                   Sign In
                 </a>
@@ -102,42 +100,16 @@ export function AnimeFooter() {
               </li>
             </ul>
           </div>
-
-          {/* Column 3: Platform Security */}
-          <div className="md:col-span-4">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
-              {"// PLATFORM SECURITY & TRUST"}
-            </span>
-            <div className="space-y-3 text-[12px] text-platinum/80 font-extralight">
-              <div className="flex items-center gap-2">
-                <Lock className="w-3.5 h-3.5 text-sage" />
-                <span>Bank-Grade 256-Bit SSL/TLS Encryption</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-sage" />
-                <span>Kenya Data Protection Act Compliant</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-sage" />
-                <span>Automatic M-Pesa Payment Recording</span>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-umber/30 text-[11px] text-platinum/50">
-              Zero transaction surcharges on member deposits. 100% group control.
-            </div>
-          </div>
         </div>
 
-        {/* Bottom Bar: Copyright & System Status */}
-        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/50 uppercase tracking-widest">
-          <div className="flex items-center gap-2">
-            <span>© {new Date().getFullYear()} KIKOBA. ALL RIGHTS RESERVED.</span>
+        {/* Bottom Bar: Clean Copyright, No Bloat */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-platinum/50 uppercase tracking-widest">
+          <div>
+            © {new Date().getFullYear()} KIKOBA. ALL RIGHTS RESERVED.
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-sage animate-ping" />
-            <span className="text-sage">ONLINE & ACTIVE ON WEB · MOBILE APP COMING SOON</span>
+          <div>
+            BUILT FOR COMMUNITY GROUPS ACROSS EAST AFRICA
           </div>
         </div>
       </div>

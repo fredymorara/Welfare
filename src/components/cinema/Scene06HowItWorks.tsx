@@ -72,7 +72,7 @@ export function Scene06HowItWorks() {
     <section
       ref={containerRef}
       id="how-it-works"
-      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]/85 backdrop-blur-md"
+      className="relative min-h-screen flex flex-col justify-between px-6 sm:px-12 lg:px-16 xl:px-20 pt-28 pb-16 w-full overflow-hidden select-none bg-[#1c130d]/85 backdrop-blur-md"
     >
       {/* Scrolling horizontal rail lines in background */}
       <motion.svg
@@ -100,7 +100,7 @@ export function Scene06HowItWorks() {
       </div>
 
       {/* Main Drama */}
-      <div className="relative z-10 my-auto w-full max-w-6xl mx-auto">
+      <div className="relative z-10 my-auto w-full max-w-7xl mx-auto">
         <div className="mb-10">
           <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
             [ HOW KIKOBA WORKS ]
