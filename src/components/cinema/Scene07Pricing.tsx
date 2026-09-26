@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Check, X, ArrowDown, ArrowUpRight } from "lucide-react";
-import { useSubscriptionPackages } from "../../hooks/useSubscriptionPackages";
+import { useSubscriptionPackages, MOCK_PACKAGES } from "../../hooks/useSubscriptionPackages";
 import { SIGN_UP_URL } from "../../config/api";
 
 type Period = "monthly" | "annual";
@@ -51,6 +51,7 @@ export function Scene07Pricing() {
 
   const [period, setPeriod] = useState<Period>("monthly");
   const { packages, loading } = useSubscriptionPackages();
+  const displayPackages = packages && packages.length > 0 ? packages : MOCK_PACKAGES;
 
   const bgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
@@ -126,14 +127,9 @@ export function Scene07Pricing() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="text-center text-platinum/50 font-mono text-[13px] uppercase tracking-widest py-20">
-            LOADING PLANS...
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {packages.map((pkg) => {
-              const style = PLAN_STYLE[pkg.code] ?? PLAN_STYLE.STARTER;
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {displayPackages.map((pkg) => {
+            const style = PLAN_STYLE[pkg.code] ?? PLAN_STYLE.STARTER;
               const { price, discount } = getPlanPrice(pkg, period);
               const isFree = price === 0;
 
@@ -224,7 +220,6 @@ export function Scene07Pricing() {
               );
             })}
           </div>
-        )}
       </div>
 
       {/* Section Footer */}

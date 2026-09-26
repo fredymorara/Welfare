@@ -36,8 +36,8 @@ export const MOCK_FAQS: FAQItem[] = [
 
 // Hits WelfareAccountingBE's public GET /lookups/faqs?audience=public
 export function useFAQs(): UseFAQsResult {
-  const [faqs, setFaqs] = useState<FAQItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [faqs, setFaqs] = useState<FAQItem[]>(MOCK_FAQS);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

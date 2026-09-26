@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/api";
 
-const MOCK_PACKAGES: SubPackage[] = [
+export const MOCK_PACKAGES: SubPackage[] = [
   {
     _id: "pkg_1",
     name: "Starter",
@@ -79,8 +79,8 @@ const MOCK_PACKAGES: SubPackage[] = [
 
 // Hits WelfareAccountingBE's public GET /lookups/subscriptions
 export function useSubscriptionPackages(): UseSubscriptionPackagesResult {
-  const [packages, setPackages] = useState<SubPackage[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [packages, setPackages] = useState<SubPackage[]>(MOCK_PACKAGES);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -91,10 +91,16 @@ export function useSubscriptionPackages(): UseSubscriptionPackagesResult {
         if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
         return res.json();
       })
-      .then((data) => setPackages(Array.isArray(data) ? data : []))
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPackages(data);
+        } else {
+          setPackages(MOCK_PACKAGES);
+        }
+      })
       .catch((err) => {
         if (err.name !== "AbortError") {
-          console.warn("Failed to load plans from API, using mock data.", err.message);
+          console.warn("Failed to load plans from API, using default plans.", err.message);
           setPackages(MOCK_PACKAGES);
           setError(null);
         }

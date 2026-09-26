@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { ArrowDown, Plus, Minus } from "lucide-react";
 import { useFAQs } from "../../hooks/useFAQs";
 
@@ -12,14 +12,13 @@ export function Scene08FAQ() {
     offset: ["start end", "end start"],
   });
 
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { faqs, loading } = useFAQs();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { faqs } = useFAQs();
 
-  const crackOpacity = useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0.1, 0.4, 0.4, 0.1]);
+  const crackOpacity = useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0.1, 0.35, 0.35, 0.1]);
 
   const toggle = (idx: number) => {
-    const next = openIndex === idx ? null : idx;
-    setOpenIndex(next);
+    setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
   return (
@@ -28,10 +27,10 @@ export function Scene08FAQ() {
       id="faq"
       className="relative min-h-screen flex flex-col justify-between px-6 sm:px-16 lg:px-24 pt-28 pb-16 w-full overflow-hidden select-none bg-[#160e0a]/85 backdrop-blur-md"
     >
-      {/* Subtle kintsugi crack in background */}
+      {/* Subtle kintsugi gold line in background */}
       <motion.svg
         style={{ opacity: crackOpacity }}
-        className="absolute inset-0 w-full h-full pointer-events-none z-0 kintsugi-gold"
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
         viewBox="0 0 1440 900"
         preserveAspectRatio="none"
       >
@@ -58,75 +57,75 @@ export function Scene08FAQ() {
       </div>
 
       {/* Main Drama */}
-      <div className="relative z-10 my-auto w-full max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left: Headline */}
-          <div className="lg:col-span-4">
-            <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
-              [ QUESTIONS & ANSWERS ]
+      <div className="relative z-10 my-auto w-full max-w-4xl mx-auto py-10">
+        {/* Clean, Readable Section Header */}
+        <div className="text-center mb-12">
+          <span className="text-ochre font-mono text-[12px] sm:text-[13px] tracking-[0.3em] uppercase block mb-3">
+            [ FREQUENTLY ASKED QUESTIONS ]
+          </span>
+          <h2 className="text-[38px] sm:text-[56px] lg:text-[72px] font-black tracking-[-0.03em] text-ivory leading-[1.05] uppercase mb-4">
+            Frequently Asked{" "}
+            <span className="text-ochre font-serif italic font-normal">
+              Questions
             </span>
-            <h2 className="text-[44px] sm:text-[64px] lg:text-[80px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-6">
-              Got questions? <br />
-              <span className="text-ochre font-serif italic font-normal tracking-tight">
-                We have answers.
-              </span>
-            </h2>
-            <p className="text-[15px] font-extralight text-platinum/70 leading-relaxed border-l-2 border-umber pl-4">
-              Everything you need to know about using Kikoba. Have more questions? Our support team in Nairobi is ready to help.
-            </p>
-          </div>
+          </h2>
+          <p className="text-[16px] sm:text-[19px] font-extralight text-platinum/80 leading-relaxed max-w-2xl mx-auto">
+            Everything you need to know about setting up and running your chama on Kikoba.
+            Have more questions? Our support team in Nairobi is ready to help.
+          </p>
+        </div>
 
-          {/* Right: Accordion */}
-          <div className="lg:col-span-8">
-            {loading ? (
-              <div className="text-platinum/40 font-mono text-[12px] uppercase tracking-widest py-8">
-                LOADING QUESTIONS...
-              </div>
-            ) : (
-              <div className="flex flex-col">
-                {faqs.map((faq, idx) => {
-                  const isOpen = openIndex === idx;
-                  return (
-                    <div key={idx} className="border-b border-umber/40 last:border-b-0">
-                      <button
-                        onClick={() => toggle(idx)}
-                        className="w-full flex items-center justify-between py-5 text-left cursor-pointer group"
-                      >
-                        <span
-                          className={`font-mono text-[14px] sm:text-[15px] tracking-wide transition-colors duration-200 pr-4 ${
-                            isOpen ? "text-ochre" : "text-ivory group-hover:text-ochre"
-                          }`}
-                        >
-                          {faq.question}
-                        </span>
-                        <div
-                          className={`shrink-0 w-7 h-7 border rounded-sm flex items-center justify-center transition-all duration-200 ${
-                            isOpen ? "border-ochre text-ochre bg-umber/30" : "border-umber/50 text-platinum/50"
-                          }`}
-                        >
-                          {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-                        </div>
-                      </button>
+        {/* Clean Accordion */}
+        <div className="divide-y divide-umber/40 border-y border-umber/40 bg-void/50 backdrop-blur-sm rounded-lg overflow-hidden">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div key={idx} className="transition-colors duration-200 hover:bg-umber/10">
+                <button
+                  type="button"
+                  onClick={() => toggle(idx)}
+                  className="w-full flex items-center justify-between p-6 sm:p-7 text-left cursor-pointer group"
+                >
+                  <span
+                    className={`font-mono text-[15px] sm:text-[17px] font-semibold tracking-wide transition-colors duration-200 pr-6 ${
+                      isOpen ? "text-ochre" : "text-ivory group-hover:text-ochre"
+                    }`}
+                  >
+                    {faq.question}
+                  </span>
+                  <div
+                    className={`shrink-0 w-8 h-8 border rounded-sm flex items-center justify-center transition-all duration-200 ${
+                      isOpen
+                        ? "border-ochre text-ochre bg-ochre/15"
+                        : "border-umber/60 text-platinum/50 group-hover:border-ochre/50 group-hover:text-ivory"
+                    }`}
+                  >
+                    {isOpen ? <Minus className="w-4 h-4 stroke-2" /> : <Plus className="w-4 h-4 stroke-2" />}
+                  </div>
+                </button>
 
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <p className="text-[15px] font-extralight text-platinum leading-[1.7] border-l-2 border-ochre pl-5 pb-5">
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 sm:px-7 sm:pb-7">
+                        <div className="border-l-2 border-ochre pl-5 py-1">
+                          <p className="text-[15px] sm:text-[16px] font-extralight text-platinum leading-[1.7]">
                             {faq.answer}
                           </p>
-                        </motion.div>
-                      )}
-                    </div>
-                  );
-                })}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            )}
-          </div>
+            );
+          })}
         </div>
       </div>
 
