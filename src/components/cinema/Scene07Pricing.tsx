@@ -83,11 +83,11 @@ export function Scene07Pricing() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            TRANSPARENT COVENANT PRICING
+            SIMPLE, FAIR PRICING
           </span>
         </div>
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          NO HIDDEN CHARGES · KES-DENOMINATED
+          NO HIDDEN CHARGES · INVOICED IN KES
         </span>
       </div>
 
@@ -96,12 +96,12 @@ export function Scene07Pricing() {
         <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
             <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
-              [ CHOOSE YOUR PROTOCOL ]
+              [ CHOOSE YOUR PLAN ]
             </span>
             <h2 className="text-[44px] sm:text-[72px] lg:text-[88px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase">
-              One vault. <br />
+              Affordable plans. <br />
               <span className="text-ochre font-serif italic font-normal tracking-tight">
-                Three tiers.
+                For every chama size.
               </span>
             </h2>
           </div>
@@ -128,7 +128,7 @@ export function Scene07Pricing() {
 
         {loading ? (
           <div className="text-center text-platinum/50 font-mono text-[13px] uppercase tracking-widest py-20">
-            LOADING PROTOCOL TIERS...
+            LOADING PLANS...
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

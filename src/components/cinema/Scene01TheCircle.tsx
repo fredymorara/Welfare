@@ -49,12 +49,12 @@ export function Scene01TheCircle() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            EAST AFRICAN WEALTH TRADITION
+            DIGITAL ACCOUNTING FOR SAVINGS GROUPS
           </span>
         </div>
 
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          ESTABLISHED ON SACRED SOCIAL TRUST
+          LIVE ON WEB · MOBILE APP COMING SOON
         </span>
       </div>
 
@@ -64,28 +64,28 @@ export function Scene01TheCircle() {
         className="relative z-10 my-auto max-w-5xl will-change-transform"
       >
         <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-4">
-          [ BEFORE SPREADSHEETS WERE BORN ]
+          [ SIMPLE ACCOUNTING FOR EVERY CHAMA & SAVINGS GROUP ]
         </span>
 
         <h1 className="text-[54px] sm:text-[88px] lg:text-[120px] font-black tracking-[-0.04em] text-ivory leading-[0.88] uppercase mb-8">
           A Thousand Hands. <br />
           <span className="text-ochre font-serif italic font-normal tracking-tight">
-            One Sacred Vault.
+            One Trusted Chama.
           </span>
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <p className="md:col-span-8 text-[18px] sm:text-[22px] font-extralight text-platinum leading-[1.65] border-l-2 border-ochre pl-6">
-            Our elders did not build wealth with lawyers or banks. They gathered in
-            circles under the baobab tree, pooled their shillings on a cloth, and
-            anchored their community on one foundation: <strong>Sacred Human Trust</strong>.
+            Kikoba brings simple, transparent online accounting to your savings group.
+            Track every member&apos;s contribution, manage table banking loans, and
+            share real-time reports — directly from your phone or laptop browser.
           </p>
 
           <div className="md:col-span-4 space-y-3 font-mono text-[11px] uppercase tracking-widest text-platinum/70 pt-2">
             <div>{"// THE CHAMA"}</div>
             <div>{"// THE VIKOBA"}</div>
-            <div>{"// THE MERRY-GO-ROUND"}</div>
-            <div className="text-sage">✓ KES 480B+ POOLED ANNUALLY</div>
+            <div>{"// TABLE BANKING"}</div>
+            <div className="text-sage">✓ ACCESSIBLE 24/7 ON ANY BROWSER</div>
           </div>
         </div>
 
@@ -110,7 +110,7 @@ export function Scene01TheCircle() {
             href="#how-it-works"
             className="text-[12px] font-mono tracking-wider text-platinum/60 hover:text-ochre transition-colors pl-2 flex items-center gap-1.5"
           >
-            <span>Explore The Protocol</span>
+            <span>See How It Works</span>
             <span>↓</span>
           </a>
         </div>
@@ -121,7 +121,7 @@ export function Scene01TheCircle() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre animate-ping" />
           <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-            WHY SOCIAL TRUST BREAKS UNDER MANUAL CALCULATION
+            WHY MANUAL NOTEBOOKS & CHATS RISK YOUR SAVINGS
           </span>
         </div>
 

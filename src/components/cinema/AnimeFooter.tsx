@@ -5,9 +5,9 @@ import Image from "next/image";
 import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 const FOOTER_LINKS = [
-  { id: "heritage", title: "Heritage" },
+  { id: "heritage", title: "Home" },
   { id: "how-it-works", title: "Process" },
-  { id: "yield", title: "Yield" },
+  { id: "yield", title: "Savings" },
   { id: "pricing", title: "Pricing" },
   { id: "faq", title: "FAQ" },
   { id: "mobile-app", title: "App" },
@@ -40,7 +40,7 @@ export function AnimeFooter() {
                 className="h-8 sm:h-10 w-auto object-contain self-start"
               />
               <p className="text-[13px] font-mono text-platinum/60 tracking-wider">
-                AUTONOMOUS CHAMA PROTOCOL FOR COLLECTIVE WEALTH
+                SIMPLE DIGITAL ACCOUNTING & SAVINGS PLATFORM FOR CHAMAS
               </p>
             </div>
           </div>
@@ -63,10 +63,9 @@ export function AnimeFooter() {
               {"// CULTURAL HERITAGE"}
             </span>
             <p className="text-[14px] font-extralight text-platinum/80 leading-relaxed mb-4">
-              Chamas, Vikoba, and Table Banking groups are not mere financial accounts.
-              They are living social covenants. Kikoba protects this legacy by
-              codifying honesty into math, eliminating disputes so community trust
-              endures forever.
+              Chamas, Vikoba, and Table Banking groups are the heartbeat of our
+              communities. Kikoba makes collective savings simple, transparent,
+              and dispute-free so trust grows stronger with every cycle.
             </p>
             <div className="p-3 border-l-2 border-sage bg-void text-[12px] text-sage">
               &ldquo;Umoja ni Nguvu, Utengano ni Udhaifu.&rdquo; <br />
@@ -104,15 +103,15 @@ export function AnimeFooter() {
             </ul>
           </div>
 
-          {/* Column 3: Sovereign Protocol & Law */}
+          {/* Column 3: Platform Security */}
           <div className="md:col-span-4">
             <span className="text-[11px] uppercase tracking-[0.25em] text-ochre block mb-4">
-              {"// PROTOCOL SECURITY"}
+              {"// PLATFORM SECURITY & TRUST"}
             </span>
             <div className="space-y-3 text-[12px] text-platinum/80 font-extralight">
               <div className="flex items-center gap-2">
                 <Lock className="w-3.5 h-3.5 text-sage" />
-                <span>Bank-Grade 256-Bit TLS Encryption</span>
+                <span>Bank-Grade 256-Bit SSL/TLS Encryption</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-sage" />
@@ -120,12 +119,12 @@ export function AnimeFooter() {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-sage" />
-                <span>Real-Time M-Pesa STK Ingestion</span>
+                <span>Automatic M-Pesa Payment Recording</span>
               </div>
             </div>
 
             <div className="mt-6 pt-4 border-t border-umber/30 text-[11px] text-platinum/50">
-              Zero transaction surcharges on member deposits. 100% group autonomy.
+              Zero transaction surcharges on member deposits. 100% group control.
             </div>
           </div>
         </div>
@@ -138,7 +137,7 @@ export function AnimeFooter() {
 
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-sage animate-ping" />
-            <span className="text-sage">MAINNET CONSENSUS STABLE</span>
+            <span className="text-sage">ONLINE & ACTIVE ON WEB · MOBILE APP COMING SOON</span>
           </div>
         </div>
       </div>

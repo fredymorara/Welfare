@@ -63,12 +63,12 @@ export function Scene05TheHorizon() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            SOVEREIGN ONBOARDING
+            START YOUR GROUP ON WEB TODAY
           </span>
         </div>
 
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          ● OPEN FOR NEW CHAMA COHORTS
+          ● FREE 14-DAY TRIAL · WORKS ON ANY BROWSER
         </span>
       </div>
 
@@ -88,19 +88,19 @@ export function Scene05TheHorizon() {
         </div>
 
         <span className="text-ochre font-mono text-[13px] tracking-[0.35em] uppercase block mb-4">
-          [ THE TIME TO STEP FORWARD ]
+          [ GET STARTED ON WEB TODAY ]
         </span>
 
         <h2 className="text-[52px] sm:text-[84px] lg:text-[112px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-8">
-          Bring your circle <br />
+          Bring your chama <br />
           <span className="text-ochre font-serif italic font-normal tracking-tight">
-            into the light.
+            into the digital era.
           </span>
         </h2>
 
         <p className="text-[18px] sm:text-[22px] font-extralight text-platinum leading-[1.65] max-w-2xl mx-auto mb-12">
-          Give your treasurer peaceful nights. Give your members unshakeable
-          confidence. Bring your chama into the era of mathematical certainty.
+          Give your treasurer peace of mind. Give your members complete trust.
+          Kikoba is ready on the web today — set up your group in under 3 minutes from your phone or computer.
         </p>
 
         {/* Onboarding Form Gateway */}
@@ -115,7 +115,7 @@ export function Scene05TheHorizon() {
                 required
                 value={chamaName}
                 onChange={(e) => setChamaName(e.target.value)}
-                placeholder="Chama or Circle Name"
+                placeholder="Chama or Savings Group Name"
                 className="w-full sm:flex-1 px-6 py-5 rounded-full bg-umber/40 border-2 border-umber text-ivory placeholder-platinum/60 text-[15px] font-mono focus:outline-none focus:border-ochre transition-colors"
               />
 
@@ -153,12 +153,12 @@ export function Scene05TheHorizon() {
               <CheckCircle2 className="w-6 h-6" />
             </div>
             <h4 className="text-[24px] font-bold text-ivory mb-2 font-mono uppercase">
-              COVENANT RECEIVED
+              REGISTRATION RECEIVED!
             </h4>
             <p className="text-[15px] font-extralight text-platinum leading-relaxed">
-              Welcome to the vanguard, <strong>{chamaName}</strong>. Our East
-              African onboarding lead will transmit initiation keys to{" "}
-              <strong>{phone}</strong> shortly.
+              Welcome to Kikoba, <strong>{chamaName}</strong>. Our East
+              African support team will contact <strong>{phone}</strong> shortly
+              to help you activate your group and invite your members.
             </p>
           </motion.div>
         )}
@@ -166,13 +166,13 @@ export function Scene05TheHorizon() {
         {/* Guarantees Row */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono text-[11px] uppercase tracking-widest text-platinum/80">
           <span className="flex items-center gap-2 text-sage">
-            ✓ ZERO TRANSACTION SURCHARGES
+            ✓ 14-DAY FREE TRIAL
           </span>
           <span className="flex items-center gap-2 text-sage">
-            ✓ BANK-GRADE 256-BIT ENCRYPTION
+            ✓ WORKS ON ANY BROWSER
           </span>
           <span className="flex items-center gap-2 text-sage">
-            ✓ SETUP IN UNDER 4 MINUTES
+            ✓ SETUP IN UNDER 3 MINUTES
           </span>
         </div>
       </div>
@@ -180,8 +180,8 @@ export function Scene05TheHorizon() {
       {/* Bottom Scene Anchor Flow */}
       <div className="relative z-10 pt-6 border-t border-umber/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-platinum/60 uppercase tracking-widest">
         <div className="flex items-center gap-3">
-          <span className="text-ochre">● THE SOVEREIGN VAULT</span>
-          <span className="text-sage hidden sm:inline">PROTOCOL VERSION 3.2 · PRODUCTION READY</span>
+          <span className="text-ochre">● KIKOBA WEB PLATFORM</span>
+          <span className="text-sage hidden sm:inline">LIVE ON WEB TODAY · MOBILE APP COMING SOON</span>
         </div>
         <a
           href="#mobile-app"

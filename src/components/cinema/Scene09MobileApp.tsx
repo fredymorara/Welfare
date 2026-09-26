@@ -51,11 +51,11 @@ export function Scene09MobileApp() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre animate-ping" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            MOBILE FRONTIER
+            DEDICATED MOBILE APP
           </span>
         </div>
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          ● COMING SOON — EARLY ACCESS OPEN
+          ● COMING SOON TO GOOGLE PLAY & APP STORE
         </span>
       </div>
 
@@ -65,18 +65,18 @@ export function Scene09MobileApp() {
         {/* Left: Copy */}
         <div className="lg:col-span-6">
           <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-4">
-            [ THE POCKET VAULT ]
+            [ COMING SOON TO YOUR PHONE ]
           </span>
 
           <h2 className="text-[52px] sm:text-[80px] lg:text-[100px] font-black tracking-[-0.04em] text-ivory leading-[0.90] uppercase mb-6">
-            Kikoba. <br />
+            Your Chama, <br />
             <span className="text-ochre font-serif italic font-normal tracking-tight">
-              Now in your pocket.
+              always in pocket.
             </span>
           </h2>
 
           <p className="text-[18px] sm:text-[21px] font-extralight text-platinum leading-[1.65] border-l-2 border-ochre pl-6 mb-8">
-            The full power of Kikoba — M-Pesa sync, quorum signing, live ledger, and dividend harvest — arriving on iOS and Android. Join the early access list.
+            While Kikoba is already active and serving groups on the web today, we are developing a dedicated mobile app for Android and iOS. Get instant M-Pesa push notifications, approve loans on the move, and check your savings in one tap.
           </p>
 
           {/* Platform Badges */}
@@ -122,9 +122,9 @@ export function Scene09MobileApp() {
             >
               <CheckCircle2 className="w-6 h-6 text-sage shrink-0" />
               <div>
-                <div className="text-[13px] font-black text-sage uppercase tracking-widest font-mono">POSITION SECURED</div>
+                <div className="text-[13px] font-black text-sage uppercase tracking-widest font-mono">YOU&apos;RE ON THE LIST!</div>
                 <div className="text-[13px] font-extralight text-platinum mt-0.5">
-                  We will transmit your early-access keys when the app drops.
+                  We will notify you the moment the mobile app launches on Google Play and the App Store.
                 </div>
               </div>
             </motion.div>
@@ -162,7 +162,7 @@ export function Scene09MobileApp() {
 
               {/* Ledger card */}
               <rect x="24" y="100" width="232" height="90" rx="4" fill="#1c130d" stroke="#6F4E37" strokeWidth="1" />
-              <text x="36" y="122" fill="#C8A27A" fontSize="7" fontFamily="monospace" letterSpacing="2">VAULT BALANCE</text>
+              <text x="36" y="122" fill="#C8A27A" fontSize="7" fontFamily="monospace" letterSpacing="2">CHAMA SAVINGS</text>
               <text x="36" y="150" fill="#F8F4EE" fontSize="22" fontFamily="monospace" fontWeight="bold">KES 2.4M</text>
               <text x="36" y="170" fill="#7B9B7A" fontSize="7" fontFamily="monospace" letterSpacing="1">↑ +KES 45,000 THIS CYCLE</text>
 

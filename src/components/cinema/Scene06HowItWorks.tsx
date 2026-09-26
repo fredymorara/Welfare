@@ -7,34 +7,34 @@ import { ArrowDown } from "lucide-react";
 const STEPS = [
   {
     number: "01",
-    title: "Create Your Circle",
-    subtitle: "[ INCEPTION ]",
-    body: "Set up your chama in minutes. Name it, define contribution rules, and invite your members. Each one gets instant access to their personal ledger view.",
-    detail: "GROUP CHARTER SEALED ON-CHAIN",
+    title: "Create Your Group",
+    subtitle: "[ SETUP ]",
+    body: "Set up your chama on our website in minutes. Name it, set your monthly contribution rules, and invite your members. Each member can log in to view their account.",
+    detail: "ACCESSIBLE ON ANY PHONE BROWSER",
     accent: "ochre" as const,
   },
   {
     number: "02",
     title: "Collect Contributions",
-    subtitle: "[ INGESTION ]",
-    body: "Members pay via M-Pesa STK Push. Every payment is verified against the API, timestamped, and live on the group ledger within seconds — no screenshots, no chasing.",
-    detail: "REAL-TIME M-PESA LEDGER SYNC",
+    subtitle: "[ CONTRIBUTIONS ]",
+    body: "Members pay their monthly shares on schedule via M-Pesa. Payments are logged automatically and reflected on the group dashboard in seconds — no lost receipts.",
+    detail: "AUTOMATIC M-PESA RECORDING",
     accent: "sage" as const,
   },
   {
     number: "03",
     title: "Manage Loans",
-    subtitle: "[ QUORUM ]",
-    body: "A member requests a loan. Trustees receive signing prompts via SMS. Once the quorum approves, disbursement is automatic. Repayments and penalties self-calculate.",
-    detail: "MULTI-TRUSTEE CRYPTOGRAPHIC SIGN-OFF",
+    subtitle: "[ TABLE BANKING ]",
+    body: "Members request loans directly through the platform. Elected officials review and approve in a few clicks. Repayment schedules and interest calculate automatically.",
+    detail: "APPROVED BY ELECTED OFFICIALS",
     accent: "ochre" as const,
   },
   {
     number: "04",
-    title: "Harvest Together",
-    subtitle: "[ SETTLEMENT ]",
-    body: "At cycle end, Kikoba calculates interest, fines, and each member's dividend to the exact coin — then dispatches payouts to every M-Pesa number. Zero math wars.",
-    detail: "AUTONOMOUS DIVIDEND DISTRIBUTION",
+    title: "Share Dividends",
+    subtitle: "[ DIVIDENDS ]",
+    body: "At cycle end, Kikoba automatically calculates accumulated interest, fines, and each member's exact dividend. Payouts are transparent, fair, and dispute-free.",
+    detail: "CLEAR & HONEST PAYOUTS",
     accent: "sage" as const,
   },
 ];
@@ -91,11 +91,11 @@ export function Scene06HowItWorks() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            THE FOUR MOVEMENTS
+            SIMPLE 4-STEP PROCESS
           </span>
         </div>
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          FROM FIRST SHILLING TO FINAL DIVIDEND
+          FROM FIRST CONTRIBUTION TO YEAR-END DIVIDEND
         </span>
       </div>
 
@@ -182,13 +182,13 @@ export function Scene06HowItWorks() {
       {/* Section Footer */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          WHAT HAPPENS AT HARVEST CYCLE SETTLEMENT
+          CALCULATE YOUR GROUP&apos;S EARNINGS & SAVINGS
         </span>
         <a
           href="#yield"
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
-          <span>SIMULATE GROUP YIELD</span>
+          <span>VIEW SAVINGS CALCULATOR</span>
           <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
         </a>
       </div>

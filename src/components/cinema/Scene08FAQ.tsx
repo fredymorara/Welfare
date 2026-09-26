@@ -49,11 +49,11 @@ export function Scene08FAQ() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            SOVEREIGN QUERY ARCHIVE
+            FREQUENTLY ASKED QUESTIONS
           </span>
         </div>
         <span className="text-[10px] font-mono text-ochre tracking-widest hidden sm:inline">
-          QUESTIONS FROM CHAMA LEADERS
+          HELPING YOU RUN A BETTER CHAMA
         </span>
       </div>
 
@@ -63,16 +63,16 @@ export function Scene08FAQ() {
           {/* Left: Headline */}
           <div className="lg:col-span-4">
             <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
-              [ COMMON QUESTIONS ]
+              [ QUESTIONS & ANSWERS ]
             </span>
             <h2 className="text-[44px] sm:text-[64px] lg:text-[80px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-6">
-              Every answer. <br />
+              Got questions? <br />
               <span className="text-ochre font-serif italic font-normal tracking-tight">
-                No secrets.
+                We have answers.
               </span>
             </h2>
             <p className="text-[15px] font-extralight text-platinum/70 leading-relaxed border-l-2 border-umber pl-4">
-              If your question is not answered here, our East African onboarding team is one message away.
+              Everything you need to know about using Kikoba. Have more questions? Our support team in Nairobi is ready to help.
             </p>
           </div>
 
@@ -80,7 +80,7 @@ export function Scene08FAQ() {
           <div className="lg:col-span-8">
             {loading ? (
               <div className="text-platinum/40 font-mono text-[12px] uppercase tracking-widest py-8">
-                LOADING ARCHIVE...
+                LOADING QUESTIONS...
               </div>
             ) : (
               <div className="flex flex-col">
@@ -133,13 +133,13 @@ export function Scene08FAQ() {
       {/* Section Footer */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          READY TO ANCHOR YOUR COMMUNITY ON-CHAIN
+          READY TO BRING HONESTY & CLARITY TO YOUR CHAMA?
         </span>
         <a
           href="#vault"
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
-          <span>ONBOARD YOUR CIRCLE</span>
+          <span>START YOUR GROUP TODAY</span>
           <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
         </a>
       </div>

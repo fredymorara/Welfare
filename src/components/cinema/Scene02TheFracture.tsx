@@ -66,7 +66,7 @@ export function Scene02TheFracture() {
         {/* Left Column: Monolithic Indictment */}
         <motion.div style={{ x: leftX }} className="lg:col-span-7 will-change-transform">
           <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-4">
-            [ THE COLLAPSE OF MEMORY ]
+            [ THE PROBLEM WITH PAPER & CHATS ]
           </span>
 
           <h2 className="text-[48px] sm:text-[76px] lg:text-[98px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-8">
@@ -125,7 +125,7 @@ export function Scene02TheFracture() {
 
           {/* Graphic Statement */}
           <div className="p-4 border border-umber text-center font-mono text-[11px] uppercase tracking-[0.25em] text-ochre bg-void">
-            HUMAN MEMORY CANNOT BE THE VAULT
+            YOUR GROUP DESERVES AN ACCURATE DIGITAL RECORD
           </div>
         </motion.div>
       </div>
@@ -133,7 +133,7 @@ export function Scene02TheFracture() {
       {/* Section Footer Flow Trigger */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          WE NEEDED A SYSTEM THAT CANNOT LIE
+          A RELIABLE DIGITAL SYSTEM BUILT FOR CHAMA TRUST
         </span>
 
         <a

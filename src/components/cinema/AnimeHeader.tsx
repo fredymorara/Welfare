@@ -8,7 +8,7 @@ import { SIGN_IN_URL, SIGN_UP_URL } from "../../config/api";
 
 const NAV_LINKS = [
   { id: "how-it-works", title: "Process" },
-  { id: "yield", title: "Yield" },
+  { id: "yield", title: "Savings" },
   { id: "pricing", title: "Pricing" },
   { id: "faq", title: "FAQ" },
   { id: "mobile-app", title: "App" },
@@ -76,7 +76,7 @@ export function AnimeHeader() {
           />
           <span className="hidden xl:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono tracking-widest uppercase bg-sage/10 text-sage border border-sage/20">
             <span className="w-1 h-1 rounded-full bg-sage animate-ping" />
-            MAINNET
+            WEB PLATFORM
           </span>
         </Link>
 

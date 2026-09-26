@@ -47,12 +47,12 @@ export function Scene04TheHarvest() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-sage" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            DYNAMIC CYCLE SETTLEMENT
+            GROUP SAVINGS & DIVIDEND CALCULATOR
           </span>
         </div>
 
         <span className="text-[10px] font-mono text-ochre tracking-widest hidden sm:inline">
-          CONTINUOUS AUDITED YIELD CALCULATION
+          ESTIMATE YOUR CHAMA&apos;S ANNUAL GROWTH
         </span>
       </div>
 
@@ -60,18 +60,18 @@ export function Scene04TheHarvest() {
       <div className="relative z-10 my-auto w-full max-w-6xl mx-auto">
         <div className="mb-12">
           <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
-            [ THE ACCUMULATED FORCE ]
+            [ TRANSPARENT DIVIDENDS ]
           </span>
 
           <h2 className="text-[44px] sm:text-[72px] lg:text-[96px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-6">
-            Zero math wars. <br />
+            Zero math headaches. <br />
             <span className="text-ochre font-serif italic font-normal tracking-tight">
-              Pure autonomous harvest.
+              Fair dividends for all.
             </span>
           </h2>
 
           <p className="text-[18px] sm:text-[21px] font-extralight text-platinum leading-[1.65] max-w-2xl border-l-2 border-sage pl-6 opacity-95">
-            December is no longer a season of anxiety for the treasurer. At the end
+            December is no longer a stressful season for the treasurer. At the end
             of the cycle, table banking loans, late fines, and dividend shares are
             reconciled down to the exact coin.
           </p>
@@ -134,20 +134,20 @@ export function Scene04TheHarvest() {
                 KES {(loanVolume / 1000000).toFixed(2)}M
               </div>
               <span className="text-[12px] font-extralight text-platinum/80 mt-2 block">
-                Zero defaults with multi-trustee quorum authorization.
+                Zero defaults with multi-official authorization.
               </span>
             </div>
 
             {/* Metric 3 */}
             <div className="border-l-2 border-sage pl-6 py-2">
               <span className="text-[11px] font-mono uppercase tracking-widest text-sage block mb-2">
-                DIVIDEND HARVEST / MEMBER
+                DIVIDEND EARNED / MEMBER
               </span>
               <div className="text-[34px] sm:text-[44px] font-black text-sage font-mono tracking-tight">
                 + KES {dividendPerMember.toLocaleString()}
               </div>
               <span className="text-[12px] font-extralight text-platinum/80 mt-2 block">
-                Paid directly to each member&apos;s personal M-Pesa with 0% math error.
+                Distributed transparently to each member with zero calculation errors.
               </span>
             </div>
           </div>
@@ -157,14 +157,14 @@ export function Scene04TheHarvest() {
       {/* Section Footer Flow Trigger */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          TRANSPARENT VALUE FOR EVERY SIZE CIRCLE
+          AFFORDABLE PLANS FOR EVERY SIZE GROUP
         </span>
 
         <a
           href="#pricing"
           className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-ochre hover:text-ivory transition-colors group cursor-pointer"
         >
-          <span>VIEW PROTOCOL TIERS</span>
+          <span>VIEW OUR PLANS & PRICING</span>
           <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
         </a>
       </div>

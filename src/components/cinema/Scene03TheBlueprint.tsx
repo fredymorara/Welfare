@@ -32,12 +32,12 @@ export function Scene03TheBlueprint() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-ochre" />
           <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-ivory">
-            AUTONOMOUS CONSENSUS ARCHITECTURE
+            SIMPLE & SECURE GROUP MANAGEMENT
           </span>
         </div>
 
         <span className="text-[10px] font-mono text-sage tracking-widest hidden sm:inline">
-          ● REAL-TIME MULTI-KEY PROTOCOL
+          ● COMMITTEE APPROVALS · FULL TRANSPARENCY
         </span>
       </div>
 
@@ -45,19 +45,20 @@ export function Scene03TheBlueprint() {
       <div className="relative z-10 my-auto w-full max-w-6xl mx-auto">
         <div className="mb-12">
           <span className="text-ochre font-mono text-[13px] tracking-[0.3em] uppercase block mb-3">
-            [ ARCHITECTURE OF CERTAINTY ]
+            [ HOW KIKOBA PROTECTS YOUR MONEY ]
           </span>
 
           <h2 className="text-[44px] sm:text-[72px] lg:text-[96px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-6">
-            An engine of code. <br />
+            Built for honesty. <br />
             <span className="text-ochre font-serif italic font-normal tracking-tight">
-              Governed by the quorum.
+              Controlled by your leaders.
             </span>
           </h2>
 
           <p className="text-[18px] sm:text-[21px] font-extralight text-platinum leading-[1.65] max-w-2xl border-l-2 border-ochre pl-6 opacity-95">
-            Kikoba does not replace the human bond—it fortifies it. No single leader
-            can touch the money. Every shilling moves through mathematical consensus.
+            Kikoba makes running your chama effortless and fair. No single person
+            can withdraw or move funds alone, and every transaction is recorded where
+            all members can verify it.
           </p>
         </div>
 
@@ -70,9 +71,9 @@ export function Scene03TheBlueprint() {
         >
           {/* Blueprint Telemetry Coordinates */}
           <div className="flex flex-wrap justify-between items-center text-[10px] font-mono text-ochre pb-6 border-b border-umber/40 mb-8 uppercase tracking-widest gap-2">
-            <span>SEC_ID: // 0x4879-KIKOBA</span>
-            <span>TOPOLOGY: 3-KEY DISTRIBUTED QUORUM</span>
-            <span>LATENCY: &lt; 3.0 SECONDS</span>
+            <span>SECURE CLOUD LEDGER</span>
+            <span>MULTI-OFFICIAL AUTHORIZATION</span>
+            <span>INSTANT M-PESA SYNC</span>
           </div>
 
           {/* Three Connected Blueprint Stations */}
@@ -87,15 +88,15 @@ export function Scene03TheBlueprint() {
               }`}
             >
               <div className="flex justify-between items-center mb-4">
-                <span className="text-[11px] font-mono text-ochre">NODE 01</span>
+                <span className="text-[11px] font-mono text-ochre">FEATURE 01</span>
                 <Zap className="w-5 h-5 text-ochre" />
               </div>
               <h4 className="text-[20px] font-bold text-ivory uppercase tracking-wide mb-2">
-                M-Pesa STK Rail
+                Automatic M-Pesa Sync
               </h4>
               <p className="text-[14px] font-extralight text-platinum/85 leading-relaxed">
-                Direct phone-to-ledger API pipeline. Payments are timestamped and
-                verified within seconds of PIN entry.
+                When members send their monthly share, it logs directly into the
+                group ledger. Zero manual typing or receipt screenshots needed.
               </p>
             </div>
 
@@ -109,15 +110,15 @@ export function Scene03TheBlueprint() {
               }`}
             >
               <div className="flex justify-between items-center mb-4">
-                <span className="text-[11px] font-mono text-ochre">NODE 02</span>
+                <span className="text-[11px] font-mono text-ochre">FEATURE 02</span>
                 <Key className="w-5 h-5 text-ochre" />
               </div>
               <h4 className="text-[20px] font-bold text-ivory uppercase tracking-wide mb-2">
-                Multi-Trustee Quorum
+                Multi-Official Approvals
               </h4>
               <p className="text-[14px] font-extralight text-platinum/85 leading-relaxed">
-                No money leaves without 3 independent trustee cryptographic sign-offs
-                sent directly via SMS or app.
+                No money leaves without authorization. Both the Chairperson and
+                Treasurer must approve loans or payouts before funds are disbursed.
               </p>
             </div>
 
@@ -131,15 +132,15 @@ export function Scene03TheBlueprint() {
               }`}
             >
               <div className="flex justify-between items-center mb-4">
-                <span className="text-[11px] font-mono text-sage">NODE 03</span>
+                <span className="text-[11px] font-mono text-sage">FEATURE 03</span>
                 <ShieldCheck className="w-5 h-5 text-sage" />
               </div>
               <h4 className="text-[20px] font-bold text-ivory uppercase tracking-wide mb-2">
-                Cryptographic Ledger
+                Clear Member Ledger
               </h4>
               <p className="text-[14px] font-extralight text-platinum/85 leading-relaxed">
-                One truth for all 50 members. Open 24/7 on every phone. Unalterable
-                history.
+                One honest record for the whole group. Every member can view their
+                personal balance, loan status, and group totals 24/7 on their phone.
               </p>
             </div>
           </div>
@@ -148,9 +149,9 @@ export function Scene03TheBlueprint() {
           <div className="mt-8 pt-6 border-t border-umber/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-platinum/80">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-sage animate-ping" />
-              <span>ACTIVE PIPELINE: NODE 0{pulseNode} ACTIVATED</span>
+              <span>ACTIVE SYSTEM: PILLAR 0{pulseNode} HIGHLIGHTED</span>
             </div>
-            <span className="text-ochre">CLICK ANY NODE TO TEST CONSENSUS SIGNING</span>
+            <span className="text-ochre">CLICK ANY PILLAR ABOVE TO TEST</span>
           </div>
         </motion.div>
       </div>
@@ -158,7 +159,7 @@ export function Scene03TheBlueprint() {
       {/* Section Footer Flow Trigger */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-umber/30">
         <span className="text-[11px] font-mono tracking-widest uppercase text-ivory">
-          SEE HOW GROUPS RUN THE PROTOCOL DAILY
+          SEE HOW GROUPS RUN KIKOBA STEP BY STEP
         </span>
 
         <a
