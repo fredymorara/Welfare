@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Sparkles, ArrowDown } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { SIGN_UP_URL, SIGN_IN_URL } from "../../config/api";
 
@@ -27,7 +27,7 @@ export function Scene05TheHorizon() {
       {/* Background Horizon Gateway Vortex Rings */}
       <motion.div
         style={{ scale: ringScale, rotate: ringRotate }}
-        className="absolute inset-0 pointer-events-none z-0 will-change-transform flex items-center justify-center opacity-25"
+        className="absolute inset-0 pointer-events-none z-0 will-change-transform flex items-center justify-center opacity-30"
       >
         <div className="w-150 sm:w-225 h-150 sm:h-225 rounded-full border border-ochre/40 flex items-center justify-center p-20 shadow-[0_0_100px_rgba(200,162,122,0.12)]">
           <div className="w-full h-full rounded-full border border-dashed border-ochre/50 flex items-center justify-center p-20">
@@ -50,7 +50,7 @@ export function Scene05TheHorizon() {
         </span>
       </div>
 
-      {/* Center Monolithic Card */}
+      {/* Center Monolithic Drama & Clean Action */}
       <div className="relative z-10 my-auto w-full max-w-4xl mx-auto text-center">
         {/* Official Brand Emblem */}
         <div className="inline-flex items-center justify-center mb-6">
@@ -65,39 +65,32 @@ export function Scene05TheHorizon() {
           </div>
         </div>
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ochre/15 border border-ochre/40 mb-6">
-          <Sparkles className="w-3.5 h-3.5 text-ochre" />
-          <span className="text-ochre font-mono text-[11px] font-semibold tracking-[0.2em] uppercase">
-            Start Your Free Trial
-          </span>
-        </div>
+        <span className="text-ochre font-mono text-[13px] tracking-[0.35em] uppercase block mb-4">
+          [ GET STARTED ON WEB TODAY ]
+        </span>
 
-        {/* Main Headline */}
-        <h2 className="text-[44px] sm:text-[72px] lg:text-[96px] font-black tracking-[-0.03em] text-ivory leading-[0.94] uppercase mb-6">
-          Ready to transform <br />
+        <h2 className="text-[52px] sm:text-[84px] lg:text-[112px] font-black tracking-[-0.04em] text-ivory leading-[0.92] uppercase mb-8">
+          Bring your chama <br />
           <span className="text-ochre font-serif italic font-normal tracking-tight">
-            your group?
+            into the digital era.
           </span>
         </h2>
 
-        {/* Subtitle */}
-        <p className="text-[17px] sm:text-[21px] font-extralight text-platinum leading-[1.65] max-w-2xl mx-auto mb-10">
-          Join over 120+ groups already using Kikoba. Start your free trial today and
-          bring complete transparency to your group&apos;s contributions, loans, and expenses.
-          No hidden fees.
+        <p className="text-[18px] sm:text-[22px] font-extralight text-platinum leading-[1.65] max-w-2xl mx-auto mb-12">
+          Give your treasurer peace of mind. Give your members complete trust.
+          Kikoba is ready on the web today — set up your group in under 3 minutes from your phone or computer.
         </p>
 
         {/* Direct Action Button - No Forms, Pure CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <motion.a
             href={SIGN_UP_URL}
-            whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(200,162,122,0.55)" }}
+            whileHover={{ scale: 1.04, boxShadow: "0 0 45px rgba(200,162,122,0.5)" }}
             whileTap={{ scale: 0.98 }}
-            className="px-10 py-5 rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[14px] font-mono tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_35px_rgba(200,162,122,0.35)] cursor-pointer"
+            className="px-10 py-5 rounded-full bg-ochre hover:bg-[#d8b894] text-void font-black text-[13px] font-mono tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_35px_rgba(200,162,122,0.3)] cursor-pointer"
           >
             <span>Start Free Trial</span>
-            <ArrowRight className="w-5 h-5 stroke-2.5" />
+            <ArrowRight className="w-4 h-4 stroke-3" />
           </motion.a>
         </div>
 
@@ -112,8 +105,8 @@ export function Scene05TheHorizon() {
           </a>
         </div>
 
-        {/* Trust Badges Row */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 font-mono text-[11px] uppercase tracking-widest text-platinum/80">
+        {/* Guarantees Row */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 font-mono text-[11px] uppercase tracking-widest text-platinum/80">
           <span className="flex items-center gap-2 text-sage">
             ✓ 14-DAY FREE TRIAL
           </span>
@@ -121,7 +114,7 @@ export function Scene05TheHorizon() {
             ✓ WORKS ON ANY BROWSER
           </span>
           <span className="flex items-center gap-2 text-sage">
-            ✓ CANCEL ANYTIME
+            ✓ SETUP IN UNDER 3 MINUTES
           </span>
         </div>
       </div>
