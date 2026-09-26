@@ -167,7 +167,7 @@ export function PricingSection() {
                   <h3 className="text-[26px] font-black text-ivory uppercase tracking-[-0.02em] mb-2">
                     {pkg.name}
                   </h3>
-                  <p className="text-[13px] text-platinum/70 font-light leading-relaxed mb-6 min-h-[40px]">
+                  <p className="text-[13px] text-platinum/70 font-light leading-relaxed mb-6 min-h-10">
                     {pkg.description}
                   </p>
 

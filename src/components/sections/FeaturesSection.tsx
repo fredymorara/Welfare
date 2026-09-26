@@ -227,7 +227,7 @@ export function FeaturesSection() {
           className="relative rounded-none border border-umber bg-void-surface p-6 sm:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.8)] will-change-transform overflow-hidden"
         >
           {/* Subtle Grid Background */}
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#C8A27A_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#C8A27A_1px,transparent_1px)] bg-size-[16px_16px] pointer-events-none" />
 
           {/* Stage Header */}
           <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-umber/40 font-mono text-[11px] text-platinum/60">
@@ -243,7 +243,7 @@ export function FeaturesSection() {
           </div>
 
           {/* Dynamic Content Per Feature */}
-          <div className="relative z-10 min-h-[340px]">
+          <div className="relative z-10 min-h-85">
             <AnimatePresence mode="wait">
               {/* Feature 1: M-Pesa Interactive Simulation */}
               {pulseNode === 1 && (

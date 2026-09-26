@@ -57,8 +57,8 @@ export function HeroSection() {
 
         {/* Dark scrim and gradient overlays for text contrast and depth */}
         <div className="absolute inset-0 bg-black/60 z-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70 z-0" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent z-0" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/40 via-transparent to-black/70 z-0" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/75 via-black/35 to-transparent z-0" />
       </div>
 
       {/* Parallax Rotating Golden Baobab Seal (Desktop only: hidden on mobile to eliminate GPU rasterization lag) */}
